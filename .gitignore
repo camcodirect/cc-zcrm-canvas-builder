@@ -1,0 +1,23 @@
+# Credentials — never commit
+.env
+.env.*
+!.env.example
+
+# Raw browser captures — these carry a live session Cookie / x-zcsrf-token.
+# The parsed, credential-free payloads live in reference/captures/ instead.
+save-zcrm-canvas-api-curl-request.txt
+canvas-template-request-2.txt
+canvas-template-request-3.txt
+
+# Node
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Local scratch
+tmp/
+*.local.*

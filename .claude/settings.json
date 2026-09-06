@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -sL \"https://clips.agent-native.com/share/Ai3HMCOsle1F?ref=clip_share\" -o \"C:/Users/john/AppData/Local/Temp/claude/e--claude-projects-cc-zcrm-canvas-builder/90cee861-ad1b-4e0d-8be9-c98c25065200/scratchpad/clip.html\" -w \"%{http_code} %{size_download}\\\\n\")",
+      "Bash(awk 'NR<=1{print \"LINE \" NR \" len=\" length\\($0\\)}' save-zcrm-canvas-api-curl-request.txt)",
+      "Bash(awk 'NR<=40{print NR\": \"length\\($0\\)}' save-zcrm-canvas-api-curl-request.txt)",
+      "Bash(python -c ' *)",
+      "mcp__claude_ai_Camco_ZCRM__ZohoCRM_getFields",
+      "Bash(python parse.py)",
+      "Bash(python -X utf8 uid.py)",
+      "Bash(python -X utf8 src/roundtrip_test.py)",
+      "Bash(python -X utf8 src/noop_deploy.py 2582206000076641025)",
+      "Bash(python -X utf8 src/noop_deploy.py 2582206000076641025 --execute)",
+      "Bash(python -X utf8 tokens.py)",
+      "Bash(python -X utf8 -c ' *)",
+      "Bash(python -X utf8 src/build_contacts_showcase.py)",
+      "Bash(python -X utf8 src/build_contacts_showcase.py --deploy)",
+      "mcp__claude_ai_Camco_ZCRM__ZohoCRM_getModuleByApiName",
+      "Bash(curl -sL \"https://clips.agent-native.com/api/agent-context.json?id=06SzvhNQQYtB\" -o ctx2.json -w \"%{http_code} %{size_download}\\\\n\")"
+    ]
+  }
+}

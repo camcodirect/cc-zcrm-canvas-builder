@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Contacts Canvas — Design v2</title>
+<style>
+  :root{
+    --ink:#0f172a;         /* slate-900 */
+    --ink-2:#334155;       /* slate-700 */
+    --soft:#64748b;        /* slate-500 */
+    --line:#e8edf3;
+    --page:#f5f8fc;
+    --card:#ffffff;
+    --indigo:#6366f1;
+    --sky:#0ea5e9;
+    --teal:#14b8a6;
+    --violet:#8b5cf6;
+    --amber:#f59e0b;
+    --rose:#f43f5e;
+    --emerald:#10b981;
+    --shadow:0 1px 2px rgba(15,23,42,.04), 0 6px 20px rgba(15,23,42,.06);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#e4eaf2;padding:26px;
+       font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--ink)}
+  .note{max-width:1100px;margin:0 auto 16px;font-size:13px;color:#475569}
+  .note b{color:var(--ink)} .note code{background:#fff;padding:1px 5px;border-radius:4px;border:1px solid var(--line)}
+  .switch{max-width:1100px;margin:0 auto 14px;display:flex;gap:8px;flex-wrap:wrap}
+  .switch button{font:600 12px/1 inherit;padding:8px 14px;border-radius:99px;border:1px solid var(--line);
+                 background:#fff;color:var(--ink-2);cursor:pointer}
+  .switch button.on{background:var(--indigo);border-color:var(--indigo);color:#fff}
+
+  .canvas{position:relative;width:1100px;margin:0 auto;background:var(--page);
+          border-radius:12px;overflow:hidden;box-shadow:0 10px 44px rgba(15,23,42,.18)}
+
+  /* ---------- banner ---------- */
+  .banner{position:absolute;left:0;top:0;width:1100px;height:154px;overflow:hidden;
+     background:linear-gradient(115deg,#6366f1 0%,#0ea5e9 55%,#14b8a6 100%)}
+  .banner::after{content:"";position:absolute;inset:0;
+     background:radial-gradient(460px 220px at 84% -40%,rgba(255,255,255,.34),transparent 68%),
+                radial-gradient(340px 180px at 8% 140%,rgba(255,255,255,.18),transparent 70%)}
+  .b-in{position:relative;z-index:2}
+  .avatar{position:absolute;left:30px;top:32px;width:80px;height:80px;border-radius:22px;
+     background:rgba(255,255,255,.22);border:2px solid rgba(255,255,255,.65);backdrop-filter:blur(4px);
+     display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:600;color:#fff}
+  .b-name{position:absolute;left:126px;top:38px;font-size:23px;font-weight:650;color:#fff;letter-spacing:-.3px}
+  .b-sub{position:absolute;left:126px;top:69px;font-size:13px;color:rgba(255,255,255,.86)}
+  .b-acct{position:absolute;left:126px;top:90px;font-size:13px;color:#fff;font-weight:600}
+  .b-meta{position:absolute;left:126px;top:114px;font-size:12px;color:rgba(255,255,255,.72)}
+  .btn{position:absolute;height:34px;border-radius:10px;display:flex;align-items:center;
+       justify-content:center;font-size:13px;font-weight:600}
+  .btn-primary{background:#fff;color:var(--indigo)}
+  .btn-ghost{background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.42)}
+
+  /* ---------- tabs ---------- */
+  .tabs{position:absolute;left:0;top:154px;width:1100px;height:44px;background:#fff;
+        border-bottom:1px solid var(--line);display:flex;align-items:stretch;padding:0 18px;
+        gap:2px;overflow:hidden}
+  .tab{display:flex;align-items:center;padding:0 12px;font-size:12.5px;color:var(--soft);
+       border-bottom:3px solid transparent;font-weight:500;white-space:nowrap;cursor:pointer}
+  .tab.on{color:var(--indigo);border-bottom-color:var(--indigo);font-weight:650}
+  .tab .cnt{margin-left:6px;font-size:10px;background:#eef2ff;color:var(--indigo);
+            border-radius:99px;padding:1px 6px;font-weight:700}
+  .more{margin-left:auto;display:flex;align-items:center;color:var(--soft);font-size:12px;padding-left:8px}
+
+  /* ---------- body ---------- */
+  /* The body is in normal flow and offset by the banner+tabs height, so the
+     active pane's height drives the canvas height. The pane itself is
+     position:relative so its absolutely-positioned cards anchor to it. */
+  .body{position:relative;margin-top:198px;width:1100px}
+  .pane{display:none;position:relative} .pane.on{display:block}
+
+  .card{position:absolute;background:var(--card);border-radius:14px;box-shadow:var(--shadow)}
+  .card-h{position:absolute;left:18px;top:15px;right:18px;height:26px;display:flex;align-items:center;gap:9px}
+  .ico{width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+       font-size:12px;color:#fff;flex:0 0 auto}
+  .card-h .t{font-size:14px;font-weight:650}
+  .card-h .n{margin-left:auto;font-size:10.5px;color:var(--soft);background:#f1f5f9;border-radius:99px;padding:2px 8px;font-weight:700}
+
+  .kpi{position:absolute;background:#fff;border-radius:12px;box-shadow:var(--shadow);padding:13px 15px;overflow:hidden}
+  .kpi::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px}
+  .kpi .l{font-size:10.5px;color:var(--soft);text-transform:uppercase;letter-spacing:.5px;font-weight:650}
+  .kpi .v{font-size:17px;font-weight:650;margin-top:3px}
+  .kpi .d{font-size:11px;color:var(--soft);margin-top:1px}
+
+  .rows{position:absolute;left:18px;right:18px;top:50px}
+  .row{display:flex;align-items:center;height:29px;border-bottom:1px solid #f4f7fa;font-size:13px}
+  .row:last-child{border-bottom:none}
+  .row .k{width:42%;color:var(--soft)}
+  .row .v{width:58%;font-weight:550}
+  .row .v.link{color:var(--sky);font-weight:600}
+  .row .v.muted{color:#cbd5e1;font-weight:400}
+
+  .rl{position:absolute;left:18px;right:18px;top:50px;bottom:14px;overflow:hidden}
+  .rl table{width:100%;border-collapse:collapse;font-size:12.5px}
+  .rl th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--soft);
+         font-weight:700;padding:0 8px 7px 0;border-bottom:1px solid var(--line)}
+  .rl td{padding:8px 8px 8px 0;border-bottom:1px solid #f4f7fa}
+  .rl tr:last-child td{border-bottom:none}
+  .lnk{color:var(--sky);font-weight:600}
+  .pill{display:inline-block;font-size:10px;padding:2px 9px;border-radius:99px;font-weight:700}
+  .p-green{background:#d1fae5;color:#065f46} .p-amber{background:#fef3c7;color:#92400e}
+  .p-rose{background:#ffe4e6;color:#9f1239}  .p-indigo{background:#e0e7ff;color:#3730a3}
+  .p-sky{background:#e0f2fe;color:#075985}
+  .chip{display:inline-block;background:#f1f5f9;border-radius:99px;padding:4px 11px;font-size:12px;
+        margin:0 6px 6px 0;color:var(--ink-2);font-weight:550}
+  .empty{color:#cbd5e1;font-size:12.5px;padding-top:16px}
+
+  /* progress / meter */
+  .meter{height:7px;border-radius:99px;background:#eef2f7;overflow:hidden;margin-top:7px}
+  .meter i{display:block;height:100%;border-radius:99px}
+  .big{font-size:26px;font-weight:700;letter-spacing:-.6px}
+
+  .tl{position:absolute;left:18px;right:18px;top:50px}
+  .tl .e{position:relative;padding-left:22px;padding-bottom:15px;border-left:2px solid var(--line);margin-left:5px}
+  .tl .e:last-child{border-left-color:transparent;padding-bottom:0}
+  .tl .e::before{content:"";position:absolute;left:-6px;top:2px;width:10px;height:10px;border-radius:50%;
+                 background:#fff;border:2px solid var(--indigo)}
+  .tl .w{font-size:12.5px;font-weight:600}
+  .tl .m{font-size:11.5px;color:var(--soft);margin-top:1px}
+</style>
+</head>
+<body>
+
+<div class="note">
+  <b>Contacts canvas — design v2.</b> Bright, modern palette. Rendered at real Canvas geometry
+  (1100 px wide, absolutely positioned) so it converts 1:1 to JSON.
+  <b>Every value on this page is placeholder text for preview purposes only</b> — the AI summary
+  included. Nothing is wired to a field or generated. In CRM, field boxes resolve their own labels
+  and data from the field IDs; the AI summary becomes fixed Static Text. Nothing deployed yet.
+</div>
+
+<div class="switch">
+  <button class="on" data-p="overview">Overview</button>
+  <button data-p="engagement">Engagement</button>
+  <button data-p="delivery">Delivery</button>
+  <button data-p="ai">AI Insights</button>
+  <button data-p="notes">Notes (related list)</button>
+</div>
+
+<div class="canvas">
+
+  <div class="banner"><div class="b-in">
+    <div class="avatar">SK</div>
+    <div class="b-name">Steven Klein</div>
+    <div class="b-sub">IT Director · Higher Education</div>
+    <div class="b-acct">University of Nebraska–Kearney</div>
+    <div class="b-meta">Owner John Pia · Lead source Infotelligent · Last activity Jul 30, 2026</div>
+    <div class="btn btn-primary" style="left:736px;top:42px;width:120px">Send Email</div>
+    <div class="btn btn-ghost"   style="left:866px;top:42px;width:86px">Edit</div>
+    <div class="btn btn-ghost"   style="left:962px;top:42px;width:40px">···</div>
+    <div class="btn btn-ghost"   style="left:1012px;top:42px;width:40px">›</div>
+    <div class="btn btn-ghost"   style="left:22px;top:16px;width:34px;height:30px">‹</div>
+  </div></div>
+
+  <div class="tabs" id="tabs">
+    <div class="tab on" data-p="overview">Overview</div>
+    <div class="tab" data-p="engagement">Engagement</div>
+    <div class="tab" data-p="delivery">Delivery</div>
+    <div class="tab" data-p="ai">AI Insights</div>
+    <div class="tab" data-p="notes">Notes<span class="cnt">6</span></div>
+    <div class="tab">Open Tasks<span class="cnt">3</span></div>
+    <div class="tab">Open Meetings<span class="cnt">2</span></div>
+    <div class="tab">Emails<span class="cnt">4</span></div>
+    <div class="tab">Proposals</div>
+    <div class="more">+16 ›</div>
+  </div>
+
+  <div class="body" id="body">
+
+    <!-- ============ OVERVIEW ============ -->
+    <div class="pane on" data-p="overview" style="height:1210px">
+      <div class="kpi" style="left:22px;top:18px;width:256px"><span style="position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--indigo)"></span>
+        <div class="l">Lifecycle</div><div class="v">Customer</div><div class="d">Since Mar 2026</div></div>
+      <div class="kpi" style="left:290px;top:18px;width:256px"><span style="position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--sky)"></span>
+        <div class="l">Open Pipeline</div><div class="v">$48,500</div><div class="d">2 proposals</div></div>
+      <div class="kpi" style="left:558px;top:18px;width:256px"><span style="position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--emerald)"></span>
+        <div class="l">Engagement</div><div class="v">High</div>
+        <div class="meter"><i style="width:78%;background:var(--emerald)"></i></div></div>
+      <div class="kpi" style="left:826px;top:18px;width:252px"><span style="position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--amber)"></span>
+        <div class="l">Last Touch</div><div class="v">6 days ago</div><div class="d">Email · Aug 28</div></div>
+
+      <div class="card" style="left:22px;top:120px;width:528px;height:300px">
+        <div class="card-h"><div class="ico" style="background:var(--indigo)">◉</div><div class="t">About This Contact</div></div>
+        <div class="rows">
+          <div class="row"><div class="k">Email</div><div class="v link">kleins@unk.edu</div></div>
+          <div class="row"><div class="k">Phone</div><div class="v muted">—</div></div>
+          <div class="row"><div class="k">Mobile</div><div class="v muted">—</div></div>
+          <div class="row"><div class="k">Account Name</div><div class="v link">University of Nebraska–Kearney</div></div>
+          <div class="row"><div class="k">Reporting To</div><div class="v muted">—</div></div>
+          <div class="row"><div class="k">Lead Source</div><div class="v">Infotelligent</div></div>
+          <div class="row"><div class="k">Email Opt Out</div><div class="v">No</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="left:566px;top:120px;width:512px;height:300px">
+        <div class="card-h"><div class="ico" style="background:var(--teal)">⌖</div><div class="t">Mailing Address</div></div>
+        <div class="rows">
+          <div class="row"><div class="k">Street</div><div class="v muted">—</div></div>
+          <div class="row"><div class="k">City</div><div class="v">Kearney</div></div>
+          <div class="row"><div class="k">State</div><div class="v">Nebraska</div></div>
+          <div class="row"><div class="k">Zip</div><div class="v muted">—</div></div>
+          <div class="row"><div class="k">Country</div><div class="v">United States</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="left:22px;top:440px;width:528px;height:206px">
+        <div class="card-h"><div class="ico" style="background:var(--emerald)">✎</div><div class="t">Description &amp; Tags</div></div>
+        <div style="position:absolute;left:18px;right:18px;top:50px;font-size:13px;color:var(--ink-2);line-height:1.55">
+          Primary technical contact for the campus rollout. Prefers email over phone;
+          copies procurement on anything contractual.</div>
+        <div style="position:absolute;left:18px;top:126px;right:18px">
+          <span class="chip">Higher Ed</span><span class="chip">Decision Maker</span><span class="chip">Q4 Renewal</span></div>
+      </div>
+
+      <div class="card" style="left:566px;top:440px;width:512px;height:206px">
+        <div class="card-h"><div class="ico" style="background:var(--violet)">⚙</div><div class="t">System Information</div></div>
+        <div class="rows">
+          <div class="row"><div class="k">Created By</div><div class="v">John Pia</div></div>
+          <div class="row"><div class="k">Created Time</div><div class="v">Mar 23, 2026 09:47 PM</div></div>
+          <div class="row"><div class="k">Modified By</div><div class="v">John Pia</div></div>
+          <div class="row"><div class="k">Last Activity</div><div class="v">Jul 30, 2026 09:07 AM</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="left:22px;top:666px;width:528px;height:248px">
+        <div class="card-h"><div class="ico" style="background:var(--sky)">☑</div><div class="t">Open Tasks</div><div class="n">3</div></div>
+        <div class="rl"><table>
+          <tr><th>Subject</th><th>Due</th><th>Status</th></tr>
+          <tr><td class="lnk">Send renewal quote</td><td>Sep 12</td><td><span class="pill p-amber">In Progress</span></td></tr>
+          <tr><td class="lnk">Confirm PO number</td><td>Sep 18</td><td><span class="pill p-sky">Not Started</span></td></tr>
+          <tr><td class="lnk">Schedule Q4 review</td><td>Oct 02</td><td><span class="pill p-sky">Not Started</span></td></tr>
+        </table></div>
+      </div>
+
+      <div class="card" style="left:566px;top:666px;width:512px;height:248px">
+        <div class="card-h"><div class="ico" style="background:var(--rose)">▤</div><div class="t">Open Meetings</div><div class="n">2</div></div>
+        <div class="rl"><table>
+          <tr><th>Title</th><th>From</th><th>Host</th></tr>
+          <tr><td class="lnk">Renewal walkthrough</td><td>Sep 09, 10:00</td><td>John Pia</td></tr>
+          <tr><td class="lnk">Security questionnaire</td><td>Sep 22, 14:30</td><td>John Pia</td></tr>
+        </table></div>
+      </div>
+
+      <div class="card" style="left:22px;top:934px;width:528px;height:222px">
+        <div class="card-h"><div class="ico" style="background:var(--amber)">✉</div><div class="t">Recent Emails</div><div class="n">4</div></div>
+        <div class="rl"><table>
+          <tr><th>Subject</th><th>Sent</th></tr>
+          <tr><td class="lnk">Re: Contract redlines</td><td>Aug 28</td></tr>
+          <tr><td class="lnk">Onboarding schedule</td><td>Aug 14</td></tr>
+          <tr><td class="lnk">Welcome to Camco</td><td>Jul 30</td></tr>
+        </table></div>
+      </div>
+
+      <div class="card" style="left:566px;top:934px;width:512px;height:222px">
+        <div class="card-h"><div class="ico" style="background:var(--indigo)">↻</div><div class="t">Cadences</div><div class="n">1</div></div>
+        <div class="rl"><table>
+          <tr><th>Name</th><th>Status</th><th>Next step</th></tr>
+          <tr><td class="lnk">Renewal nurture</td><td><span class="pill p-green">Active</span></td><td>Sep 10</td></tr>
+        </table></div>
+      </div>
+    </div>
+
+    <!-- ============ ENGAGEMENT (custom tab) ============ -->
+    <div class="pane" data-p="engagement" style="height:900px">
+      <div class="kpi" style="left:22px;top:18px;width:344px"><span style="position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--sky)"></span>
+        <div class="l">Emails Exchanged</div><div class="big">24</div><div class="d">12 sent · 12 received</div></div>
+      <div class="kpi" style="left:378px;top:18px;width:344px"><span style="position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--rose)"></span>
+        <div class="l">Meetings Held</div><div class="big">7</div><div class="d">Last Aug 21</div></div>
+      <div class="kpi" style="left:734px;top:18px;width:344px"><span style="position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--emerald)"></span>
+        <div class="l">Response Rate</div><div class="big">92%</div>
+        <div class="meter"><i style="width:92%;background:var(--emerald)"></i></div></div>
+
+      <div class="card" style="left:22px;top:136px;width:700px;height:360px">
+        <div class="card-h"><div class="ico" style="background:var(--sky)">✉</div><div class="t">Email History</div><div class="n">24</div></div>
+        <div class="rl"><table>
+          <tr><th>Subject</th><th>Direction</th><th>Sent</th><th>Status</th></tr>
+          <tr><td class="lnk">Re: Contract redlines</td><td>Received</td><td>Aug 28</td><td><span class="pill p-green">Replied</span></td></tr>
+          <tr><td class="lnk">Contract redlines</td><td>Sent</td><td>Aug 27</td><td><span class="pill p-sky">Opened</span></td></tr>
+          <tr><td class="lnk">Onboarding schedule</td><td>Sent</td><td>Aug 14</td><td><span class="pill p-sky">Opened</span></td></tr>
+          <tr><td class="lnk">Re: Kickoff timing</td><td>Received</td><td>Aug 02</td><td><span class="pill p-green">Replied</span></td></tr>
+          <tr><td class="lnk">Welcome to Camco</td><td>Sent</td><td>Jul 30</td><td><span class="pill p-sky">Opened</span></td></tr>
+          <tr><td class="lnk">Intro call follow-up</td><td>Sent</td><td>Jul 24</td><td><span class="pill p-amber">No open</span></td></tr>
+        </table></div>
+      </div>
+
+      <div class="card" style="left:738px;top:136px;width:340px;height:360px">
+        <div class="card-h"><div class="ico" style="background:var(--indigo)">◷</div><div class="t">Activity Timeline</div></div>
+        <div class="tl">
+          <div class="e"><div class="w">Email replied</div><div class="m">Aug 28 · Contract redlines</div></div>
+          <div class="e"><div class="w">Meeting held</div><div class="m">Aug 21 · Technical review</div></div>
+          <div class="e"><div class="w">Proposal sent</div><div class="m">Aug 15 · $48,500</div></div>
+          <div class="e"><div class="w">Cadence started</div><div class="m">Aug 01 · Renewal nurture</div></div>
+          <div class="e"><div class="w">Contact created</div><div class="m">Mar 23 · Infotelligent</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="left:22px;top:516px;width:1056px;height:330px">
+        <div class="card-h"><div class="ico" style="background:var(--rose)">▤</div><div class="t">All Meetings</div><div class="n">9</div></div>
+        <div class="rl"><table>
+          <tr><th>Title</th><th>When</th><th>Host</th><th>Participants</th><th>Status</th></tr>
+          <tr><td class="lnk">Renewal walkthrough</td><td>Sep 09, 10:00</td><td>John Pia</td><td>3</td><td><span class="pill p-sky">Scheduled</span></td></tr>
+          <tr><td class="lnk">Security questionnaire</td><td>Sep 22, 14:30</td><td>John Pia</td><td>4</td><td><span class="pill p-sky">Scheduled</span></td></tr>
+          <tr><td class="lnk">Technical review</td><td>Aug 21, 11:00</td><td>John Pia</td><td>5</td><td><span class="pill p-green">Held</span></td></tr>
+          <tr><td class="lnk">Kickoff</td><td>Aug 02, 09:30</td><td>John Pia</td><td>6</td><td><span class="pill p-green">Held</span></td></tr>
+          <tr><td class="lnk">Discovery call</td><td>Jul 24, 15:00</td><td>John Pia</td><td>2</td><td><span class="pill p-green">Held</span></td></tr>
+        </table></div>
+      </div>
+    </div>
+
+    <!-- ============ DELIVERY (custom tab) ============ -->
+    <div class="pane" data-p="delivery" style="height:820px">
+      <div class="card" style="left:22px;top:18px;width:528px;height:300px">
+        <div class="card-h"><div class="ico" style="background:var(--violet)">▣</div><div class="t">Proposals</div><div class="n">2</div></div>
+        <div class="rl"><table>
+          <tr><th>Name</th><th>Amount</th><th>Status</th></tr>
+          <tr><td class="lnk">Campus rollout — Phase 2</td><td>$32,000</td><td><span class="pill p-amber">Sent</span></td></tr>
+          <tr><td class="lnk">Support retainer 2027</td><td>$16,500</td><td><span class="pill p-indigo">Draft</span></td></tr>
+        </table></div>
+      </div>
+
+      <div class="card" style="left:566px;top:18px;width:512px;height:300px">
+        <div class="card-h"><div class="ico" style="background:var(--teal)">◈</div><div class="t">Zoho Projects</div><div class="n">2</div></div>
+        <div class="rl"><table>
+          <tr><th>Project</th><th>Owner</th><th>Progress</th></tr>
+          <tr><td class="lnk">Campus rollout</td><td>John Pia</td><td><div class="meter" style="width:90px"><i style="width:62%;background:var(--teal)"></i></div></td></tr>
+          <tr><td class="lnk">SSO integration</td><td>John Pia</td><td><div class="meter" style="width:90px"><i style="width:35%;background:var(--amber)"></i></div></td></tr>
+        </table></div>
+      </div>
+
+      <div class="card" style="left:22px;top:338px;width:528px;height:250px">
+        <div class="card-h"><div class="ico" style="background:var(--sky)">▤</div><div class="t">Resources</div><div class="n">4</div></div>
+        <div class="rl"><table>
+          <tr><th>Resource</th><th>Type</th></tr>
+          <tr><td class="lnk">Deployment runbook</td><td>Document</td></tr>
+          <tr><td class="lnk">Network diagram</td><td>Drive file</td></tr>
+          <tr><td class="lnk">SSO config notes</td><td>Document</td></tr>
+        </table></div>
+      </div>
+
+      <div class="card" style="left:566px;top:338px;width:512px;height:250px">
+        <div class="card-h"><div class="ico" style="background:var(--emerald)">☑</div><div class="t">Checklists</div><div class="n">2</div></div>
+        <div class="rl"><table>
+          <tr><th>Checklist</th><th>Complete</th></tr>
+          <tr><td class="lnk">Onboarding</td><td><div class="meter" style="width:110px"><i style="width:100%;background:var(--emerald)"></i></div></td></tr>
+          <tr><td class="lnk">Security review</td><td><div class="meter" style="width:110px"><i style="width:45%;background:var(--amber)"></i></div></td></tr>
+        </table></div>
+      </div>
+
+      <div class="card" style="left:22px;top:608px;width:1056px;height:190px">
+        <div class="card-h"><div class="ico" style="background:var(--amber)">⛁</div><div class="t">Drive Files</div><div class="n">5</div></div>
+        <div class="rl"><table>
+          <tr><th>File</th><th>Modified</th><th>Owner</th></tr>
+          <tr><td class="lnk">UNK — MSA signed.pdf</td><td>Aug 27</td><td>John Pia</td></tr>
+          <tr><td class="lnk">Phase 2 scope.docx</td><td>Aug 15</td><td>John Pia</td></tr>
+        </table></div>
+      </div>
+    </div>
+
+    <!-- ============ AI INSIGHTS (custom tab) ============ -->
+    <div class="pane" data-p="ai" style="height:720px">
+      <!-- Static preview prose only. Not wired to any field, not generated.
+           In Canvas this becomes a Static Text node with fixed copy. -->
+      <div class="card" style="left:22px;top:18px;width:1056px;height:150px">
+        <div class="card-h"><div class="ico" style="background:var(--violet)">✦</div><div class="t">AI Summary</div></div>
+        <div style="position:absolute;left:18px;right:18px;top:52px;font-size:13.5px;line-height:1.6;color:var(--ink-2)">
+          Steven is the primary technical decision maker for the UNK campus rollout and has
+          responded to 92% of outreach. Two proposals are open totalling $48,500, with the Phase 2
+          contract in redlines since Aug 27. <b>Next best action:</b> confirm the PO number before
+          the Sep 12 quote expiry.
+        </div>
+      </div>
+
+      <div class="card" style="left:22px;top:188px;width:528px;height:290px">
+        <div class="card-h"><div class="ico" style="background:var(--indigo)">✦</div><div class="t">AI Meeting Extractions</div><div class="n">5</div></div>
+        <div class="rl"><table>
+          <tr><th>Meeting</th><th>Extracted</th></tr>
+          <tr><td class="lnk">Technical review</td><td>Aug 21</td></tr>
+          <tr><td class="lnk">Kickoff</td><td>Aug 02</td></tr>
+          <tr><td class="lnk">Discovery call</td><td>Jul 24</td></tr>
+        </table></div>
+      </div>
+
+      <div class="card" style="left:566px;top:188px;width:512px;height:290px">
+        <div class="card-h"><div class="ico" style="background:var(--emerald)">◆</div><div class="t">AI Meeting Items</div><div class="n">8</div></div>
+        <div class="rl"><table>
+          <tr><th>Item</th><th>Type</th><th>Status</th></tr>
+          <tr><td class="lnk">Send SSO spec</td><td>Action</td><td><span class="pill p-green">Done</span></td></tr>
+          <tr><td class="lnk">Confirm PO</td><td>Action</td><td><span class="pill p-amber">Open</span></td></tr>
+          <tr><td class="lnk">Budget approved Q4</td><td>Decision</td><td><span class="pill p-green">Noted</span></td></tr>
+        </table></div>
+      </div>
+
+      <div class="card" style="left:22px;top:498px;width:1056px;height:200px">
+        <div class="card-h"><div class="ico" style="background:var(--sky)">▦</div><div class="t">Transcripts</div><div class="n">3</div></div>
+        <div class="rl"><table>
+          <tr><th>Meeting</th><th>Date</th><th>Duration</th></tr>
+          <tr><td class="lnk">Technical review</td><td>Aug 21</td><td>48 min</td></tr>
+          <tr><td class="lnk">Kickoff</td><td>Aug 02</td><td>32 min</td></tr>
+        </table></div>
+      </div>
+    </div>
+
+    <!-- ============ NOTES (plain related-list tab) ============ -->
+    <div class="pane" data-p="notes" style="height:700px">
+      <div class="card" style="left:22px;top:18px;width:1056px;height:640px">
+        <div class="card-h"><div class="ico" style="background:var(--indigo)">✎</div><div class="t">Notes</div><div class="n">6</div></div>
+        <div class="rl"><table>
+          <tr><th>Title</th><th>Note</th><th>Added by</th><th>When</th></tr>
+          <tr><td class="lnk">Procurement path</td><td>Requires PO before invoice; Sarah in procurement approves.</td><td>John Pia</td><td>Aug 27</td></tr>
+          <tr><td class="lnk">Renewal timing</td><td>Budget cycle closes Oct 31 — quote must land before then.</td><td>John Pia</td><td>Aug 15</td></tr>
+          <tr><td class="lnk">Tech constraints</td><td>Campus SSO is Shibboleth, not Azure AD.</td><td>John Pia</td><td>Aug 02</td></tr>
+        </table></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="note" style="margin-top:18px">
+  <b>Tabs:</b> 4 custom composite tabs (Overview, Engagement, Delivery, AI Insights) plus
+  a related-list tab for each of the 25 related modules on Contacts — Notes, Open/Closed Tasks,
+  Open/Closed &amp; Invited Meetings, Emails, Attachments, Proposals, Resources, Zoho Projects,
+  Drive Files, Transcripts, AI Meeting Extractions, AI Meeting Items, Related Account,
+  Related Buyers, Linked/Referred Inquiries, Cadences, SalesIQ Visits, Chronological View,
+  Locking Information.
+  <br><br>
+  <b>Converts directly:</b> banner gradient, avatar, fields, button group
+  (<code>MERGEFIELD</code>+<code>separator</code>), tab strip, KPI tiles
+  (<code>border_left</code>), icon+heading cards, <code>Table Layout</code> rows,
+  related-list cards.
+  <b>Approximated:</b> status pills, progress meters and the timeline rail are drawn here with CSS;
+  in Canvas they become styled static text and thin bordered components, so expect them close but
+  not identical.
+</div>
+
+<script>
+  function show(p){
+    document.querySelectorAll('.pane').forEach(e=>e.classList.toggle('on',e.dataset.p===p));
+    document.querySelectorAll('.switch button').forEach(b=>b.classList.toggle('on',b.dataset.p===p));
+    document.querySelectorAll('#tabs .tab').forEach(t=>t.classList.toggle('on',t.dataset.p===p));
+  }
+  document.querySelectorAll('.switch button').forEach(b=>b.onclick=()=>show(b.dataset.p));
+  document.querySelectorAll('#tabs .tab[data-p]').forEach(t=>t.onclick=()=>show(t.dataset.p));
+</script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+ "canvas_view_id": "2582206000076641025",
+ "module": {
+  "id": "2582206000000002179",
+  "api_name": "Contacts"
+ },
+ "layout": {
+  "id": "2582206000000091033"
+ },
+ "org_id": "647376701",
+ "generated_by": "src/build_contacts_showcase.py"
+}
