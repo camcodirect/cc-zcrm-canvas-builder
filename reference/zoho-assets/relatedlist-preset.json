@@ -1,0 +1,1898 @@
+[
+ {
+  "type": "RelatedlistPreset1",
+  "style": {
+   "relatedlist": {
+    "children": []
+   },
+   "container": {
+    "default": {
+     "border": "none",
+     "border_radius": "15px"
+    }
+   },
+   "title": {
+    "ui": {
+     "value": {
+      "style": {},
+      "position": {
+       "start_x": 30,
+       "start_y": 30,
+       "end_x": 1274,
+       "width": 1244,
+       "height": 50,
+       "depth": 1,
+       "min_left": 2
+      },
+      "tagname": "DIV",
+      "class": "zcanvas-title-editor"
+     }
+    },
+    "children": [
+     {
+      "children": [],
+      "ui": {
+       "value": {
+        "style": {
+         "default": {
+          "background_color": "transparent",
+          "font_size": "18px"
+         }
+        },
+        "position": {
+         "start_x": 2,
+         "start_y": 13,
+         "end_x": 166,
+         "width": 164,
+         "height": 22,
+         "depth": 1
+        },
+        "tagname": "DIV",
+        "class": "zc_disabled",
+        "value": "Open Activities"
+       },
+       "autoheight": false
+      },
+      "type": "component",
+      "theme": "Static Text",
+      "zcanvasId": "zcanvas_8g9uoi56ar2"
+     },
+     {
+      "ui": {
+       "value": {
+        "style": {
+         "default": {
+          "background_color": "rgba(255,255,255,0)",
+          "border_radius": "6px",
+          "border": "1px solid rgb(213, 213, 222)",
+          "padding_top": "4px",
+          "padding_left": "0px",
+          "padding_bottom": "4px",
+          "background_image": "linear-gradient(360deg , rgb(235, 238, 245) 0%,rgb(255, 255, 255) 100%)",
+          "font_size": "14px",
+          "padding_right": "0px"
+         }
+        },
+        "position": {
+         "start_x": 1456,
+         "start_y": -1,
+         "end_x": 1242,
+         "width": 54,
+         "height": 29,
+         "depth": 1
+        },
+        "tagname": "DIV",
+        "class": "zcanvas-field zcanvas-no-img-default zc-ta-center zccbutton zccrlaction zc-rl-field zccbuttonicon zccbuttonnotext zc-only-icon"
+       },
+       "holder": {
+        "style": {},
+        "tagname": "DIV",
+        "class": ""
+       },
+       "field": {
+        "style": {},
+        "tagname": "DIV",
+        "class": ""
+       },
+       "icon": {
+        "style": {
+         "default": {
+          "padding_top": "2px",
+          "color": "rgba(39, 38, 58, 1)"
+         }
+        },
+        "tagname": "DIV",
+        "class": "",
+        "icon": "icon-Icon_dot_three"
+       }
+      },
+      "children": [],
+      "datatype": "button",
+      "id": "moreRLActions4937050000000003769",
+      "label": "More Actions",
+      "hideLabel": true,
+      "type": "action",
+      "formationclass": "zccrlaction",
+      "value": "<crm-more-component data-zcqa=\"relatedList_MoreButton_Activities\" type=\"relatedList\" include-array=\"[]\" exclude-array=\"[]\"></crm-more-component>",
+      "componentid": "4937050000001205024",
+      "zcanvasId": "zcanvas_gkm2kr6t8is",
+      "zctype": "button",
+      "zcvalue": "<crm-more-component data-zcqa=\"relatedList_MoreButton_Activities\" type=\"relatedList\" include-array=\"[]\" exclude-array=\"[]\"></crm-more-component>",
+      "fieldContainer": "#zcanvas_lbogu5l629",
+      "group": "field"
+     }
+    ],
+    "type": "component",
+    "theme": "Custom Layout",
+    "zcanvasId": "zcanvas_icaznvm10ai"
+   },
+   "context": {
+    "table_row": {},
+    "table_link": {},
+    "table_column": {
+     "color": "rgba(49, 57, 73, 1)",
+     "border-bottom-color": "rgba(233, 235, 242, 1)"
+    },
+    "table_head": {
+     "background_color": "rgba(247, 249, 255, 1)",
+     "color": "rgba(128, 144, 176, 1)",
+     "border-bottom-color": "rgba(220, 223, 232, 1)",
+     "font_size": "15px"
+    }
+   }
+  }
+ },
+ {
+  "type": "RelatedlistPreset2",
+  "style": {
+   "relatedlist": {
+    "type": "relatedlist",
+    "ui": {
+     "canvas_rules": [],
+     "value": {
+      "style": {
+       "default": {
+        "border_radius": "17px",
+        "border": "none",
+        "background_color": "rgba(240, 242, 245, 1)",
+        "box_shadow": "none",
+        "padding_top": "0px",
+        "margin_top": "8px",
+        "margin_bottom": "7px"
+       }
+      },
+      "position": {
+       "end_x": 850,
+       "depth": 1,
+       "width": 820,
+       "min_top": 15,
+       "start_y": 80,
+       "start_x": 30,
+       "height": 111,
+       "min_left": 18
+      },
+      "class": "zcanvas-non-delete"
+     }
+    },
+    "theme": "Custom Layout",
+    "children": [
+     {
+      "zcanvasId": "zcanvas_o09lr1djysq",
+      "datatype": "text",
+      "type": "field",
+      "ui": {
+       "field": {
+        "style": {
+         "default": {
+          "font_family": "b",
+          "color": "rgb(44, 123, 208)",
+          "font_size": "16px"
+         }
+        },
+        "class": "zcanvasuppercase"
+       },
+       "value": {
+        "style": {
+         "default": {}
+        },
+        "position": {
+         "end_x": 240,
+         "depth": 1,
+         "width": 222,
+         "start_y": 15,
+         "start_x": 18,
+         "height": 22
+        },
+        "class": "zcanvas-field zc-rl-field"
+       }
+      },
+      "children": []
+     },
+     {
+      "zcanvasId": "zcanvas_a2k6h4wh7d4",
+      "datatype": "picklist",
+      "type": "field",
+      "ui": {
+       "field": {
+        "style": {
+         "default": {
+          "font_family": "b",
+          "color": "rgba(49, 57, 73, 1)",
+          "margin_top": "5px",
+          "font_size": "15px"
+         }
+        },
+        "class": ""
+       },
+       "holder": {
+        "style": {
+         "default": {
+          "flex_direction": "column",
+          "color": "rgba(49, 57, 73, 1)"
+         }
+        },
+        "class": ""
+       },
+       "label": {
+        "style": {
+         "default": {
+          "color": "rgba(132, 139, 153, 1)",
+          "font_size": "15px"
+         }
+        },
+        "class": ""
+       },
+       "value": {
+        "style": {
+         "default": {}
+        },
+        "position": {
+         "end_x": 192,
+         "depth": 1,
+         "width": 174,
+         "start_y": 50,
+         "start_x": 18,
+         "height": 44
+        },
+        "class": "zcanvas-field zc-rl-field"
+       }
+      },
+      "children": []
+     },
+     {
+      "zcanvasId": "zcanvas_sv444m4bvi",
+      "datatype": "lookup",
+      "type": "field",
+      "ui": {
+       "field": {
+        "style": {
+         "default": {
+          "font_family": "b",
+          "color": "rgba(49, 57, 73, 1)",
+          "margin_top": "5px",
+          "font_size": "15px"
+         }
+        },
+        "class": ""
+       },
+       "holder": {
+        "style": {
+         "default": {
+          "flex_direction": "column",
+          "color": "rgba(49, 57, 73, 1)"
+         }
+        },
+        "class": ""
+       },
+       "label": {
+        "style": {
+         "default": {
+          "color": "rgba(132, 139, 153, 1)",
+          "font_size": "15px"
+         }
+        },
+        "class": ""
+       },
+       "value": {
+        "style": {
+         "default": {}
+        },
+        "position": {
+         "end_x": 430,
+         "depth": 1,
+         "width": 217,
+         "start_y": 50,
+         "start_x": 213,
+         "height": 44
+        },
+        "class": "zcanvas-field zc-rl-field"
+       }
+      },
+      "children": []
+     },
+     {
+      "zcanvasId": "zcanvas_umwqf2lgdv",
+      "datatype": "text",
+      "type": "field",
+      "ui": {
+       "field": {
+        "style": {
+         "default": {
+          "font_family": "b",
+          "color": "rgba(49, 57, 73, 1)",
+          "margin_top": "5px",
+          "font_size": "15px"
+         }
+        },
+        "class": ""
+       },
+       "holder": {
+        "style": {
+         "default": {
+          "flex_direction": "column",
+          "color": "rgba(49, 57, 73, 1)"
+         }
+        },
+        "class": ""
+       },
+       "label": {
+        "style": {
+         "default": {
+          "color": "rgba(132, 139, 153, 1)",
+          "font_size": "15px"
+         }
+        },
+        "class": ""
+       },
+       "value": {
+        "style": {
+         "default": {}
+        },
+        "position": {
+         "end_x": 859,
+         "depth": 1,
+         "width": 173,
+         "start_y": 50,
+         "start_x": 686,
+         "height": 44
+        },
+        "class": "zcanvas-field zc-rl-field"
+       }
+      },
+      "children": []
+     },
+     {
+      "zcanvasId": "zcanvas_lgprer70p7",
+      "datatype": "date",
+      "type": "field",
+      "ui": {
+       "field": {
+        "style": {
+         "default": {
+          "font_family": "b",
+          "color": "rgba(49, 57, 73, 1)",
+          "margin_top": "5px",
+          "font_size": "15px"
+         }
+        },
+        "class": ""
+       },
+       "holder": {
+        "style": {
+         "default": {
+          "flex_direction": "column",
+          "color": "rgba(49, 57, 73, 1)"
+         }
+        },
+        "class": ""
+       },
+       "label": {
+        "style": {
+         "default": {
+          "color": "rgba(132, 139, 153, 1)",
+          "font_size": "15px"
+         }
+        },
+        "class": ""
+       },
+       "value": {
+        "style": {
+         "default": {}
+        },
+        "position": {
+         "end_x": 666,
+         "depth": 1,
+         "width": 216,
+         "start_y": 50,
+         "start_x": 450,
+         "height": 44
+        },
+        "class": "zcanvas-field zc-rl-field"
+       }
+      },
+      "children": []
+     }
+    ]
+   },
+   "container": {
+    "default": {
+     "border": "none",
+     "border_radius": "15px"
+    }
+   },
+   "title": {
+    "ui": {
+     "value": {
+      "style": {},
+      "position": {
+       "start_x": 30,
+       "start_y": 30,
+       "end_x": 850,
+       "width": 820,
+       "height": 50,
+       "depth": 1,
+       "min_top": 11,
+       "min_left": 2
+      },
+      "tagname": "DIV",
+      "class": "zcanvas-title-editor"
+     }
+    },
+    "children": [
+     {
+      "children": [],
+      "ui": {
+       "value": {
+        "style": {
+         "default": {
+          "background_color": "transparent",
+          "font_size": "18px"
+         }
+        },
+        "position": {
+         "start_x": 2,
+         "start_y": 13,
+         "end_x": 166,
+         "width": 164,
+         "height": 22,
+         "depth": 1
+        },
+        "tagname": "DIV",
+        "class": "zc_disabled",
+        "value": "Open Activities"
+       },
+       "autoheight": false
+      },
+      "type": "component",
+      "theme": "Static Text",
+      "zcanvasId": "zcanvas_vuinqigo7p"
+     },
+     {
+      "ui": {
+       "value": {
+        "style": {
+         "default": {
+          "background_color": "rgba(255,255,255,0)",
+          "border_radius": "6px",
+          "border": "1px solid rgb(213, 213, 222)",
+          "padding_top": "4px",
+          "padding_left": "0px",
+          "padding_bottom": "4px",
+          "background_image": "linear-gradient(360deg , rgb(235, 238, 245) 0%,rgb(255, 255, 255) 100%)",
+          "font_size": "14px",
+          "padding_right": "0px"
+         }
+        },
+        "position": {
+         "start_x": 1456,
+         "start_y": 11,
+         "end_x": 812,
+         "width": 54,
+         "height": 29,
+         "depth": 1
+        },
+        "tagname": "DIV",
+        "class": "zcanvas-field zcanvas-no-img-default zc-ta-center zccbutton zccrlaction zc-rl-field zccbuttonicon zccbuttonnotext zc-only-icon"
+       },
+       "holder": {
+        "style": {},
+        "tagname": "DIV",
+        "class": ""
+       },
+       "field": {
+        "style": {},
+        "tagname": "DIV",
+        "class": ""
+       },
+       "icon": {
+        "style": {
+         "default": {
+          "padding_top": "2px",
+          "color": "rgba(39, 38, 58, 1)"
+         }
+        },
+        "tagname": "DIV",
+        "class": "",
+        "icon": "icon-Icon_dot_three"
+       }
+      },
+      "children": [],
+      "datatype": "button",
+      "id": "moreRLActions4937050000000003769",
+      "label": "More Actions",
+      "hideLabel": true,
+      "type": "action",
+      "formationclass": "zccrlaction",
+      "value": "<crm-more-component data-zcqa=\"relatedList_MoreButton_Activities\" type=\"relatedList\" include-array=\"[]\" exclude-array=\"[]\"></crm-more-component>",
+      "componentid": "4937050000001204120",
+      "zcanvasId": "zcanvas_4j6vpwtve5m",
+      "zctype": "button",
+      "fieldContainer": "#zcanvas_xbb0q16xwsr",
+      "group": "field"
+     }
+    ],
+    "type": "component",
+    "theme": "Custom Layout",
+    "zcanvasId": "zcanvas_x795n526y5"
+   },
+   "context": {}
+  }
+ },
+ {
+  "type": "RelatedlistPreset3",
+  "style": {
+   "relatedlist": {
+    "type": "relatedlist",
+    "ui": {
+     "canvas_rules": [],
+     "value": {
+      "style": {
+       "default": {
+        "background_color": "rgba(255,255,255,0)",
+        "border_top": "0px solid rgb(0, 0, 0)",
+        "padding": "58px",
+        "border_right": "0px solid rgb(0, 0, 0)",
+        "border_left": "0px solid rgb(0, 0, 0)",
+        "margin_top": "5px",
+        "margin_bottom": "14px",
+        "border_bottom": "1px solid rgba(218, 223, 232, 0.48)"
+       }
+      },
+      "position": {
+       "end_x": 579,
+       "depth": 1,
+       "width": 549,
+       "min_top": 13,
+       "start_y": 80,
+       "start_x": 30,
+       "height": 117,
+       "min_left": 17
+      },
+      "class": "zcanvas-non-delete"
+     }
+    },
+    "theme": "Custom Layout",
+    "children": [
+     {
+      "zcanvasId": "zcanvas_7yxkecf9nq5",
+      "datatype": "text",
+      "type": "field",
+      "ui": {
+       "field": {
+        "style": {
+         "default": {
+          "font_family": "b",
+          "color": "rgb(44, 123, 208)",
+          "font_size": "16px"
+         }
+        },
+        "class": "zcanvasuppercase"
+       },
+       "value": {
+        "style": {
+         "default": {}
+        },
+        "position": {
+         "end_x": 61,
+         "depth": 1,
+         "width": 44,
+         "start_y": 13,
+         "start_x": 17,
+         "height": 22
+        },
+        "class": "zcanvas-field zc-rl-field zc-ta-left"
+       }
+      },
+      "children": []
+     },
+     {
+      "zcanvasId": "zcanvas_0bk6n5bh8p",
+      "type": "component",
+      "ui": {
+       "value": {
+        "style": {
+         "default": {
+          "background_color": "rgba(233, 235, 240, 0.48)",
+          "border_radius": "26px",
+          "padding": "13px"
+         }
+        },
+        "position": {
+         "end_x": 668,
+         "depth": 1,
+         "width": 651,
+         "start_y": 47,
+         "start_x": 17,
+         "height": 44
+        }
+       }
+      },
+      "theme": "MERGEFIELD",
+      "children": [
+       {
+        "zcanvasId": "zcanvas_7gwo2yhqwt",
+        "type": "component",
+        "ui": {
+         "value": {
+          "style": {},
+          "position": {},
+          "class": "zcanvas-row-seperator"
+         }
+        },
+        "children": [
+         {
+          "zcanvasId": "zcanvas_i4raaqligba",
+          "datatype": "picklist",
+          "type": "field",
+          "ui": {
+           "field": {
+            "style": {
+             "default": {
+              "margin_left": "8px",
+              "color": "rgba(0, 176, 80, 1)",
+              "font_size": "15px"
+             }
+            },
+            "class": ""
+           },
+           "holder": {
+            "style": {},
+            "class": ""
+           },
+           "label": {
+            "style": {
+             "default": {
+              "font_size": "15px"
+             }
+            },
+            "class": ""
+           },
+           "value": {
+            "style": {
+             "default": {}
+            },
+            "position": {
+             "end_x": 142,
+             "depth": 1,
+             "width": 129,
+             "start_y": 13,
+             "start_x": 13,
+             "height": 18
+            },
+            "class": "zcanvas-field zc-rl-field zc-ta-left"
+           }
+          },
+          "children": []
+         },
+         {
+          "type": "separator",
+          "ui": {
+           "value": {
+            "style": {
+             "default": {
+              "color": "rgba(202, 210, 217, 1)"
+             }
+            },
+            "class": "zcanvas-seperator",
+            "value": "|"
+           }
+          },
+          "children": []
+         },
+         {
+          "zcanvasId": "zcanvas_7r5tre8m5nf",
+          "datatype": "date-time",
+          "type": "field",
+          "ui": {
+           "field": {
+            "style": {
+             "default": {
+              "margin_left": "8px",
+              "font_size": "15px"
+             }
+            },
+            "class": ""
+           },
+           "holder": {
+            "style": {},
+            "class": ""
+           },
+           "label": {
+            "style": {
+             "default": {
+              "font_size": "15px"
+             }
+            },
+            "class": ""
+           },
+           "value": {
+            "style": {
+             "default": {}
+            },
+            "position": {
+             "end_x": 246,
+             "depth": 1,
+             "width": 79,
+             "start_y": 13,
+             "start_x": 167,
+             "height": 18
+            },
+            "class": "zcanvas-field zc-rl-field zc-ta-left"
+           }
+          },
+          "children": []
+         },
+         {
+          "type": "separator",
+          "ui": {
+           "value": {
+            "style": {
+             "default": {
+              "color": "rgba(202, 210, 217, 1)"
+             }
+            },
+            "class": "zcanvas-seperator",
+            "value": "|"
+           }
+          },
+          "children": []
+         },
+         {
+          "zcanvasId": "zcanvas_a2nx3rru01n",
+          "datatype": "date-time",
+          "type": "field",
+          "ui": {
+           "field": {
+            "style": {
+             "default": {
+              "margin_left": "8px",
+              "font_size": "15px"
+             }
+            },
+            "class": ""
+           },
+           "holder": {
+            "style": {},
+            "class": ""
+           },
+           "label": {
+            "style": {
+             "default": {
+              "font_size": "15px"
+             }
+            },
+            "class": ""
+           },
+           "value": {
+            "style": {
+             "default": {}
+            },
+            "position": {
+             "end_x": 371,
+             "depth": 1,
+             "width": 100,
+             "start_y": 13,
+             "start_x": 271,
+             "height": 18
+            },
+            "class": "zcanvas-field zc-rl-field zc-ta-left"
+           }
+          },
+          "children": []
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "container": {
+    "default": {
+     "border": "none",
+     "border_radius": "15px"
+    }
+   },
+   "title": {
+    "ui": {
+     "value": {
+      "style": {},
+      "position": {
+       "start_x": 30,
+       "start_y": 30,
+       "end_x": 579,
+       "width": 549,
+       "height": 50,
+       "depth": 1,
+       "min_top": 10,
+       "min_left": 2
+      },
+      "tagname": "DIV",
+      "class": "zcanvas-title-editor"
+     }
+    },
+    "children": [
+     {
+      "children": [],
+      "ui": {
+       "value": {
+        "style": {
+         "default": {
+          "background_color": "transparent",
+          "font_size": "18px"
+         }
+        },
+        "position": {
+         "start_x": 2,
+         "start_y": 13,
+         "end_x": 166,
+         "width": 164,
+         "height": 22,
+         "depth": 1
+        },
+        "tagname": "DIV",
+        "class": "zc_disabled",
+        "value": "Open Activities"
+       },
+       "autoheight": false
+      },
+      "type": "component",
+      "theme": "Static Text",
+      "zcanvasId": "zcanvas_jzw9mznfacp"
+     },
+     {
+      "ui": {
+       "value": {
+        "style": {
+         "default": {
+          "background_color": "rgba(255,255,255,0)",
+          "border_radius": "6px",
+          "border": "1px solid rgb(213, 213, 222)",
+          "padding_top": "4px",
+          "padding_left": "0px",
+          "padding_bottom": "4px",
+          "background_image": "linear-gradient(360deg , rgb(235, 238, 245) 0%,rgb(255, 255, 255) 100%)",
+          "font_size": "14px",
+          "padding_right": "0px"
+         }
+        },
+        "position": {
+         "start_x": 1456,
+         "start_y": 10,
+         "end_x": 541,
+         "width": 54,
+         "height": 29,
+         "depth": 1
+        },
+        "tagname": "DIV",
+        "class": "zcanvas-field zcanvas-no-img-default zc-ta-center zccbutton zccrlaction zc-rl-field zccbuttonicon zccbuttonnotext zc-only-icon"
+       },
+       "holder": {
+        "style": {},
+        "tagname": "DIV",
+        "class": ""
+       },
+       "field": {
+        "style": {},
+        "tagname": "DIV",
+        "class": ""
+       },
+       "icon": {
+        "style": {
+         "default": {
+          "padding_top": "2px",
+          "color": "rgba(39, 38, 58, 1)"
+         }
+        },
+        "tagname": "DIV",
+        "class": "",
+        "icon": "icon-Icon_dot_three"
+       }
+      },
+      "children": [],
+      "datatype": "button",
+      "id": "moreRLActions4937050000000003769",
+      "label": "More Actions",
+      "hideLabel": true,
+      "type": "action",
+      "formationclass": "zccrlaction",
+      "value": "<crm-more-component data-zcqa=\"relatedList_MoreButton_Activities\" type=\"relatedList\" include-array=\"[]\" exclude-array=\"[]\"></crm-more-component>",
+      "componentid": "4937050000001204086",
+      "zcanvasId": "zcanvas_29nc043za9c",
+      "zctype": "button",
+      "fieldContainer": "#zcanvas_07j247t88bkv",
+      "group": "field"
+     }
+    ],
+    "type": "component",
+    "theme": "Custom Layout",
+    "zcanvasId": "zcanvas_jeaifmciz3q"
+   },
+   "context": {}
+  }
+ },
+ {
+  "type": "RelatedlistPreset4",
+  "style": {
+   "relatedlist": {
+    "type": "relatedlist",
+    "ui": {
+     "canvas_rules": [],
+     "value": {
+      "list_type_class": "zc-rl-cards",
+      "list_type_width": 300,
+      "style": {
+       "default": {
+        "border_radius": "17px",
+        "background_color": "rgba(255, 255, 255, 1)",
+        "border": "1px solid rgb(209, 215, 230)",
+        "padding_top": "0px",
+        "box_shadow": "0px 6px 5px 0px rgba(155, 172, 199, 0.12)",
+        "margin_top": "5px",
+        "margin_bottom": "5px",
+        "margin_right": "20px"
+       }
+      },
+      "position": {
+       "end_x": 667,
+       "depth": 1,
+       "width": 637,
+       "min_top": 15,
+       "start_y": 80,
+       "start_x": 30,
+       "height": 188,
+       "min_left": 18
+      },
+      "class": "zcanvas-non-delete"
+     }
+    },
+    "theme": "Custom Layout",
+    "children": [
+     {
+      "zcanvasId": "zcanvas_hiycw9b1baa",
+      "datatype": "text",
+      "type": "field",
+      "ui": {
+       "field": {
+        "style": {
+         "default": {
+          "font_family": "b",
+          "color": "rgba(49, 57, 73, 1)",
+          "font_size": "18px"
+         }
+        },
+        "class": "zcanvaslowercase"
+       },
+       "value": {
+        "style": {
+         "default": {}
+        },
+        "position": {
+         "end_x": 281,
+         "depth": 1,
+         "width": 263,
+         "start_y": 15,
+         "start_x": 18,
+         "height": 24
+        },
+        "class": "zcanvas-field zc-rl-field"
+       }
+      },
+      "children": []
+     },
+     {
+      "zcanvasId": "zcanvas_3bkcgsn1z57",
+      "datatype": "picklist",
+      "type": "field",
+      "ui": {
+       "field": {
+        "style": {
+         "default": {
+          "font_family": "b",
+          "margin": "0",
+          "color": "rgba(242, 155, 69, 1)",
+          "font_size": "15px"
+         }
+        },
+        "class": ""
+       },
+       "holder": {
+        "style": {
+         "default": {
+          "padding": "0",
+          "flex_direction": "row",
+          "color": "rgba(49, 57, 73, 1)"
+         }
+        },
+        "class": ""
+       },
+       "label": {
+        "style": {
+         "default": {
+          "color": "rgba(97, 107, 128, 1)",
+          "font_size": "15px",
+          "margin_right": "10px"
+         }
+        },
+        "class": ""
+       },
+       "value": {
+        "style": {
+         "default": {}
+        },
+        "position": {
+         "end_x": 280,
+         "depth": 1,
+         "width": 262,
+         "start_y": 50,
+         "start_x": 18,
+         "height": 20
+        },
+        "class": "zcanvas-field zc-rl-field zc-ta-left"
+       }
+      },
+      "children": []
+     },
+     {
+      "zcanvasId": "zcanvas_scscfvgm06",
+      "datatype": "lookup",
+      "type": "field",
+      "ui": {
+       "field": {
+        "style": {
+         "default": {
+          "font_family": "b",
+          "margin_left": "10px",
+          "color": "rgba(49, 57, 73, 1)",
+          "font_size": "15px",
+          "margin_right": "10px"
+         }
+        },
+        "class": ""
+       },
+       "holder": {
+        "style": {
+         "default": {
+          "padding": "0",
+          "flex_direction": "row",
+          "color": "rgba(49, 57, 73, 1)"
+         }
+        },
+        "class": ""
+       },
+       "label": {
+        "style": {
+         "default": {
+          "color": "rgba(132, 139, 153, 1)",
+          "font_size": "15px"
+         }
+        },
+        "class": ""
+       },
+       "value": {
+        "style": {
+         "default": {}
+        },
+        "position": {
+         "end_x": 279,
+         "depth": 1,
+         "width": 260,
+         "start_y": 82,
+         "start_x": 19,
+         "height": 20
+        },
+        "class": "zcanvas-field zc-rl-field zc-ta-left"
+       }
+      },
+      "children": []
+     },
+     {
+      "zcanvasId": "zcanvas_p7ymog9ngm",
+      "datatype": "text",
+      "type": "field",
+      "ui": {
+       "field": {
+        "style": {
+         "default": {
+          "font_family": "b",
+          "margin_left": "10px",
+          "color": "rgba(49, 57, 73, 1)",
+          "font_size": "15px",
+          "margin_right": "10px"
+         }
+        },
+        "class": ""
+       },
+       "holder": {
+        "style": {
+         "default": {
+          "padding": "0",
+          "flex_direction": "row",
+          "color": "rgba(49, 57, 73, 1)"
+         }
+        },
+        "class": ""
+       },
+       "label": {
+        "style": {
+         "default": {
+          "color": "rgba(132, 139, 153, 1)",
+          "font_size": "15px"
+         }
+        },
+        "class": ""
+       },
+       "value": {
+        "style": {
+         "default": {}
+        },
+        "position": {
+         "end_x": 278,
+         "depth": 1,
+         "width": 259,
+         "start_y": 146,
+         "start_x": 19,
+         "height": 20
+        },
+        "class": "zcanvas-field zc-rl-field zc-ta-left"
+       }
+      },
+      "children": []
+     },
+     {
+      "zcanvasId": "zcanvas_9mcsxd3iyy",
+      "datatype": "date",
+      "type": "field",
+      "ui": {
+       "field": {
+        "style": {
+         "default": {
+          "font_family": "b",
+          "margin_left": "10px",
+          "color": "rgba(49, 57, 73, 1)",
+          "font_size": "15px",
+          "margin_right": "10px"
+         }
+        },
+        "class": ""
+       },
+       "holder": {
+        "style": {
+         "default": {
+          "padding": "0",
+          "flex_direction": "row",
+          "color": "rgba(49, 57, 73, 1)"
+         }
+        },
+        "class": ""
+       },
+       "label": {
+        "style": {
+         "default": {
+          "color": "rgba(132, 139, 153, 1)",
+          "font_size": "15px"
+         }
+        },
+        "class": ""
+       },
+       "value": {
+        "style": {
+         "default": {}
+        },
+        "position": {
+         "end_x": 279,
+         "depth": 1,
+         "width": 261,
+         "start_y": 114,
+         "start_x": 18,
+         "height": 20
+        },
+        "class": "zcanvas-field zc-rl-field zc-ta-left"
+       }
+      },
+      "children": []
+     }
+    ]
+   },
+   "container": {
+    "default": {
+     "border_radius": "15px",
+     "background_color": "rgba(237, 240, 245, 1)",
+     "border": "1px solid rgb(199, 201, 214)",
+     "box_shadow": "none"
+    }
+   },
+   "title": {
+    "ui": {
+     "value": {
+      "style": {},
+      "position": {
+       "start_x": 30,
+       "start_y": 30,
+       "end_x": 675,
+       "width": 645,
+       "height": 50,
+       "depth": 1,
+       "min_top": 6,
+       "min_left": 2
+      },
+      "tagname": "DIV",
+      "class": "zcanvas-title-editor"
+     }
+    },
+    "children": [
+     {
+      "children": [],
+      "ui": {
+       "value": {
+        "style": {
+         "default": {
+          "background_color": "transparent",
+          "font_size": "18px"
+         }
+        },
+        "position": {
+         "start_x": 2,
+         "start_y": 13,
+         "end_x": 166,
+         "width": 164,
+         "height": 22,
+         "depth": 1
+        },
+        "tagname": "DIV",
+        "class": "zc_disabled",
+        "value": "Open Activities"
+       },
+       "autoheight": false
+      },
+      "type": "component",
+      "theme": "Static Text",
+      "zcanvasId": "zcanvas_ujfw3v89hiq"
+     },
+     {
+      "ui": {
+       "value": {
+        "style": {
+         "default": {
+          "background_color": "rgba(255,255,255,0)",
+          "border_radius": "6px",
+          "border": "1px solid rgb(213, 213, 222)",
+          "padding_top": "4px",
+          "padding_left": "0px",
+          "padding_bottom": "4px",
+          "background_image": "linear-gradient(360deg , rgb(235, 238, 245) 0%,rgb(255, 255, 255) 100%)",
+          "font_size": "14px",
+          "padding_right": "0px"
+         }
+        },
+        "position": {
+         "start_x": 1456,
+         "start_y": 6,
+         "end_x": 636,
+         "width": 54,
+         "height": 29,
+         "depth": 1
+        },
+        "tagname": "DIV",
+        "class": "zcanvas-field zcanvas-no-img-default zc-ta-center zccbutton zccrlaction zc-rl-field zccbuttonicon zccbuttonnotext zc-only-icon"
+       },
+       "holder": {
+        "style": {},
+        "tagname": "DIV",
+        "class": ""
+       },
+       "field": {
+        "style": {},
+        "tagname": "DIV",
+        "class": ""
+       },
+       "icon": {
+        "style": {
+         "default": {
+          "padding_top": "2px",
+          "color": "rgba(39, 38, 58, 1)"
+         }
+        },
+        "tagname": "DIV",
+        "class": "",
+        "icon": "icon-Icon_dot_three"
+       }
+      },
+      "children": [],
+      "datatype": "button",
+      "id": "moreRLActions4937050000000003769",
+      "label": "More Actions",
+      "hideLabel": true,
+      "type": "action",
+      "formationclass": "zccrlaction",
+      "value": "<crm-more-component data-zcqa=\"relatedList_MoreButton_Activities\" type=\"relatedList\" include-array=\"[]\" exclude-array=\"[]\"></crm-more-component>",
+      "componentid": "4937050000001204166",
+      "zcanvasId": "zcanvas_i42g214cvt",
+      "zctype": "button",
+      "fieldContainer": "#zcanvas_vm3tifafb1r",
+      "group": "field"
+     }
+    ],
+    "type": "component",
+    "theme": "Custom Layout",
+    "zcanvasId": "zcanvas_3qrs0b8wchn"
+   },
+   "context": {}
+  }
+ },
+ {
+  "type": "RelatedlistPreset5",
+  "style": {
+   "relatedlist": {
+    "children": []
+   },
+   "container": {
+    "default": {
+     "border": "none",
+     "border_radius": "15px",
+     "background_color": "rgba(255, 249, 240, 1)"
+    }
+   },
+   "title": {
+    "ui": {
+     "value": {
+      "style": {},
+      "position": {
+       "start_x": 30,
+       "start_y": 30,
+       "end_x": 1282,
+       "width": 1252,
+       "height": 50,
+       "depth": 1,
+       "min_left": 2
+      },
+      "tagname": "DIV",
+      "class": "zcanvas-title-editor"
+     }
+    },
+    "children": [
+     {
+      "children": [],
+      "ui": {
+       "value": {
+        "style": {
+         "default": {
+          "background_color": "transparent",
+          "color": "rgba(242, 155, 69, 1)",
+          "font_size": "18px"
+         }
+        },
+        "position": {
+         "start_x": 2,
+         "start_y": 13,
+         "end_x": 166,
+         "width": 164,
+         "height": 22,
+         "depth": 1
+        },
+        "tagname": "DIV",
+        "class": "zc_disabled",
+        "value": "Open Activities"
+       },
+       "autoheight": false
+      },
+      "type": "component",
+      "theme": "Static Text",
+      "zcanvasId": "zcanvas_nlrfluv04vf"
+     },
+     {
+      "ui": {
+       "value": {
+        "style": {
+         "default": {
+          "background_color": "rgba(242, 155, 69, 1)",
+          "border_radius": "6px",
+          "border": "none",
+          "padding_top": "4px",
+          "padding_left": "0px",
+          "padding_bottom": "4px",
+          "font_size": "14px",
+          "padding_right": "0px"
+         }
+        },
+        "position": {
+         "start_x": 1456,
+         "start_y": 10,
+         "end_x": 1250,
+         "width": 54,
+         "height": 27,
+         "depth": 1
+        },
+        "tagname": "DIV",
+        "class": "zcanvas-field zcanvas-no-img-default zc-ta-center zccbutton zccrlaction zc-rl-field zccbuttonicon zccbuttonnotext zc-only-icon"
+       },
+       "holder": {
+        "style": {},
+        "tagname": "DIV",
+        "class": ""
+       },
+       "field": {
+        "style": {},
+        "tagname": "DIV",
+        "class": ""
+       },
+       "icon": {
+        "style": {
+         "default": {
+          "padding_top": "2px",
+          "color": "rgba(255, 255, 255, 1)"
+         }
+        },
+        "tagname": "DIV",
+        "class": "",
+        "icon": "icon-Icon_dot_three"
+       }
+      },
+      "children": [],
+      "datatype": "button",
+      "id": "moreRLActions4937050000000003769",
+      "label": "More Actions",
+      "hideLabel": true,
+      "type": "action",
+      "formationclass": "zccrlaction",
+      "value": "<crm-more-component data-zcqa=\"relatedList_MoreButton_Activities\" type=\"relatedList\" include-array=\"[]\" exclude-array=\"[]\"></crm-more-component>",
+      "componentid": "4937050000001205103",
+      "zcanvasId": "zcanvas_w2y02q4qpfq",
+      "zctype": "button",
+      "zcvalue": "<crm-more-component data-zcqa=\"relatedList_MoreButton_Activities\" type=\"relatedList\" include-array=\"[]\" exclude-array=\"[]\"></crm-more-component>",
+      "fieldContainer": "#zcanvas_t7ovp4acki",
+      "group": "field"
+     }
+    ],
+    "type": "component",
+    "theme": "Custom Layout",
+    "zcanvasId": "zcanvas_goj0n78yevk"
+   },
+   "context": {
+    "table_row": {
+     "background_color": "rgba(255,255,255,0)"
+    },
+    "table_link": {
+     "color": "rgba(49, 57, 73, 1)"
+    },
+    "table_column": {
+     "color": "rgba(49, 57, 73, 1)",
+     "border-bottom-color": "rgba(233, 235, 242, 1)"
+    },
+    "table_head": {
+     "background_color": "rgba(255, 236, 207, 1)",
+     "color": "rgba(171, 91, 12, 1)",
+     "border-bottom-color": "rgba(220, 223, 232, 1)",
+     "font_size": "15px"
+    }
+   }
+  }
+ },
+ {
+  "type": "RelatedlistPreset6",
+  "style": {
+   "relatedlist": {
+    "type": "relatedlist",
+    "ui": {
+     "canvas_rules": [],
+     "value": {
+      "list_type_class": "zc-rl-cards",
+      "list_type_width": 298,
+      "style": {
+       "default": {
+        "border_radius": "17px",
+        "background_color": "rgba(242, 242, 242, 1)",
+        "border": "none",
+        "padding_top": "0px",
+        "box_shadow": "none",
+        "margin_top": "5px",
+        "margin_bottom": "5px",
+        "margin_right": "20px"
+       }
+      },
+      "position": {
+       "end_x": 667,
+       "depth": 1,
+       "width": 637,
+       "min_top": 15,
+       "start_y": 80,
+       "start_x": 30,
+       "height": 188,
+       "min_left": 18
+      },
+      "class": "zcanvas-non-delete"
+     }
+    },
+    "theme": "Custom Layout",
+    "children": [
+     {
+      "zcanvasId": "zcanvas_qb42lwd7p9",
+      "datatype": "text",
+      "type": "field",
+      "ui": {
+       "field": {
+        "style": {
+         "default": {
+          "font_family": "b",
+          "color": "rgba(49, 57, 73, 1)",
+          "font_size": "18px"
+         }
+        },
+        "class": "zcanvaslowercase"
+       },
+       "value": {
+        "style": {
+         "default": {}
+        },
+        "position": {
+         "end_x": 281,
+         "depth": 1,
+         "width": 263,
+         "start_y": 15,
+         "start_x": 18,
+         "height": 24
+        },
+        "class": "zcanvas-field zc-rl-field"
+       }
+      },
+      "children": []
+     },
+     {
+      "zcanvasId": "zcanvas_zsddz6l430d",
+      "datatype": "picklist",
+      "type": "field",
+      "ui": {
+       "field": {
+        "style": {
+         "default": {
+          "font_family": "b",
+          "margin": "0",
+          "color": "rgba(242, 155, 69, 1)",
+          "font_size": "15px"
+         }
+        },
+        "class": ""
+       },
+       "holder": {
+        "style": {
+         "default": {
+          "padding": "0",
+          "flex_direction": "row",
+          "color": "rgba(49, 57, 73, 1)"
+         }
+        },
+        "class": ""
+       },
+       "label": {
+        "style": {
+         "default": {
+          "color": "rgba(97, 107, 128, 1)",
+          "font_size": "15px",
+          "margin_right": "10px"
+         }
+        },
+        "class": ""
+       },
+       "value": {
+        "style": {
+         "default": {}
+        },
+        "position": {
+         "end_x": 280,
+         "depth": 1,
+         "width": 262,
+         "start_y": 50,
+         "start_x": 18,
+         "height": 20
+        },
+        "class": "zcanvas-field zc-rl-field zc-ta-left"
+       }
+      },
+      "children": []
+     },
+     {
+      "zcanvasId": "zcanvas_jbb8bejzot",
+      "datatype": "lookup",
+      "type": "field",
+      "ui": {
+       "field": {
+        "style": {
+         "default": {
+          "font_family": "b",
+          "margin_left": "10px",
+          "color": "rgba(49, 57, 73, 1)",
+          "font_size": "15px",
+          "margin_right": "10px"
+         }
+        },
+        "class": ""
+       },
+       "holder": {
+        "style": {
+         "default": {
+          "padding": "0",
+          "flex_direction": "row",
+          "color": "rgba(49, 57, 73, 1)"
+         }
+        },
+        "class": ""
+       },
+       "label": {
+        "style": {
+         "default": {
+          "color": "rgba(132, 139, 153, 1)",
+          "font_size": "15px"
+         }
+        },
+        "class": ""
+       },
+       "value": {
+        "style": {
+         "default": {}
+        },
+        "position": {
+         "end_x": 279,
+         "depth": 1,
+         "width": 260,
+         "start_y": 82,
+         "start_x": 19,
+         "height": 20
+        },
+        "class": "zcanvas-field zc-rl-field zc-ta-left"
+       }
+      },
+      "children": []
+     },
+     {
+      "zcanvasId": "zcanvas_0624cjyg59nh",
+      "datatype": "text",
+      "type": "field",
+      "ui": {
+       "field": {
+        "style": {
+         "default": {
+          "font_family": "b",
+          "margin_left": "10px",
+          "color": "rgba(49, 57, 73, 1)",
+          "font_size": "15px",
+          "margin_right": "10px"
+         }
+        },
+        "class": ""
+       },
+       "holder": {
+        "style": {
+         "default": {
+          "padding": "0",
+          "flex_direction": "row",
+          "color": "rgba(49, 57, 73, 1)"
+         }
+        },
+        "class": ""
+       },
+       "label": {
+        "style": {
+         "default": {
+          "color": "rgba(132, 139, 153, 1)",
+          "font_size": "15px"
+         }
+        },
+        "class": ""
+       },
+       "value": {
+        "style": {
+         "default": {}
+        },
+        "position": {
+         "end_x": 278,
+         "depth": 1,
+         "width": 259,
+         "start_y": 146,
+         "start_x": 19,
+         "height": 20
+        },
+        "class": "zcanvas-field zc-rl-field zc-ta-left"
+       }
+      },
+      "children": []
+     },
+     {
+      "zcanvasId": "zcanvas_5f1e8aj9dzh",
+      "datatype": "date",
+      "type": "field",
+      "ui": {
+       "field": {
+        "style": {
+         "default": {
+          "font_family": "b",
+          "margin_left": "10px",
+          "color": "rgba(49, 57, 73, 1)",
+          "font_size": "15px",
+          "margin_right": "10px"
+         }
+        },
+        "class": ""
+       },
+       "holder": {
+        "style": {
+         "default": {
+          "padding": "0",
+          "flex_direction": "row",
+          "color": "rgba(49, 57, 73, 1)"
+         }
+        },
+        "class": ""
+       },
+       "label": {
+        "style": {
+         "default": {
+          "color": "rgba(132, 139, 153, 1)",
+          "font_size": "15px"
+         }
+        },
+        "class": ""
+       },
+       "value": {
+        "style": {
+         "default": {}
+        },
+        "position": {
+         "end_x": 279,
+         "depth": 1,
+         "width": 261,
+         "start_y": 114,
+         "start_x": 18,
+         "height": 20
+        },
+        "class": "zcanvas-field zc-rl-field zc-ta-left"
+       }
+      },
+      "children": []
+     }
+    ]
+   },
+   "container": {
+    "default": {
+     "border_radius": "15px",
+     "background_color": "rgba(255, 255, 255, 1)",
+     "box_shadow": "none"
+    }
+   },
+   "title": {
+    "ui": {
+     "value": {
+      "style": {},
+      "position": {
+       "start_x": 30,
+       "start_y": 30,
+       "end_x": 667,
+       "width": 637,
+       "height": 50,
+       "depth": 1,
+       "min_top": 6,
+       "min_left": 2
+      },
+      "tagname": "DIV",
+      "class": "zcanvas-title-editor"
+     }
+    },
+    "children": [
+     {
+      "children": [],
+      "ui": {
+       "value": {
+        "style": {
+         "default": {
+          "background_color": "transparent",
+          "font_size": "18px"
+         }
+        },
+        "position": {
+         "start_x": 2,
+         "start_y": 13,
+         "end_x": 166,
+         "width": 164,
+         "height": 22,
+         "depth": 1
+        },
+        "tagname": "DIV",
+        "class": "zc_disabled",
+        "value": "Open Activities"
+       },
+       "autoheight": false
+      },
+      "type": "component",
+      "theme": "Static Text",
+      "zcanvasId": "zcanvas_pav8kbfg2bc"
+     },
+     {
+      "ui": {
+       "value": {
+        "style": {
+         "default": {
+          "background_color": "rgba(255,255,255,0)",
+          "border_radius": "6px",
+          "border": "1px solid rgb(213, 213, 222)",
+          "padding_top": "4px",
+          "padding_left": "0px",
+          "padding_bottom": "4px",
+          "background_image": "linear-gradient(360deg , rgb(235, 238, 245) 0%,rgb(255, 255, 255) 100%)",
+          "font_size": "14px",
+          "padding_right": "0px"
+         }
+        },
+        "position": {
+         "start_x": 1456,
+         "start_y": 6,
+         "end_x": 636,
+         "width": 54,
+         "height": 29,
+         "depth": 1
+        },
+        "tagname": "DIV",
+        "class": "zcanvas-field zcanvas-no-img-default zc-ta-center zccbutton zccrlaction zc-rl-field zccbuttonicon zccbuttonnotext zc-only-icon"
+       },
+       "holder": {
+        "style": {},
+        "tagname": "DIV",
+        "class": ""
+       },
+       "field": {
+        "style": {},
+        "tagname": "DIV",
+        "class": ""
+       },
+       "icon": {
+        "style": {
+         "default": {
+          "padding_top": "2px",
+          "color": "rgba(39, 38, 58, 1)"
+         }
+        },
+        "tagname": "DIV",
+        "class": "",
+        "icon": "icon-Icon_dot_three"
+       }
+      },
+      "children": [],
+      "datatype": "button",
+      "id": "moreRLActions4937050000000003769",
+      "label": "More Actions",
+      "hideLabel": true,
+      "type": "action",
+      "formationclass": "zccrlaction",
+      "value": "<crm-more-component data-zcqa=\"relatedList_MoreButton_Activities\" type=\"relatedList\" include-array=\"[]\" exclude-array=\"[]\"></crm-more-component>",
+      "componentid": "4937050000001204194",
+      "zcanvasId": "zcanvas_broxjgowmsr",
+      "zctype": "button",
+      "fieldContainer": "#zcanvas_nzfxohjefbq",
+      "group": "field"
+     }
+    ],
+    "type": "component",
+    "theme": "Custom Layout",
+    "zcanvasId": "zcanvas_c10i1xygvmj"
+   },
+   "context": {}
+  }
+ }
+]

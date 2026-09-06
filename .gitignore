@@ -23,3 +23,11 @@ tmp/
 *.local.*
 
 .token-cache.json
+
+# Browser HAR captures — carry live session cookies and CSRF tokens
+*.har
+
+reference/ui-capture/*.har
+reference/ui-capture/*.txt
+!reference/ui-capture/**/*.json
+!reference/ui-capture/README.md

@@ -24,28 +24,43 @@ Not a one-off canvas. The point is repeatable template generation across modules
 
 ## Status
 
-Request/response envelope mapped and auth confirmed. **Blocked on sample size:** everything known
-about the payload comes from a single simple Accounts canvas. John is providing more captures of
-differently-configured canvases before geometry can be described or templates built.
+Pipeline proven end to end (OAuth, GET, PUT, restore). Structural knowledge now rests on a real
+evidence base, not one capture:
 
-**Do not generalise from one capture.** A sample shows what that canvas used, never what Canvas
-supports. The geometry doc was written this way, was wrong, and is parked at
-`docs/draft/geometry-rules.DRAFT.md`. See `mistakes.md`.
+- **25 consecutive editor saves** in two recorded sessions, one construct added per save
+  (`reference/ui-capture/`, manifest in its README). Diffing consecutive saves gives the exact node
+  shape the editor emits per construct.
+- **Zoho's own preset JSON and catalogs** served to the editor (`reference/zoho-assets/`): text,
+  field, section, tab, button, related-list and table presets, four ReusableViews, the components
+  palette (valid action ids), and the 231-name icon catalog.
+- The three gallery templates (`reference/captures/`).
 
-### Waiting on
+**`docs/canvas-constructs.md` is the per-construct spec.** Read it before writing any builder code.
 
-More canvas captures covering, ideally: a responsive/multi-breakpoint canvas, one using
-`autoheight`, one with percentage-width or otherwise non-fixed sizing, a different module, and a
-visually complex layout. Each capture should be request + response where possible, saved to
-`reference/captures/`.
+**Method rule.** When a structure is undocumented, capture the tool that produces it (a recorded
+editor session) before inferring from its output. Three deploys broke the editor because rules were
+inferred from static end states; one 15-minute capture settled all of them. Every enumerated value
+(icon name, action id, theme, class token) must come from an observed catalog, never from analogy:
+14 of 20 guessed icon names did not exist.
 
-### Unresolved layout questions
+### What the captures answered
 
-- What does `autoheight` actually do?
-- When is `layoutstyle.field.width: "100%"` or a column `percent` honoured over the pixel `width`?
-- What changes between the builder's Default Mode and Responsive Mode, and how are the two extra
-  breakpoints implied by root `end_x: 4320` expressed?
-- Does anything reflow, or is placement always explicit?
+- Canvas has **three container engines**: absolute (`Custom Layout`), `Flex Layout`, `Grid Layout`.
+  Flex items reflow (`property.flex_item`, `zc-fit-height-content`). The old "purely absolute" claim
+  was wrong; within absolute containers the geometry arithmetic held on all 25 saves.
+- `autoheight: true` on Static Text grows the box to its content.
+- The same related list may appear more than once (the editor itself did it).
+- Static Text sits directly inside a container; no wrapper needed.
+- `uniqueid` is absent from about half the nodes in the editor's own output.
+- Query-backed related lists exist (`details.connection_id`, root `related_to.data_hub_associations`).
+
+### Still unobserved
+
+- Grid item shape; `system` and `zia` palette components (`blueprint`, `zia_score`, ...)
+- Responsive Mode payload; populated `canvas_rules` / `script_info`; error responses
+- **Which specific deviation broke the editor in the v2 deploys.** Invalid icon names are the
+  leading candidate. The rebuild should emit only observed shapes and be opened in the editor
+  before it is called working.
 
 ## Pipeline status — write path VALIDATED 2026-09-04
 
@@ -71,7 +86,12 @@ in captured requests but not in GET responses.
 ## Layout
 
 ```text
-docs/canvas-json-structure.md            full structural spec of the Canvas JSON — READ THIS FIRST
+docs/canvas-schema.md                    THE reference: update workflow, full body schema, every attribute, enumerations
+docs/canvas-constructs.md                per-construct JSON as the editor emits it
+docs/canvas-key-inventory.md             generated: every key in every slot, counts, hosts, sample values
+docs/canvas-json-structure.md            envelope, request/response, vocabulary (older; constructs.md wins)
+reference/ui-capture/                    25 editor saves, one construct per save, plus manifest
+reference/zoho-assets/                   Zoho presets, components palette, 231-name icon catalog
 src/                                     the builder: auth, canvas client, validator, templates
 output/<org-slug>-<org-id>/<Module>/     generated templates, one folder per org then module
 reference/captures/                      parsed request + response payloads (JSON, diffable)
@@ -172,11 +192,15 @@ custom button labels, link text, related-list names) lives in CRM, not the paylo
 
 ## Hard constraints discovered by breaking things
 
-**A related-list ID may appear at most ONCE per canvas.** Using the same related list in a custom
-tab *and* on its own related-list tab is accepted by the save API (`code: SUCCESS`, every node
-retained) but **crashes the Zoho builder** — it loads as a blank white screen with JS errors and
-the canvas cannot be edited until restored. Verified 2026-09-06 when 13 duplicated IDs across 28
-tabs bricked the Contacts canvas. `src/validate.py` now errors on this.
+**Retracted:** an earlier version of this section said a related-list id may appear only once per
+canvas. The recorded editor session disproved it (Zoho placed one list twice and saved fine). It
+was a guess dressed as a rule; see `mistakes.md`.
+
+**Enumerated values come from catalogs.** `icon` names must be in
+`reference/zoho-assets/icon-catalog.txt`; action ids must be in the components palette (or the
+editor-generated `moreRLActions<id>`, `ExpandView`, `newEvent`). `src/validate.py` errors on both,
+and is calibrated to pass every one of the 29 Zoho-authored files under `reference/`. Any new
+validator rule must pass those files first; if it fires on Zoho's output, the rule is wrong.
 
 **A `SUCCESS` response is not verification.** The save endpoint validates far less than the editor
 requires, so a canvas can be valid to the API and fatally malformed to the UI. Re-GETting through

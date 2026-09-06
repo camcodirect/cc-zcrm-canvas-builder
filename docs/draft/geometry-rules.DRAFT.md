@@ -19,6 +19,14 @@
 > some relative/derived sizing. Its rules are unknown.
 >
 > Re-derive the whole document once more captures exist. See `mistakes.md`.
+>
+> **Update 2026-09-06, after 25 editor saves and Zoho's presets.** The open question is answered:
+> Canvas has three container engines. `Custom Layout` is absolute (the arithmetic below held on
+> every one of the 25 saves: `end_x == start_x + width` off-root, root `end_x == 3 × width`, tab
+> bodies sharing a layer). `Flex Layout` and `Grid Layout` reflow their children via
+> `ui.value.property` (`flex`, `flex_item`, `grid`), and `zc-fit-height-content` gives a flex
+> container content-driven height. `autoheight: true` on Static Text grows the text box to its
+> content. Responsive Mode is still unobserved. Full shapes: `docs/canvas-constructs.md` §1.
 
 ---
 

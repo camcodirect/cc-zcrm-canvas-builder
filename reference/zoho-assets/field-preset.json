@@ -1,0 +1,215 @@
+[
+ {
+  "value": {
+   "default": {}
+  },
+  "holder": {
+   "default": {
+    "background_color": "rgba(249, 224, 162, 1)",
+    "border_radius": "8px",
+    "padding": "13px",
+    "flex_direction": "column"
+   }
+  },
+  "field": {
+   "default": {
+    "background_color": "rgba(249, 224, 162, 1)",
+    "margin_top": "5px"
+   }
+  },
+  "label": {
+   "default": {
+    "background_color": "rgba(249, 224, 162, 1)",
+    "margin_top": "0px"
+   }
+  }
+ },
+ {
+  "value": {
+   "default": {
+    "font_family": "r",
+    "background_color": "rgba(216, 209, 255, 1)",
+    "padding": "8px"
+   }
+  },
+  "holder": {
+   "default": {
+    "font_family": "r",
+    "padding": "8px"
+   }
+  },
+  "field": {
+   "default": {
+    "font_family": "r",
+    "padding": "8px",
+    "$inherited": true
+   }
+  },
+  "label": {
+   "default": {
+    "font_family": "r",
+    "background_color": "rgba(248, 240, 255, 1)",
+    "padding": "8px",
+    "$inherited": true,
+    "margin_right": "0px"
+   }
+  }
+ },
+ {
+  "value": {
+   "default": {}
+  },
+  "holder": {
+   "default": {
+    "background_color": "rgba(219, 242, 255, 1)",
+    "border": "none",
+    "border_radius": "4px",
+    "padding": "9px"
+   }
+  },
+  "field": {
+   "default": {
+    "background_color": "rgba(219, 242, 255, 1)",
+    "$inherited": true
+   }
+  },
+  "label": {
+   "default": {
+    "background_color": "rgba(219, 242, 255, 1)",
+    "$inherited": true
+   }
+  }
+ },
+ {
+  "value": {
+   "default": {}
+  },
+  "holder": {
+   "default": {
+    "border_top": "0px solid rgb(0, 0, 0)",
+    "border_right": "0px solid rgb(0, 0, 0)",
+    "flex_direction": "column-reverse",
+    "border_left": "2px solid rgb(96, 223, 201)",
+    "padding_left": "10px",
+    "border_bottom": "0px solid rgb(0, 0, 0)"
+   }
+  },
+  "field": {
+   "default": {}
+  },
+  "label": {
+   "default": {
+    "margin_top": "6px"
+   }
+  }
+ },
+ {
+  "value": {
+   "default": {
+    "background_color": "rgba(125, 207, 123, 1)",
+    "border_radius": "80px",
+    "border": "1px solid rgb(102, 181, 100)",
+    "padding_top": "5px",
+    "color": "rgba(255, 255, 255, 1)",
+    "padding_left": "11px",
+    "padding_bottom": "3px",
+    "padding_right": "10px"
+   }
+  },
+  "holder": {
+   "default": {}
+  },
+  "field": {
+   "default": {}
+  },
+  "label": {
+   "default": {
+    "margin_top": "6px"
+   }
+  }
+ },
+ {
+  "value": {
+   "default": {
+    "background_color": "rgba(255, 219, 219, 1)",
+    "border": "1px solid rgb(230, 172, 172)",
+    "border_radius": "8px",
+    "padding": "6px",
+    "margin_top": "9px",
+    "font_size": "32px"
+   }
+  },
+  "holder": {
+   "default": {
+    "flex_direction": "column"
+   }
+  },
+  "field": {
+   "default": {}
+  },
+  "label": {
+   "default": {}
+  }
+ },
+ {
+  "value": {
+   "default": {}
+  },
+  "holder": {
+   "default": {
+    "border": "2px solid rgb(224, 215, 215)",
+    "border_radius": "8px",
+    "padding": "9px"
+   }
+  },
+  "field": {
+   "default": {}
+  },
+  "label": {
+   "default": {
+    "color": "rgba(43, 109, 186, 1)"
+   }
+  }
+ },
+ {
+  "value": {
+   "default": {}
+  },
+  "holder": {
+   "default": {
+    "border_top": "2px solid rgb(158, 219, 156)",
+    "padding": "7px",
+    "border_right": "0px solid rgba(0, 0, 0, 0)",
+    "border_left": "0px solid rgba(0, 0, 0, 0)",
+    "border_bottom": "2px solid rgb(158, 219, 156)"
+   }
+  },
+  "field": {
+   "default": {}
+  },
+  "label": {
+   "default": {}
+  }
+ },
+ {
+  "value": {
+   "default": {
+    "border_top": "0px dotted rgb(0, 0, 0)",
+    "border_right": "0px dotted rgb(0, 0, 0)",
+    "color": "rgba(43, 109, 186, 1)",
+    "border_left": "0px dotted rgb(0, 0, 0)",
+    "padding_bottom": "2px",
+    "border_bottom": "2px dotted rgb(43, 109, 186)"
+   }
+  },
+  "holder": {
+   "default": {}
+  },
+  "field": {
+   "default": {}
+  },
+  "label": {
+   "default": {}
+  }
+ }
+]

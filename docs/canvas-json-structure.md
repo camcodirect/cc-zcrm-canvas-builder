@@ -13,10 +13,16 @@ statement here as "true of this payload" rather than "true of Canvas", and never
 is absent just because this sample lacks it. Anything marked *unobserved* has not been seen and
 must not be assumed to work.
 
-Known evidence of behaviour this sample does not exercise: `autoheight`, `layoutstyle.field.width:
-"100%"`, `percent`-sized table columns, and the builder's Responsive Mode all imply relative or
-derived sizing whose rules are unknown. Geometry is therefore **not** documented here — see
-`docs/draft/geometry-rules.DRAFT.md`, which is parked pending more captures.
+**Update 2026-09-06.** The evidence base is now much wider than one capture: two recorded editor
+sessions (25 consecutive saves, one construct per save), Zoho's own preset JSON, and three gallery
+templates. The per-construct shapes the editor emits, the three layout engines (absolute, Flex,
+Grid), the tab-strip option tokens, the icon catalog and the action-id palette are documented in
+**`docs/canvas-constructs.md`**, which supersedes this file wherever the two disagree. Geometry
+within absolute containers held across all 25 saves; see `docs/draft/geometry-rules.DRAFT.md`.
+
+Two claims previously made in this file were wrong and are corrected below: "a related-list id
+may appear at most once" (the editor itself places one twice) and "an empty All Fields tab hangs
+the editor" (unverified).
 
 ---
 

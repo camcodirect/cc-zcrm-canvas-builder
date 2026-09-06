@@ -1,0 +1,1045 @@
+{
+ "ui": {
+  "value": {
+   "style": {},
+   "position": {
+    "start_x": 0,
+    "start_y": 0,
+    "end_x": 1700,
+    "width": 1680,
+    "height": 1413,
+    "depth": 1
+   },
+   "tagname": "DIV",
+   "class": ""
+  }
+ },
+ "children": [
+  {
+   "ui": {
+    "value": {
+     "style": {
+      "default": {
+       "border_radius": "14px",
+       "box_shadow": "0px 4px 8px 0px rgba(45, 100, 230, 0.25)",
+       "padding_bottom": "30px"
+      }
+     },
+     "position": {
+      "start_x": 0,
+      "start_y": 0,
+      "end_x": 357,
+      "width": 357,
+      "height": 626,
+      "depth": 1,
+      "min_top": 18
+     },
+     "tagname": "DIV",
+     "class": "zc-lsection",
+     "zcode": {
+      "name": "section1"
+     }
+    }
+   },
+   "children": [
+    {
+     "ui": {
+      "value": {
+       "style": {
+        "default": {}
+       },
+       "position": {
+        "start_x": 25,
+        "start_y": 78,
+        "end_x": 109,
+        "width": 84,
+        "height": 84,
+        "depth": 1
+       },
+       "fixed": true,
+       "tagname": "DIV",
+       "class": "zcbdrbox zcanvas-field"
+      },
+      "field": {
+       "style": {
+        "default": {
+         "border_radius": "22%",
+         "border": "1px solid rgb(149, 177, 242)"
+        }
+       },
+       "tagname": "DIV",
+       "class": ""
+      }
+     },
+     "children": [],
+     "datatype": "profileimage",
+     "type": "field",
+     "apiname": "Record_Image",
+     "group": "fields"
+    },
+    {
+     "children": [],
+     "ui": {
+      "value": {
+       "style": {
+        "default": {
+         "font_family": "s",
+         "font_size": "20px"
+        }
+       },
+       "position": {
+        "start_x": 15,
+        "start_y": 18,
+        "end_x": 149,
+        "width": 134,
+        "height": 44,
+        "depth": 1
+       },
+       "tagname": "DIV",
+       "class": "",
+       "zcode": {
+        "name": "text1"
+       },
+       "value": "Basic Details"
+      },
+      "autoheight": true
+     },
+     "type": "component",
+     "theme": "Static Text"
+    },
+    {
+     "ui": {
+      "value": {
+       "style": {
+        "default": {}
+       },
+       "position": {
+        "start_x": 126,
+        "start_y": 84,
+        "end_x": 241,
+        "width": 115,
+        "height": 21,
+        "depth": 1
+       },
+       "tagname": "DIV",
+       "class": "zcanvas-field"
+      },
+      "field": {
+       "style": {},
+       "tagname": "DIV",
+       "class": ""
+      }
+     },
+     "children": [],
+     "datatype": "text",
+     "type": "field",
+     "apiname": "First_Name",
+     "group": "fields"
+    },
+    {
+     "ui": {
+      "value": {
+       "style": {
+        "default": {}
+       },
+       "position": {
+        "start_x": 125,
+        "start_y": 136,
+        "end_x": 339,
+        "width": 214,
+        "height": 21,
+        "depth": 1
+       },
+       "tagname": "DIV",
+       "class": "zcanvas-field"
+      },
+      "field": {
+       "style": {
+        "default": {
+         "font_family": "r",
+         "color": "rgba(97, 110, 136, 1)"
+        }
+       },
+       "tagname": "DIV",
+       "class": ""
+      }
+     },
+     "children": [],
+     "datatype": "text",
+     "type": "field",
+     "apiname": "Company",
+     "group": "fields"
+    },
+    {
+     "ui": {
+      "value": {
+       "style": {
+        "default": {}
+       },
+       "position": {
+        "start_x": 125,
+        "start_y": 109,
+        "end_x": 338,
+        "width": 213,
+        "height": 21,
+        "depth": 1
+       },
+       "tagname": "DIV",
+       "class": "zcanvas-field"
+      },
+      "field": {
+       "style": {
+        "default": {
+         "font_family": "r",
+         "color": "rgba(97, 110, 136, 1)"
+        }
+       },
+       "tagname": "DIV",
+       "class": ""
+      }
+     },
+     "children": [],
+     "datatype": "email",
+     "type": "field",
+     "apiname": "Email",
+     "group": "fields"
+    },
+    {
+     "ui": {
+      "value": {
+       "style": {
+        "default": {
+         "background_color": "rgba(45, 100, 230, 1)",
+         "border": "none",
+         "padding_top": "8px",
+         "padding_bottom": "8px"
+        }
+       },
+       "position": {
+        "start_x": 216,
+        "start_y": 24,
+        "end_x": 332,
+        "width": 116,
+        "height": 35,
+        "depth": 1
+       },
+       "tagname": "DIV",
+       "class": "zcanvas-no-img-default zc-ta-center zccbutton zcanvas-field"
+      },
+      "field": {
+       "style": {
+        "default": {
+         "color": "rgba(255, 255, 255, 1)"
+        }
+       },
+       "tagname": "DIV",
+       "class": ""
+      }
+     },
+     "children": [],
+     "datatype": "button",
+     "type": "action",
+     "id": "send_mail",
+     "api_name": "send_mail",
+     "group": "action"
+    },
+    {
+     "children": [],
+     "ui": {
+      "value": {
+       "style": {
+        "default": {
+         "border_color": "rgba(218, 225, 241, 1)"
+        }
+       },
+       "position": {
+        "start_x": 0,
+        "start_y": 188,
+        "end_x": 355,
+        "width": 355,
+        "height": 3,
+        "depth": 1
+       },
+       "fixed": true,
+       "tagname": "DIV",
+       "class": "",
+       "zcode": {
+        "name": "line1"
+       },
+       "vertical": false
+      }
+     },
+     "type": "component",
+     "theme": "Line"
+    },
+    {
+     "children": [
+      {
+       "children": [
+        {
+         "ui": {
+          "value": {
+           "style": {
+            "default": {}
+           },
+           "position": {
+            "start_x": 0,
+            "start_y": 0,
+            "end_x": 331,
+            "width": 331,
+            "height": 34,
+            "depth": 1
+           },
+           "tagname": "DIV",
+           "class": "zcanvas-field"
+          },
+          "holder": {
+           "style": {},
+           "tagname": "DIV",
+           "class": ""
+          },
+          "field": {
+           "style": {
+            "default": {
+             "font_family": "r"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          },
+          "label": {
+           "style": {
+            "default": {
+             "color": "rgba(97, 110, 136, 1)"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          }
+         },
+         "children": [],
+         "datatype": "phone",
+         "type": "field",
+         "apiname": "Mobile",
+         "group": "fields"
+        }
+       ],
+       "ui": {
+        "value": {
+         "position": {
+          "start_x": 0,
+          "start_y": 0,
+          "end_x": 331,
+          "width": 331,
+          "height": 34,
+          "depth": 1
+         },
+         "style": {},
+         "class": "zcanvas-row"
+        }
+       },
+       "type": "row"
+      },
+      {
+       "children": [
+        {
+         "ui": {
+          "value": {
+           "style": {
+            "default": {}
+           },
+           "position": {
+            "start_x": 0,
+            "start_y": 0,
+            "end_x": 331,
+            "width": 331,
+            "height": 34,
+            "depth": 1
+           },
+           "tagname": "DIV",
+           "class": "zcanvas-field"
+          },
+          "holder": {
+           "style": {},
+           "tagname": "DIV",
+           "class": ""
+          },
+          "field": {
+           "style": {
+            "default": {
+             "font_family": "r"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          },
+          "label": {
+           "style": {
+            "default": {
+             "color": "rgba(97, 110, 136, 1)"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          }
+         },
+         "children": [],
+         "datatype": "website",
+         "type": "field",
+         "apiname": "Website",
+         "group": "fields"
+        }
+       ],
+       "ui": {
+        "value": {
+         "position": {
+          "start_x": 0,
+          "start_y": 34,
+          "end_x": 331,
+          "width": 331,
+          "height": 34,
+          "depth": 1
+         },
+         "style": {},
+         "class": "zcanvas-row"
+        }
+       },
+       "type": "row"
+      },
+      {
+       "children": [
+        {
+         "ui": {
+          "value": {
+           "style": {
+            "default": {}
+           },
+           "position": {
+            "start_x": 0,
+            "start_y": 0,
+            "end_x": 331,
+            "width": 331,
+            "height": 34,
+            "depth": 1
+           },
+           "tagname": "DIV",
+           "class": "zcanvas-field"
+          },
+          "holder": {
+           "style": {},
+           "tagname": "DIV",
+           "class": ""
+          },
+          "field": {
+           "style": {
+            "default": {
+             "font_family": "r"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          },
+          "label": {
+           "style": {
+            "default": {
+             "color": "rgba(97, 110, 136, 1)"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          }
+         },
+         "children": [],
+         "datatype": "picklist",
+         "type": "field",
+         "apiname": "Lead_Source",
+         "group": "fields"
+        }
+       ],
+       "ui": {
+        "value": {
+         "position": {
+          "start_x": 0,
+          "start_y": 68,
+          "end_x": 331,
+          "width": 331,
+          "height": 34,
+          "depth": 1
+         },
+         "style": {},
+         "class": "zcanvas-row"
+        }
+       },
+       "type": "row"
+      },
+      {
+       "children": [
+        {
+         "ui": {
+          "value": {
+           "style": {
+            "default": {}
+           },
+           "position": {
+            "start_x": 0,
+            "start_y": 0,
+            "end_x": 331,
+            "width": 331,
+            "height": 34,
+            "depth": 1
+           },
+           "tagname": "DIV",
+           "class": "zcanvas-field"
+          },
+          "holder": {
+           "style": {},
+           "tagname": "DIV",
+           "class": ""
+          },
+          "field": {
+           "style": {
+            "default": {
+             "font_family": "r"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          },
+          "label": {
+           "style": {
+            "default": {
+             "color": "rgba(97, 110, 136, 1)"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          }
+         },
+         "children": [],
+         "datatype": "picklist",
+         "type": "field",
+         "apiname": "Lead_Status",
+         "group": "fields"
+        }
+       ],
+       "ui": {
+        "value": {
+         "position": {
+          "start_x": 0,
+          "start_y": 102,
+          "end_x": 331,
+          "width": 331,
+          "height": 34,
+          "depth": 1
+         },
+         "style": {},
+         "class": "zcanvas-row"
+        }
+       },
+       "type": "row"
+      },
+      {
+       "children": [
+        {
+         "ui": {
+          "value": {
+           "style": {
+            "default": {}
+           },
+           "position": {
+            "start_x": 0,
+            "start_y": 0,
+            "end_x": 331,
+            "width": 331,
+            "height": 34,
+            "depth": 1
+           },
+           "tagname": "DIV",
+           "class": "zcanvas-field"
+          },
+          "holder": {
+           "style": {},
+           "tagname": "DIV",
+           "class": ""
+          },
+          "field": {
+           "style": {
+            "default": {
+             "font_family": "r"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          },
+          "label": {
+           "style": {
+            "default": {
+             "color": "rgba(97, 110, 136, 1)"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          }
+         },
+         "children": [],
+         "datatype": "picklist",
+         "type": "field",
+         "apiname": "Industry",
+         "group": "fields"
+        }
+       ],
+       "ui": {
+        "value": {
+         "position": {
+          "start_x": 0,
+          "start_y": 136,
+          "end_x": 331,
+          "width": 331,
+          "height": 34,
+          "depth": 1
+         },
+         "style": {},
+         "class": "zcanvas-row"
+        }
+       },
+       "type": "row"
+      },
+      {
+       "children": [
+        {
+         "ui": {
+          "value": {
+           "style": {
+            "default": {}
+           },
+           "position": {
+            "start_x": 0,
+            "start_y": 0,
+            "end_x": 331,
+            "width": 331,
+            "height": 34,
+            "depth": 1
+           },
+           "tagname": "DIV",
+           "class": "zcanvas-field"
+          },
+          "holder": {
+           "style": {},
+           "tagname": "DIV",
+           "class": ""
+          },
+          "field": {
+           "style": {
+            "default": {
+             "font_family": "r"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          },
+          "label": {
+           "style": {
+            "default": {
+             "color": "rgba(97, 110, 136, 1)"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          }
+         },
+         "children": [],
+         "datatype": "number",
+         "type": "field",
+         "apiname": "Annual_Revenue",
+         "group": "fields"
+        }
+       ],
+       "ui": {
+        "value": {
+         "position": {
+          "start_x": 0,
+          "start_y": 170,
+          "end_x": 331,
+          "width": 331,
+          "height": 34,
+          "depth": 1
+         },
+         "style": {},
+         "class": "zcanvas-row"
+        }
+       },
+       "type": "row"
+      },
+      {
+       "children": [
+        {
+         "ui": {
+          "value": {
+           "style": {
+            "default": {}
+           },
+           "position": {
+            "start_x": 0,
+            "start_y": 0,
+            "end_x": 331,
+            "width": 331,
+            "height": 34,
+            "depth": 1
+           },
+           "tagname": "DIV",
+           "class": "zcanvas-field"
+          },
+          "holder": {
+           "style": {},
+           "tagname": "DIV",
+           "class": ""
+          },
+          "field": {
+           "style": {
+            "default": {
+             "font_family": "r"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          },
+          "label": {
+           "style": {
+            "default": {
+             "color": "rgba(97, 110, 136, 1)"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          }
+         },
+         "children": [],
+         "datatype": "user",
+         "type": "field",
+         "apiname": "Created_By",
+         "group": "fields"
+        }
+       ],
+       "ui": {
+        "value": {
+         "position": {
+          "start_x": 0,
+          "start_y": 204,
+          "end_x": 331,
+          "width": 331,
+          "height": 34,
+          "depth": 1
+         },
+         "style": {},
+         "class": "zcanvas-row"
+        }
+       },
+       "type": "row"
+      },
+      {
+       "children": [
+        {
+         "ui": {
+          "value": {
+           "style": {
+            "default": {}
+           },
+           "position": {
+            "start_x": 0,
+            "start_y": 0,
+            "end_x": 331,
+            "width": 331,
+            "height": 34,
+            "depth": 1
+           },
+           "tagname": "DIV",
+           "class": "zcanvas-field"
+          },
+          "holder": {
+           "style": {},
+           "tagname": "DIV",
+           "class": ""
+          },
+          "field": {
+           "style": {
+            "default": {
+             "font_family": "r"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          },
+          "label": {
+           "style": {
+            "default": {
+             "color": "rgba(97, 110, 136, 1)"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          }
+         },
+         "children": [],
+         "datatype": "user",
+         "type": "field",
+         "apiname": "Modified_By",
+         "group": "fields"
+        }
+       ],
+       "ui": {
+        "value": {
+         "position": {
+          "start_x": 0,
+          "start_y": 238,
+          "end_x": 331,
+          "width": 331,
+          "height": 34,
+          "depth": 1
+         },
+         "style": {},
+         "class": "zcanvas-row"
+        }
+       },
+       "type": "row"
+      },
+      {
+       "children": [
+        {
+         "ui": {
+          "value": {
+           "style": {
+            "default": {}
+           },
+           "position": {
+            "start_x": 0,
+            "start_y": 0,
+            "end_x": 331,
+            "width": 331,
+            "height": 34,
+            "depth": 1
+           },
+           "tagname": "DIV",
+           "class": "zcanvas-field"
+          },
+          "holder": {
+           "style": {},
+           "tagname": "DIV",
+           "class": ""
+          },
+          "field": {
+           "style": {
+            "default": {
+             "font_family": "r"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          },
+          "label": {
+           "style": {
+            "default": {
+             "color": "rgba(97, 110, 136, 1)"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          }
+         },
+         "children": [],
+         "datatype": "date-time",
+         "type": "field",
+         "apiname": "Last_Activity_Time",
+         "group": "fields"
+        }
+       ],
+       "ui": {
+        "value": {
+         "position": {
+          "start_x": 0,
+          "start_y": 272,
+          "end_x": 331,
+          "width": 331,
+          "height": 34,
+          "depth": 1
+         },
+         "style": {},
+         "class": "zcanvas-row"
+        }
+       },
+       "type": "row"
+      },
+      {
+       "children": [
+        {
+         "ui": {
+          "value": {
+           "style": {
+            "default": {}
+           },
+           "position": {
+            "start_x": 0,
+            "start_y": 0,
+            "end_x": 331,
+            "width": 331,
+            "height": 34,
+            "depth": 1
+           },
+           "tagname": "DIV",
+           "class": "zcanvas-field"
+          },
+          "holder": {
+           "style": {},
+           "tagname": "DIV",
+           "class": ""
+          },
+          "field": {
+           "style": {
+            "default": {
+             "font_family": "r"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          },
+          "label": {
+           "style": {
+            "default": {
+             "color": "rgba(97, 110, 136, 1)"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          }
+         },
+         "children": [],
+         "datatype": "text",
+         "type": "field",
+         "apiname": "City",
+         "group": "fields"
+        }
+       ],
+       "ui": {
+        "value": {
+         "position": {
+          "start_x": 0,
+          "start_y": 306,
+          "end_x": 331,
+          "width": 331,
+          "height": 34,
+          "depth": 1
+         },
+         "style": {},
+         "class": "zcanvas-row"
+        }
+       },
+       "type": "row"
+      },
+      {
+       "children": [
+        {
+         "ui": {
+          "value": {
+           "style": {
+            "default": {}
+           },
+           "position": {
+            "start_x": 0,
+            "start_y": 0,
+            "end_x": 331,
+            "width": 331,
+            "height": 34,
+            "depth": 1
+           },
+           "tagname": "DIV",
+           "class": "zcanvas-field"
+          },
+          "holder": {
+           "style": {},
+           "tagname": "DIV",
+           "class": ""
+          },
+          "field": {
+           "style": {
+            "default": {
+             "font_family": "r"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          },
+          "label": {
+           "style": {
+            "default": {
+             "color": "rgba(97, 110, 136, 1)"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          }
+         },
+         "children": [],
+         "datatype": "text",
+         "type": "field",
+         "apiname": "Country",
+         "group": "fields"
+        }
+       ],
+       "ui": {
+        "value": {
+         "position": {
+          "start_x": 0,
+          "start_y": 340,
+          "end_x": 331,
+          "width": 331,
+          "height": 34,
+          "depth": 1
+         },
+         "style": {},
+         "class": "zcanvas-row"
+        }
+       },
+       "type": "row"
+      }
+     ],
+     "ui": {
+      "value": {
+       "style": {
+        "default": {
+         "background_color": "rgba(0,0,0,0)"
+        }
+       },
+       "position": {
+        "start_x": 16,
+        "start_y": 208,
+        "end_x": 349,
+        "width": 333,
+        "height": 337,
+        "depth": 1
+       },
+       "tagname": "DIV",
+       "class": "zclayout-table zc-no-theme zcanvas-editor",
+       "layoutstyle": {
+        "field": {
+         "width": "100%"
+        },
+        "row": {
+         "height": "34px"
+        },
+        "inner": [
+         {
+          "percent": 45.48611111111111
+         }
+        ]
+       }
+      }
+     },
+     "type": "component",
+     "theme": "Table Layout"
+    }
+   ],
+   "type": "component",
+   "theme": "Custom Layout"
+  }
+ ],
+ "type": "ReusableView4"
+}

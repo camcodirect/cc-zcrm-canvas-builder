@@ -27,6 +27,57 @@ Format for each entry:
 
 ---
 
+## 2026-09-06 — Emitted 14 icon names that do not exist
+
+- **What went wrong:** `build_contacts_v2.py` used 20 `icon-Icon_*` names. Only one had ever been
+  observed; the other 19 were invented by analogy (`icon-Icon_Task`, `icon-Icon_Mail`,
+  `icon-Icon_Calendar` ...). Checked against the 231-name icon font pulled from the HAR, 14 do not
+  exist (the real ones are `icon-Icon_task`, `icon-Icon_Calender`, `icon-Icon_Notes`,
+  `icon-Icon_Location`, and so on: irregular case, British-ish spellings). An unknown icon class is
+  a strong candidate for the editor's JS failure.
+- **Why it happened:** Icon names looked like a predictable scheme, so I produced plausible ones
+  instead of looking for the catalog. The catalog was one grep of the editor's CSS away.
+- **Rule going forward:** **Every enumerated value (icon name, action id, theme, class token) must
+  come from an observed catalog, never from analogy.** `reference/zoho-assets/` now holds the icon
+  catalog and the components palette; `validate.py` checks against both.
+
+---
+
+## 2026-09-06 — Diagnosed three canvas breakages by guessing; a UI capture settled it in one pass
+
+- **What went wrong:** Three consecutive deploys broke the Zoho editor. Each time I diffed my
+  payload against a working capture, found *a* difference, declared it the cause, fixed only that,
+  and shipped 300-600 nodes of still-untested structure. Duplicate related lists, then the All
+  Fields tab. Both explanations were wrong or incomplete, and John's canvas was unusable for hours.
+- **Why it happened:** I was inferring an undocumented schema from static end-state captures. A
+  finished canvas shows what one canvas contains; it cannot show which parts are *required*, which
+  are cosmetic, or what the editor does when it builds them. I kept mistaking "a difference" for
+  "the cause".
+- **What actually settled it:** John recorded a browser session adding one construct at a time
+  (HAR, 9 consecutive saves). Diffing consecutive saves gives the exact node shape the editor emits
+  per construct — the real spec, in ~15 minutes, with no production breakage.
+- **Rule going forward:** **When reverse-engineering an undocumented format, capture the tool
+  producing it before inferring from its output.** Ask for a recorded session early. One capture of
+  the authoring tool beats any number of static samples, and beats guessing on live data.
+
+---
+
+## 2026-09-06 — Two "structural rules" I asserted were both wrong
+
+Both were invented to explain a breakage, then written into the docs as fact. The UI capture
+disproved them.
+
+- **"A related-list ID may appear at most once per canvas."** False. In the captured session Zoho
+  itself added the same related list (`2582206000073572031`) twice, saved, and the editor kept
+  working. Duplicates are legal. The validator rule enforcing this was removed.
+- **"An empty All Fields tab hangs the editor."** Unverified. It was one of several differences and
+  I picked it. The capture shows no evidence it matters on its own.
+- **Rule going forward:** Do not write a rule into the docs from a single failed deploy. A
+  difference between a broken payload and a working one is a *hypothesis*. Label it as one until
+  something independent confirms it — ideally a capture of the tool, or a deliberate A/B.
+
+---
+
 ## 2026-09-06 — Deployed a canvas that broke the Zoho builder UI (blank white screen)
 
 - **What went wrong:** The generated Contacts v2 canvas was accepted by the API (`code: SUCCESS`,

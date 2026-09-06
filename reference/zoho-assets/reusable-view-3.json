@@ -1,0 +1,353 @@
+{
+ "ui": {
+  "value": {
+   "style": {},
+   "position": {
+    "start_x": 0,
+    "start_y": 0,
+    "end_x": 1700,
+    "width": 1680,
+    "height": 1563,
+    "depth": 1
+   },
+   "tagname": "DIV",
+   "class": ""
+  }
+ },
+ "children": [
+  {
+   "ui": {
+    "value": {
+     "style": {
+      "default": {
+       "border": "none",
+       "background_color": "rgba(255,255,255,0)",
+       "box_shadow": "none"
+      }
+     },
+     "position": {
+      "start_x": 626,
+      "start_y": 138,
+      "end_x": 955,
+      "width": 329,
+      "height": 825,
+      "depth": 1,
+      "min_top": 2
+     },
+     "fixed": true,
+     "tagname": "DIV",
+     "class": "zc-lsection",
+     "zcode": {
+      "name": "section2"
+     }
+    }
+   },
+   "children": [
+    {
+     "ui": {
+      "value": {
+       "style": {
+        "default": {
+         "border_radius": "20px",
+         "background_image": "linear-gradient(2deg , rgb(100, 103, 228) 0%,rgb(157, 106, 242) 100%)"
+        }
+       },
+       "position": {
+        "start_x": -2,
+        "start_y": 2,
+        "end_x": 330,
+        "width": 332,
+        "height": 309,
+        "depth": 1,
+        "min_top": 24,
+        "min_left": 27
+       },
+       "tagname": "DIV",
+       "class": "zc-lsection",
+       "zcode": {
+        "name": "section1"
+       }
+      }
+     },
+     "children": [
+      {
+       "ui": {
+        "value": {
+         "style": {
+          "default": {}
+         },
+         "position": {
+          "start_x": 27,
+          "start_y": 24,
+          "end_x": 86,
+          "width": 59,
+          "height": 59,
+          "depth": 1
+         },
+         "fixed": true,
+         "tagname": "DIV",
+         "class": "zcbdrbox zcanvas-field"
+        },
+        "field": {
+         "style": {
+          "default": {
+           "border_radius": "50%"
+          }
+         },
+         "tagname": "DIV",
+         "class": ""
+        }
+       },
+       "children": [],
+       "datatype": "profileimage",
+       "type": "field",
+       "apiname": "Record_Image",
+       "group": "fields"
+      },
+      {
+       "ui": {
+        "value": {
+         "style": {
+          "default": {}
+         },
+         "position": {
+          "start_x": 98,
+          "start_y": 26,
+          "end_x": 213,
+          "width": 115,
+          "height": 24,
+          "depth": 1
+         },
+         "tagname": "DIV",
+         "class": "zcanvas-field"
+        },
+        "field": {
+         "style": {
+          "default": {
+           "color": "rgba(255, 255, 255, 1)",
+           "font_size": "18px"
+          }
+         },
+         "tagname": "DIV",
+         "class": ""
+        }
+       },
+       "children": [],
+       "datatype": "text",
+       "type": "field",
+       "apiname": "First_Name",
+       "group": "fields"
+      },
+      {
+       "ui": {
+        "value": {
+         "style": {
+          "default": {}
+         },
+         "position": {
+          "start_x": 28,
+          "start_y": 113,
+          "end_x": 282,
+          "width": 254,
+          "height": 47,
+          "depth": 1
+         },
+         "tagname": "DIV",
+         "class": "zcanvas-field"
+        },
+        "holder": {
+         "style": {
+          "default": {
+           "padding": "2px",
+           "flex_direction": "column",
+           "color": "rgba(253, 242, 255, 1)"
+          }
+         },
+         "tagname": "DIV",
+         "class": ""
+        },
+        "field": {
+         "style": {
+          "default": {
+           "font_family": "r",
+           "color": "rgba(253, 242, 255, 1)",
+           "margin_top": "4px",
+           "font_size": "16px"
+          }
+         },
+         "tagname": "DIV",
+         "class": ""
+        },
+        "label": {
+         "style": {
+          "default": {
+           "color": "rgba(253, 242, 255, 1)",
+           "margin_top": "0px"
+          }
+         },
+         "tagname": "DIV",
+         "class": ""
+        }
+       },
+       "children": [],
+       "datatype": "date-time",
+       "type": "field",
+       "apiname": "Created_Time",
+       "group": "fields"
+      }
+     ],
+     "type": "component",
+     "theme": "Custom Layout"
+    },
+    {
+     "ui": {
+      "value": {
+       "style": {
+        "default": {
+         "border_radius": "20px"
+        }
+       },
+       "position": {
+        "start_x": -1,
+        "start_y": 199,
+        "end_x": 331,
+        "width": 332,
+        "height": 578,
+        "depth": 2,
+        "min_top": 17,
+        "min_left": 11,
+        "over_left": -331
+       },
+       "tagname": "DIV",
+       "class": "zc-lsection"
+      }
+     },
+     "children": [
+      {
+       "ui": {
+        "value": {
+         "style": {
+          "default": {
+           "border_radius": "0",
+           "border": "none",
+           "background_color": "rgba(255,255,255,0)",
+           "padding": "0px",
+           "box_shadow": "none"
+          }
+         },
+         "position": {
+          "start_x": 11,
+          "start_y": 17,
+          "end_x": 321,
+          "width": 310,
+          "height": 478,
+          "depth": 1
+         },
+         "tagname": "DIV",
+         "class": "zc-list-component",
+         "zcode": {
+          "name": "RL-Notes"
+         },
+         "related_list": true,
+         "editorclass": "zcanvas-loading-component"
+        }
+       },
+       "children": [
+        {
+         "ui": {
+          "value": {
+           "style": {},
+           "position": {
+            "start_x": 0,
+            "start_y": 0,
+            "end_x": 310,
+            "width": 310,
+            "height": 50,
+            "depth": 1,
+            "min_top": 11,
+            "min_left": 10
+           },
+           "tagname": "DIV",
+           "class": "zcanvas-title-editor"
+          }
+         },
+         "children": [
+          {
+           "children": [],
+           "ui": {
+            "value": {
+             "style": {
+              "default": {
+               "background_color": "transparent"
+              }
+             },
+             "position": {
+              "start_x": 10,
+              "start_y": 11,
+              "end_x": 174,
+              "width": 164,
+              "height": 22,
+              "depth": 1
+             },
+             "tagname": "DIV",
+             "class": "zc_disabled",
+             "value": "Notes"
+            },
+            "autoheight": false
+           },
+           "type": "component",
+           "theme": "Static Text"
+          }
+         ],
+         "type": "static_content",
+         "theme": "Custom Layout"
+        },
+        {
+         "id": "4937050000000015122",
+         "theme": "Table Layout",
+         "children": [],
+         "ui": {
+          "value": {
+           "position": {
+            "start_x": 0,
+            "start_y": 50,
+            "end_x": 310,
+            "width": 310,
+            "height": 428,
+            "depth": 1
+           },
+           "style": {}
+          },
+          "context": {
+           "notes_title": {},
+           "notes_link": {},
+           "notes_separator": {},
+           "notes_content": {},
+           "notes_footer": {}
+          },
+          "canvas_rules": []
+         },
+         "data": {
+          "api_name": "Notes",
+          "datatype": "static_rel",
+          "type": "relatedlist",
+          "p_name": "NOTESPERSONALITY"
+         },
+         "type": "relatedlist"
+        }
+       ],
+       "type": "component",
+       "related_list": true,
+       "theme": "Custom Layout"
+      }
+     ],
+     "type": "component",
+     "theme": "Custom Layout"
+    }
+   ],
+   "type": "component",
+   "theme": "Custom Layout"
+  }
+ ],
+ "type": "ReusableView3"
+}

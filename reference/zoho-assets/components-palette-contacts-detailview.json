@@ -1,0 +1,349 @@
+{
+ "components": [
+  {
+   "display_label": "Fields",
+   "comp_available": true,
+   "name": "field",
+   "type": "field"
+  },
+  {
+   "display_label": "Related List",
+   "comp_available": true,
+   "name": "relatedlist",
+   "type": "relatedlist"
+  },
+  {
+   "display_label": "Edit",
+   "comp_available": true,
+   "data_zcqa": "edit",
+   "name": "edit",
+   "type": "action"
+  },
+  {
+   "display_label": "CPQ Breadcrumb",
+   "comp_available": false,
+   "data_zcqa": "breadCrumb",
+   "name": "cpqbreadcrumb",
+   "type": "action"
+  },
+  {
+   "display_label": "Clone",
+   "comp_available": true,
+   "data_zcqa": "clone",
+   "name": "clone",
+   "type": "action"
+  },
+  {
+   "display_label": "Find and Merge Duplicates",
+   "comp_available": true,
+   "data_zcqa": "find_and_merge",
+   "name": "findandmerge",
+   "type": "action"
+  },
+  {
+   "display_label": "Send Email",
+   "comp_available": true,
+   "data_zcqa": "send_mail",
+   "name": "send_mail",
+   "type": "action"
+  },
+  {
+   "display_label": "Delete",
+   "comp_available": true,
+   "data_zcqa": "delete",
+   "name": "delete",
+   "type": "action"
+  },
+  {
+   "display_label": "Mail Merge",
+   "comp_available": true,
+   "data_zcqa": "mail_merge",
+   "name": "mail_merge",
+   "type": "action"
+  },
+  {
+   "display_label": "Share",
+   "comp_available": true,
+   "data_zcqa": "manage_share",
+   "name": "share",
+   "type": "action"
+  },
+  {
+   "display_label": "Run Macro",
+   "comp_available": true,
+   "data_zcqa": "run_macro",
+   "name": "macro",
+   "type": "action"
+  },
+  {
+   "display_label": "Call now",
+   "comp_available": true,
+   "name": "callnow",
+   "type": "action"
+  },
+  {
+   "display_label": "Send DM",
+   "comp_available": true,
+   "name": "sendDM",
+   "type": "action"
+  },
+  {
+   "display_label": "Meet Now!",
+   "comp_available": true,
+   "data_zcqa": "meet_now",
+   "name": "meetnow",
+   "type": "action"
+  },
+  {
+   "display_label": "Schedule Online Meeting",
+   "comp_available": true,
+   "data_zcqa": "scheduleonlinemeeting",
+   "name": "scheduleonlinemeeting",
+   "type": "action"
+  },
+  {
+   "display_label": "Send Portal Invitation",
+   "comp_available": true,
+   "data_zcqa": "send_portal_invitation",
+   "name": "inviteClientPortal",
+   "type": "action"
+  },
+  {
+   "display_label": "Enrich data",
+   "comp_available": true,
+   "data_zcqa": "enrich_data",
+   "name": "data_enrichment",
+   "type": "action"
+  },
+  {
+   "display_label": "Record Assistant",
+   "comp_available": true,
+   "data_zcqa": "askzia_contextual",
+   "name": "askzia_contextual",
+   "type": "action"
+  },
+  {
+   "display_label": "Navigator",
+   "comp_available": true,
+   "name": "navigate",
+   "type": "action"
+  },
+  {
+   "display_label": "Back",
+   "comp_available": true,
+   "data_zcqa": "backOneLevel",
+   "name": "back",
+   "type": "action"
+  },
+  {
+   "display_label": "Print Preview",
+   "comp_available": true,
+   "data_zcqa": "print_preview",
+   "name": "print_preview",
+   "type": "action"
+  },
+  {
+   "display_label": "Custom Links",
+   "comp_available": true,
+   "name": "link",
+   "type": "link"
+  },
+  {
+   "display_label": "More...",
+   "comp_available": true,
+   "data_zcqa": "CustomizeTools",
+   "name": "morebutton",
+   "type": "action"
+  },
+  {
+   "display_label": "Review History",
+   "comp_available": true,
+   "data_zcqa": "review_history",
+   "name": "reviewHistory",
+   "type": "action"
+  },
+  {
+   "display_label": "Locate Map",
+   "comp_available": true,
+   "data_zcqa": "Locate Map",
+   "name": "locatemap",
+   "type": "action"
+  },
+  {
+   "display_label": "Lock",
+   "comp_available": true,
+   "data_zcqa": "lock",
+   "name": "lock",
+   "type": "action"
+  },
+  {
+   "display_label": "Enroll to Cadence",
+   "comp_available": true,
+   "data_zcqa": "cadence",
+   "name": "cadence",
+   "type": "action"
+  },
+  {
+   "display_label": "Create Client Script",
+   "comp_available": true,
+   "data_zcqa": "create_client_script",
+   "name": "create_client_script",
+   "type": "action"
+  },
+  {
+   "display_label": "Share via Microsoft Teams",
+   "comp_available": false,
+   "data_zcqa": "share_via_microsoft_teams",
+   "name": "microsoft_teams",
+   "type": "action"
+  },
+  {
+   "display_label": "Share via Slack",
+   "comp_available": false,
+   "data_zcqa": "share_via_slack",
+   "name": "slack",
+   "type": "action"
+  },
+  {
+   "display_label": "Share via Google Chat",
+   "comp_available": false,
+   "data_zcqa": "share_via_googlechat",
+   "name": "google_chat",
+   "type": "action"
+  },
+  {
+   "display_label": "Share via Cisco Webex Teams",
+   "comp_available": false,
+   "data_zcqa": "share_via_cisco_webex_teams",
+   "name": "cisco",
+   "type": "action"
+  },
+  {
+   "display_label": "Share via Zoho Cliq",
+   "comp_available": true,
+   "data_zcqa": "share_via_cliq",
+   "name": "cliq",
+   "type": "action"
+  },
+  {
+   "display_label": "Stage",
+   "comp_available": true,
+   "name": "stage_navigator",
+   "type": "system"
+  },
+  {
+   "display_label": "Data Privacy",
+   "comp_available": false,
+   "name": "data_privacy",
+   "type": "system"
+  },
+  {
+   "display_label": "Blueprint",
+   "comp_available": true,
+   "name": "blueprint",
+   "type": "system"
+  },
+  {
+   "display_label": "Next Action",
+   "comp_available": true,
+   "name": "upcoming_actions",
+   "type": "system"
+  },
+  {
+   "display_label": "Upcoming Automated Actions",
+   "comp_available": true,
+   "name": "upcoming_action",
+   "type": "system"
+  },
+  {
+   "display_label": "Next Action",
+   "comp_available": true,
+   "name": "next_action",
+   "type": "system"
+  },
+  {
+   "display_label": "Timeline",
+   "comp_available": true,
+   "name": "timeline",
+   "type": "system"
+  },
+  {
+   "display_label": "Interactions",
+   "comp_available": true,
+   "name": "journeys",
+   "type": "system"
+  },
+  {
+   "display_label": "Tags",
+   "comp_available": true,
+   "name": "tag",
+   "type": "system"
+  },
+  {
+   "display_label": "Custom Buttons",
+   "comp_available": true,
+   "name": "button",
+   "type": "button"
+  },
+  {
+   "display_label": "Journey Builder",
+   "comp_available": true,
+   "name": "orchestrations",
+   "type": "system"
+  },
+  {
+   "display_label": "Path Finder",
+   "comp_available": true,
+   "name": "pathfinders",
+   "type": "system"
+  },
+  {
+   "display_label": "Segmentation",
+   "comp_available": false,
+   "name": "segmentation",
+   "type": "system"
+  },
+  {
+   "display_label": "ABM",
+   "comp_available": false,
+   "name": "abm",
+   "type": "system"
+  },
+  {
+   "display_label": "Insights from QuickML",
+   "comp_available": true,
+   "name": "quickml",
+   "type": "zia"
+  },
+  {
+   "display_label": "Best Time to Contact",
+   "comp_available": true,
+   "name": "best_time",
+   "type": "zia"
+  },
+  {
+   "display_label": "Prediction",
+   "comp_available": true,
+   "name": "prediction",
+   "type": "zia"
+  },
+  {
+   "display_label": "Churn Prediction",
+   "comp_available": true,
+   "name": "churn_prediction",
+   "type": "zia"
+  },
+  {
+   "display_label": "Zia Score",
+   "comp_available": true,
+   "name": "zia_score",
+   "type": "zia"
+  },
+  {
+   "display_label": "Competitors",
+   "comp_available": true,
+   "name": "competitor_mentions",
+   "type": "zia"
+  }
+ ]
+}

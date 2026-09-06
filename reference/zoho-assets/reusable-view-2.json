@@ -1,0 +1,423 @@
+{
+ "ui": {
+  "value": {
+   "style": {},
+   "position": {
+    "start_x": 0,
+    "start_y": 0,
+    "end_x": 1460,
+    "width": 1440,
+    "height": 1269,
+    "depth": 1
+   },
+   "tagname": "DIV",
+   "class": ""
+  }
+ },
+ "children": [
+  {
+   "ui": {
+    "value": {
+     "style": {
+      "default": {
+       "background_color": "rgba(191, 73, 142, 1)",
+       "border_radius": "8px",
+       "border": "none",
+       "background_image": "linear-gradient(180deg , rgb(245, 208, 115) 0%,rgb(242, 155, 69) 100%)"
+      }
+     },
+     "position": {
+      "start_x": -1,
+      "start_y": -1,
+      "end_x": 269,
+      "width": 270,
+      "height": 516,
+      "depth": 1,
+      "min_top": 21,
+      "min_left": 21
+     },
+     "tagname": "DIV",
+     "class": "zc-lsection",
+     "zcode": {
+      "name": "section1"
+     }
+    }
+   },
+   "children": [
+    {
+     "ui": {
+      "value": {
+       "style": {
+        "default": {}
+       },
+       "position": {
+        "start_x": 22,
+        "start_y": 21,
+        "end_x": 247,
+        "width": 225,
+        "height": 230,
+        "depth": 1
+       },
+       "fixed": true,
+       "tagname": "DIV",
+       "class": "zcbdrbox zcanvas-field"
+      },
+      "field": {
+       "style": {
+        "default": {
+         "border_radius": "6%",
+         "box_shadow": "0px 0px 20px 0px rgba(0, 0, 0, 0.12)"
+        }
+       },
+       "tagname": "DIV",
+       "class": ""
+      }
+     },
+     "children": [],
+     "datatype": "profileimage",
+     "type": "field",
+     "apiname": "Record_Image",
+     "group": "fields"
+    },
+    {
+     "ui": {
+      "value": {
+       "style": {
+        "default": {}
+       },
+       "position": {
+        "start_x": 21,
+        "start_y": 294,
+        "end_x": 246,
+        "width": 225,
+        "height": 24,
+        "depth": 1
+       },
+       "tagname": "DIV",
+       "class": "zcanvas-field zc-ta-left"
+      },
+      "field": {
+       "style": {
+        "default": {
+         "font_family": "b",
+         "color": "rgba(250, 249, 251, 1)",
+         "font_size": "18px"
+        }
+       },
+       "tagname": "DIV",
+       "class": ""
+      }
+     },
+     "children": [],
+     "datatype": "text",
+     "type": "field",
+     "apiname": "First_Name",
+     "group": "fields"
+    },
+    {
+     "ui": {
+      "value": {
+       "style": {
+        "default": {}
+       },
+       "position": {
+        "start_x": 21,
+        "start_y": 332,
+        "end_x": 232,
+        "width": 211,
+        "height": 18,
+        "depth": 1
+       },
+       "tagname": "DIV",
+       "class": "zc-ta-left zcanvas-field"
+      },
+      "field": {
+       "style": {
+        "default": {
+         "font_family": "r",
+         "color": "rgba(250, 249, 251, 1)",
+         "font_size": "13px"
+        }
+       },
+       "tagname": "DIV",
+       "class": ""
+      }
+     },
+     "children": [],
+     "datatype": "user",
+     "type": "field",
+     "apiname": "Owner",
+     "group": "fields"
+    },
+    {
+     "ui": {
+      "value": {
+       "style": {
+        "default": {}
+       },
+       "position": {
+        "start_x": 21,
+        "start_y": 359,
+        "end_x": 231,
+        "width": 210,
+        "height": 18,
+        "depth": 1
+       },
+       "tagname": "DIV",
+       "class": "zc-ta-left zcanvas-field"
+      },
+      "field": {
+       "style": {
+        "default": {
+         "font_family": "r",
+         "color": "rgba(250, 249, 251, 1)",
+         "font_size": "13px"
+        }
+       },
+       "tagname": "DIV",
+       "class": ""
+      }
+     },
+     "children": [],
+     "datatype": "text",
+     "type": "field",
+     "apiname": "Last_Name",
+     "group": "fields"
+    },
+    {
+     "ui": {
+      "value": {
+       "style": {
+        "default": {}
+       },
+       "position": {
+        "start_x": 21,
+        "start_y": 386,
+        "end_x": 230,
+        "width": 209,
+        "height": 18,
+        "depth": 1
+       },
+       "tagname": "DIV",
+       "class": "zc-ta-left zcanvas-field"
+      },
+      "holder": {
+       "style": {
+        "default": {
+         "font_family": "r",
+         "color": "rgba(250, 249, 251, 1)",
+         "font_size": "13px"
+        }
+       },
+       "tagname": "DIV",
+       "class": ""
+      },
+      "field": {
+       "style": {
+        "default": {
+         "font_family": "r",
+         "color": "rgba(250, 249, 251, 1)",
+         "$inherited": true,
+         "font_size": "13px"
+        }
+       },
+       "tagname": "DIV",
+       "class": ""
+      },
+      "label": {
+       "style": {
+        "default": {
+         "font_family": "r",
+         "color": "rgba(250, 249, 251, 1)",
+         "$inherited": true,
+         "font_size": "13px"
+        }
+       },
+       "tagname": "DIV",
+       "class": ""
+      }
+     },
+     "children": [],
+     "datatype": "email",
+     "type": "field",
+     "apiname": "Email",
+     "group": "fields"
+    },
+    {
+     "ui": {
+      "value": {
+       "style": {
+        "default": {}
+       },
+       "position": {
+        "start_x": 21,
+        "start_y": 414,
+        "end_x": 231,
+        "width": 210,
+        "height": 19,
+        "depth": 1
+       },
+       "tagname": "DIV",
+       "class": "zc-ta-left zcanvas-field"
+      },
+      "holder": {
+       "style": {
+        "default": {
+         "font_family": "r",
+         "color": "rgba(250, 249, 251, 1)",
+         "font_size": "13px"
+        }
+       },
+       "tagname": "DIV",
+       "class": ""
+      },
+      "field": {
+       "style": {
+        "default": {
+         "font_family": "r",
+         "color": "rgba(250, 249, 251, 1)",
+         "$inherited": true,
+         "font_size": "13px"
+        }
+       },
+       "tagname": "DIV",
+       "class": ""
+      },
+      "label": {
+       "style": {
+        "default": {
+         "font_family": "r",
+         "color": "rgba(250, 249, 251, 1)",
+         "$inherited": true,
+         "font_size": "13px"
+        }
+       },
+       "tagname": "DIV",
+       "class": ""
+      }
+     },
+     "children": [],
+     "datatype": "phone",
+     "type": "field",
+     "apiname": "Phone",
+     "group": "fields"
+    },
+    {
+     "ui": {
+      "value": {
+       "style": {
+        "default": {
+         "border_radius": "25px",
+         "background_color": "rgba(255, 255, 255, 1)",
+         "border": "1px solid rgba(255, 255, 255, 0)",
+         "padding_top": "10px",
+         "box_shadow": "0px 0px 10px 0px rgba(0, 0, 0, 0.12)",
+         "padding_left": "8px",
+         "padding_bottom": "10px",
+         "padding_right": "8px"
+        }
+       },
+       "position": {
+        "start_x": 151,
+        "start_y": 452,
+        "end_x": 191,
+        "width": 40,
+        "height": 40,
+        "depth": 1
+       },
+       "tagname": "DIV",
+       "class": "zcanvas-no-img-default zc-ta-center zccbutton zc-only-icon zccbuttonicon zcanvas-field"
+      },
+      "holder": {
+       "style": {},
+       "tagname": "DIV",
+       "class": ""
+      },
+      "field": {
+       "style": {},
+       "tagname": "DIV",
+       "class": ""
+      },
+      "icon": {
+       "style": {
+        "default": {
+         "color": "rgba(242, 155, 69, 1)"
+        }
+       },
+       "tagname": "DIV",
+       "class": "",
+       "icon": "icon-Icon_dot_three"
+      }
+     },
+     "children": [],
+     "datatype": "button",
+     "type": "action",
+     "id": "morebutton",
+     "api_name": "morebutton",
+     "group": "action"
+    },
+    {
+     "ui": {
+      "value": {
+       "style": {
+        "default": {
+         "border_radius": "25px",
+         "background_color": "rgba(255, 255, 255, 1)",
+         "border": "1px solid rgba(255, 255, 255, 0)",
+         "padding_top": "10px",
+         "box_shadow": "0px 0px 10px 0px rgba(0, 0, 0, 0.12)",
+         "padding_left": "8px",
+         "padding_bottom": "10px",
+         "padding_right": "8px"
+        }
+       },
+       "position": {
+        "start_x": 207,
+        "start_y": 451,
+        "end_x": 245,
+        "width": 38,
+        "height": 40,
+        "depth": 1
+       },
+       "tagname": "DIV",
+       "class": "zcanvas-no-img-default zccbutton zccbuttonicon zcanvas-field zccbuttonnotext zc-ta-center"
+      },
+      "holder": {
+       "style": {
+        "default": {}
+       },
+       "tagname": "DIV",
+       "class": ""
+      },
+      "field": {
+       "style": {
+        "default": {}
+       },
+       "tagname": "DIV",
+       "class": ""
+      },
+      "icon": {
+       "style": {
+        "default": {
+         "color": "rgba(242, 155, 69, 1)"
+        }
+       },
+       "tagname": "DIV",
+       "class": "",
+       "icon": "icon-Icon_Mail"
+      }
+     },
+     "children": [],
+     "datatype": "button",
+     "type": "action",
+     "id": "send_mail",
+     "api_name": "send_mail",
+     "group": "action"
+    }
+   ],
+   "type": "component",
+   "theme": "Custom Layout"
+  }
+ ],
+ "type": "ReusableView2"
+}

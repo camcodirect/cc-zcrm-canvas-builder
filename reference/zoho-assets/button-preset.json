@@ -1,0 +1,532 @@
+[
+ {
+  "field": {
+   "default": {
+    "background_image": "linear-gradient(1deg , rgb(2, 121, 255) 0%,rgb(2, 172, 255) 100%)",
+    "border": "none",
+    "color": "rgba(255, 255, 255, 1)",
+    "box_shadow": "0px 2px 0px 0px rgb(0, 97, 202)"
+   },
+   "hover": {
+    "background_image": "linear-gradient(1deg , rgb(0, 107, 228) 0%,rgb(2, 172, 255) 100%)",
+    "color": "rgba(255, 255, 255, 1)"
+   },
+   "class": [
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "default": {
+    "background_image": "linear-gradient(180deg , rgb(252, 253, 255) 0%,rgb(234, 238, 245) 100%)",
+    "box_shadow": "0px 2px 0px 0px rgb(208, 212, 223)",
+    "border": "1px solid rgb(208, 212, 223)",
+    "color": "rgba(49, 57, 73, 1)"
+   },
+   "hover": {
+    "background_image": "linear-gradient(180deg ,  rgb(252, 253, 255) 0%,rgb(222, 229, 241) 100%)",
+    "color": "rgba(49, 57, 73, 1)"
+   },
+   "class": [
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "default": {
+    "background_image": "linear-gradient(1deg , rgb(226, 48, 65) 0%,rgb(255, 70, 87) 100%)",
+    "border": "none",
+    "color": "rgba(255, 255, 255, 1)",
+    "box_shadow": "0px 2px 0px 0px rgb(158, 14, 26)"
+   },
+   "hover": {
+    "background_image": "linear-gradient(1deg , rgb(211, 11, 30) 0%,rgb(252, 80, 96) 100%)",
+    "color": "rgba(255, 255, 255, 1)"
+   },
+   "class": [
+    "zc-ta-center",
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "default": {
+    "background_image": "linear-gradient(1deg , rgb(15, 147, 91) 0%,rgb(17, 182, 112) 100%)",
+    "border": "none",
+    "color": "rgba(255, 255, 255, 1)",
+    "box_shadow": "0px 2px 0px 0px rgb(0, 117, 68)"
+   },
+   "hover": {
+    "background_image": "linear-gradient(1deg , rgb(15, 154, 95) 0%,rgb(19, 193, 119) 100%)",
+    "color": "rgba(255, 255, 255, 1)"
+   },
+   "class": [
+    "zc-ta-center",
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "default": {
+    "border": "1px solid rgb(51, 140, 240)",
+    "color": "rgba(51, 140, 240, 1)",
+    "background_color": "rgba(237, 246, 255, 1)"
+   },
+   "hover": {
+    "background_color": "rgba(226, 240, 255, 1)",
+    "color": "rgba(51, 140, 240, 1)"
+   },
+   "class": [
+    "zc-ta-center",
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "default": {
+    "border": "1px solid rgb(25, 177, 113)",
+    "background_color": "rgba(233, 251, 244, 1)",
+    "color": "rgba(25, 177, 113, 1)"
+   },
+   "hover": {
+    "background_color": "rgba(220, 247, 235, 1)",
+    "border": "1px solid rgb(25, 177, 113)"
+   },
+   "class": [
+    "zc-ta-center",
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "default": {
+    "border": "1px solid rgb(255, 77, 91)",
+    "background_color": "rgba(255, 242, 243, 1)",
+    "color": "rgba(255, 77, 91, 1)"
+   },
+   "hover": {
+    "background_color": "rgba(255, 232, 234, 1)"
+   },
+   "class": [
+    "zc-ta-center",
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "default": {
+    "border": "1px solid rgb(226, 140, 39)",
+    "background_color": "rgba(255, 249, 237, 1)",
+    "color": "rgba(226, 140, 39, 1)"
+   },
+   "hover": {
+    "background_color": "rgba(254, 242, 218, 1)"
+   },
+   "class": [
+    "zc-ta-center",
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "default": {
+    "border": "none",
+    "background_color": "rgba(255, 255, 255, 1)",
+    "color": "rgba(51, 140, 240, 1)"
+   },
+   "hover": {
+    "background_color": "rgba(224, 239, 255, 1)"
+   },
+   "class": [
+    "zc-ta-center",
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "hover": {
+    "background_color": "rgba(102, 140, 255, 1)"
+   },
+   "default": {
+    "border": "1px solid rgb(67, 105, 217)",
+    "padding_left": "15px",
+    "background_color": "rgba(89, 131, 255, 1)",
+    "color": "rgba(255, 255, 255, 1)"
+   },
+   "class": [
+    "zc-ta-center",
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "hover": {
+    "background_color": "rgba(59, 209, 167, 1)"
+   },
+   "default": {
+    "border": "1px solid rgb(49, 158, 127)",
+    "padding_left": "15px",
+    "background_color": "rgba(62, 201, 162, 1)",
+    "color": "rgba(255, 255, 255, 1)"
+   },
+   "class": [
+    "zc-ta-center",
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "hover": {
+    "background_color": "rgba(255, 169, 84, 1)"
+   },
+   "default": {
+    "border": "1px solid rgb(217, 132, 52)",
+    "background_color": "rgba(242, 155, 69, 1)",
+    "color": "rgba(255, 255, 255, 1)"
+   },
+   "class": [
+    "zc-ta-center",
+    "zc-ta-center",
+    "zc-ta-center",
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "hover": {
+    "background_color": "rgba(252, 78, 150, 1)"
+   },
+   "default": {
+    "border": "1px solid rgb(196, 45, 107)",
+    "background_color": "rgba(242, 69, 140, 1)",
+    "color": "rgba(255, 255, 255, 1)"
+   },
+   "class": [
+    "zc-ta-center",
+    "zc-ta-center",
+    "zc-ta-center",
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "hover": {
+    "background_color": "rgba(240, 245, 255, 1)",
+    "color": "rgba(64, 108, 230, 1)"
+   },
+   "default": {
+    "border": "1px solid rgb(64, 108, 230)",
+    "background_color": "rgba(222, 231, 255, 1)",
+    "color": "rgba(64, 108, 230, 1)"
+   },
+   "class": [
+    "zc-ta-center",
+    "zc-ta-center",
+    "zc-ta-center",
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "hover": {
+    "background_color": "rgba(240, 255, 251, 1)",
+    "color": "rgba(44, 176, 103, 1)"
+   },
+   "default": {
+    "border": "1px solid rgb(44, 176, 103)",
+    "background_color": "rgba(219, 255, 225, 1)",
+    "color": "rgba(44, 176, 103, 1)"
+   },
+   "class": [
+    "zc-ta-center",
+    "zc-ta-center",
+    "zc-ta-center",
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "hover": {
+    "background_image": "linear-gradient(137deg ,  rgb(227, 235, 255) 0%, rgb(255, 255, 255) 100%)",
+    "background_color": "rgba(240, 245, 255, 1)",
+    "color": "rgba(64, 108, 230, 1)"
+   },
+   "default": {
+    "border": "1px solid rgb(64, 108, 230)",
+    "background_image": "linear-gradient(350deg , rgb(227, 235, 255) 0%,rgba(255,255,255,1) 100%)",
+    "background_color": "rgba(255,255,255,0)",
+    "color": "rgba(64, 108, 230, 1)"
+   },
+   "class": [
+    "zc-ta-center",
+    "zc-ta-center",
+    "zc-ta-center",
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "hover": {
+    "background_image": "linear-gradient(144deg ,  rgb(219, 255, 225) 0%, rgb(255, 255, 255) 100%)",
+    "background_color": "rgba(240, 255, 251, 1)",
+    "color": "rgba(44, 176, 103, 1)"
+   },
+   "default": {
+    "border": "1px solid rgb(44, 176, 103)",
+    "background_image": "linear-gradient(333deg , rgb(219, 255, 225) 0%,rgb(255, 255, 255) 100%)",
+    "background_color": "rgba(255,255,255,0)",
+    "color": "rgba(44, 176, 103, 1)"
+   },
+   "class": [
+    "zc-ta-center",
+    "zc-ta-center",
+    "zc-ta-center",
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "hover": {
+    "background_image": "linear-gradient(315deg , rgb(219, 140, 61) 0%, rgb(242, 69, 69) 100%)"
+   },
+   "default": {
+    "background_image": "linear-gradient(120deg , rgb(219, 140, 61) 0%,rgb(242, 69, 69) 100%)",
+    "border": "1px solid rgb(255, 252, 242)",
+    "color": "rgba(255, 255, 255, 1)",
+    "box_shadow": "0px 0px 2px 1px rgba(0, 0, 0, 0.12)",
+    "border_radius": "60px"
+   },
+   "class": [
+    "zc-ta-center",
+    "zc-ta-center",
+    "zc-ta-center",
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "hover": {
+    "background_color": "rgba(237, 237, 237, 1)"
+   },
+   "default": {
+    "border": "1px solid rgb(0, 0, 0)",
+    "background_color": "rgba(255, 255, 255, 1)"
+   },
+   "class": [
+    "zc-ta-center",
+    "zc-ta-center",
+    "zc-ta-center",
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "default": {
+    "background_color": "rgba(51, 102, 255,1)",
+    "border_color": "rgba(51, 102, 255,1)",
+    "color": "rgba(255, 255, 255,1)"
+   },
+   "hover": {
+    "background_color": "rgba(51, 102, 255,1)",
+    "border_color": "rgba(51, 102, 255,1)",
+    "color": "rgba(255, 255, 255,1)"
+   },
+   "class": [
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "default": {
+    "background_color": "rgba(255, 170, 0, 1)",
+    "border_color": "rgba(255, 170, 0, 1)",
+    "color": "rgba(255, 255, 255,1)"
+   },
+   "hover": {
+    "background_color": "rgba(255, 170, 0, 1)",
+    "border_color": "rgba(255, 170, 0, 1)",
+    "color": "rgba(255, 255, 255,1)"
+   },
+   "class": [
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "default": {
+    "background_color": "rgba(255, 61, 113,1)",
+    "border_color": "rgba(255, 61, 113,1)",
+    "color": "rgba(255, 255, 255,1)"
+   },
+   "hover": {
+    "background_color": "rgba(255, 61, 113,1)",
+    "border_color": "rgba(255, 61, 113,1)",
+    "color": "rgba(255, 255, 255,1)"
+   },
+   "class": [
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "default": {
+    "background_color": "rgba(255, 255, 255,1)",
+    "border_color": "rgba(51, 102, 255,1)",
+    "color": "rgba(51, 102, 255,1)"
+   },
+   "hover": {
+    "background_color": "rgba(51, 102, 255,1)",
+    "border_color": "rgba(51, 102, 255,1)",
+    "color": "rgba(255, 255, 255,1)"
+   },
+   "class": [
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "default": {
+    "background_color": "rgba(255, 255, 255,1)",
+    "border_color": "rgba(0, 214, 143, 1)",
+    "color": "rgba(0, 214, 143, 1)"
+   },
+   "hover": {
+    "background_color": "rgba(0, 214, 143, 1)",
+    "border_color": "rgba(0, 214, 143, 1)",
+    "color": "rgba(255, 255, 255,1)"
+   },
+   "class": [
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "default": {
+    "background_color": "rgba(255, 255, 255,1)",
+    "border_color": "rgba(255, 170, 0, 1)",
+    "color": "rgba(255, 170, 0, 1)"
+   },
+   "hover": {
+    "background_color": "rgba(255, 170, 0, 1)",
+    "border_color": "rgba(255, 170, 0, 1)",
+    "color": "rgba(255, 255, 255,1)"
+   },
+   "class": [
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "default": {
+    "background_color": "rgba(255, 255, 255,1)",
+    "border_color": "rgba(255, 61, 113,1)",
+    "color": "rgba(255, 61, 113,1)"
+   },
+   "hover": {
+    "background_color": "rgba(255, 61, 113,1)",
+    "border_color": "rgba(255, 61, 113,1)",
+    "color": "rgba(255, 255, 255,1)"
+   },
+   "class": [
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "default": {
+    "background_color": "transparent",
+    "background_image": "linear-gradient(180deg, rgba(89, 139, 255,1) 0% , rgba(51, 102, 255,1) 100%)",
+    "color": "rgba(255, 255, 255,1)",
+    "border": "none"
+   },
+   "hover": {
+    "background_image": "linear-gradient(180deg , rgba(166, 193, 255,1) 0%, rgba(89, 139, 255, 1) 100%)",
+    "color": "rgba(255, 255, 255,1)",
+    "border": "none"
+   },
+   "class": [
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "default": {
+    "background_color": "transparent",
+    "background_image": "linear-gradient(180deg, rgba(44, 230, 155, 1) 0%, rgb(44, 230, 155, 1) 100%)",
+    "color": "rgba(255, 255, 255,1)",
+    "border": "none"
+   },
+   "hover": {
+    "background_image": "linear-gradient(180deg , rgba(140, 250, 199 , 1) 0%, rgba(140, 250, 199, 1) 100%)",
+    "color": "rgba(255, 255, 255,1)",
+    "border": "none"
+   },
+   "class": [
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "default": {
+    "background_color": "transparent",
+    "background_image": "linear-gradient(180deg, rgba(255, 201, 77, 1) 0%, rgba(255, 170, 0, 1) 100%)",
+    "color": "rgba(255, 255, 255,1)",
+    "border": "none"
+   },
+   "hover": {
+    "background_image": "linear-gradient(180deg , rgba(255, 229, 158, 1) 0%, rgb(255, 201, 77) 100%)",
+    "color": "rgba(255, 255, 255,1)",
+    "border": "none"
+   },
+   "class": [
+    "zc-ta-center"
+   ]
+  }
+ },
+ {
+  "field": {
+   "default": {
+    "background_color": "transparent",
+    "background_image": "linear-gradient(180deg, rgba(255, 112, 141, 1) 0%, rgba(255, 61, 113, 1) 100%)",
+    "color": "rgba(255, 255, 255,1)",
+    "border": "none"
+   },
+   "hover": {
+    "background_image": "linear-gradient(180deg , rgba(255, 168, 180, 1) 0%, rgba(255, 112, 141,1) 100%)",
+    "color": "rgba(255, 255, 255,1)",
+    "border": "none"
+   },
+   "class": [
+    "zc-ta-center"
+   ]
+  }
+ }
+]

@@ -1,0 +1,399 @@
+{
+ "ui": {
+  "value": {
+   "style": {
+    "default": {
+     "background_color": "rgba(255, 255, 255, 1)",
+     "padding_bottom": "100px"
+    }
+   },
+   "position": {
+    "start_x": 0,
+    "start_y": 0,
+    "end_x": 1700,
+    "width": 1680,
+    "height": 1314,
+    "depth": 1
+   },
+   "tagname": "DIV",
+   "class": ""
+  }
+ },
+ "children": [
+  {
+   "ui": {
+    "value": {
+     "style": {
+      "default": {
+       "border_radius": "0",
+       "border": "none",
+       "background_color": "rgba(255,255,255,0)",
+       "box_shadow": "none"
+      }
+     },
+     "position": {
+      "start_x": 623,
+      "start_y": 363,
+      "end_x": 1007,
+      "width": 384,
+      "height": 351,
+      "depth": 1,
+      "min_top": 8,
+      "min_left": 7
+     },
+     "fixed": true,
+     "tagname": "DIV",
+     "class": "zc-lsection",
+     "zcode": {
+      "name": "section1"
+     }
+    }
+   },
+   "children": [
+    {
+     "ui": {
+      "value": {
+       "style": {
+        "default": {
+         "border": "none",
+         "border_radius": "15px",
+         "box_shadow": "0px 1px 3px 0px rgba(0, 0, 0, 0.12)",
+         "background_image": "linear-gradient(33deg , rgb(12, 97, 198) 0%,rgb(57, 142, 243) 100%)"
+        }
+       },
+       "position": {
+        "start_x": 7,
+        "start_y": 75,
+        "end_x": 382,
+        "width": 375,
+        "height": 274,
+        "depth": 1,
+        "min_top": 94,
+        "min_left": 14,
+        "over_top": -67
+       },
+       "tagname": "DIV",
+       "class": ""
+      }
+     },
+     "children": [
+      {
+       "ui": {
+        "value": {
+         "style": {
+          "default": {
+           "border": "none",
+           "background_color": "rgba(242, 193, 69, 1)",
+           "border_radius": "7px",
+           "box_shadow": "none"
+          }
+         },
+         "position": {
+          "start_x": 21,
+          "start_y": 196,
+          "end_x": 180,
+          "width": 159,
+          "height": 63,
+          "depth": 1,
+          "min_top": 11,
+          "min_left": 12
+         },
+         "tagname": "DIV",
+         "class": ""
+        }
+       },
+       "children": [
+        {
+         "ui": {
+          "value": {
+           "style": {
+            "default": {}
+           },
+           "position": {
+            "start_x": 12,
+            "start_y": 11,
+            "end_x": 142,
+            "width": 130,
+            "height": 40,
+            "depth": 5
+           },
+           "tagname": "DIV",
+           "class": "zcanvas-field"
+          },
+          "holder": {
+           "style": {
+            "default": {
+             "font_family": "r",
+             "flex_direction": "column"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          },
+          "field": {
+           "style": {
+            "default": {
+             "font_family": "r",
+             "color": "rgba(255, 255, 255, 1)"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          },
+          "label": {
+           "style": {
+            "default": {
+             "font_family": "r",
+             "color": "rgba(255, 255, 255, 1)"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          }
+         },
+         "children": [],
+         "datatype": "phone",
+         "type": "field",
+         "apiname": "Phone",
+         "group": "fields"
+        }
+       ],
+       "type": "component",
+       "theme": "Custom Layout"
+      },
+      {
+       "ui": {
+        "value": {
+         "style": {
+          "default": {
+           "border": "none",
+           "background_color": "rgba(69, 217, 242, 1)",
+           "border_radius": "7px",
+           "box_shadow": "none"
+          }
+         },
+         "position": {
+          "start_x": 201,
+          "start_y": 198,
+          "end_x": 362,
+          "width": 161,
+          "height": 58,
+          "depth": 1,
+          "min_top": 12,
+          "min_left": 12
+         },
+         "tagname": "DIV",
+         "class": ""
+        }
+       },
+       "children": [
+        {
+         "ui": {
+          "value": {
+           "style": {
+            "default": {}
+           },
+           "position": {
+            "start_x": 12,
+            "start_y": 12,
+            "end_x": 149,
+            "width": 137,
+            "height": 40,
+            "depth": 5
+           },
+           "tagname": "DIV",
+           "class": "zcanvas-field"
+          },
+          "holder": {
+           "style": {
+            "default": {
+             "font_family": "r",
+             "flex_direction": "column",
+             "color": "rgba(255, 255, 255, 1)"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          },
+          "field": {
+           "style": {
+            "default": {
+             "font_family": "r",
+             "color": "rgba(255, 255, 255, 1)"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          },
+          "label": {
+           "style": {
+            "default": {
+             "font_family": "r",
+             "color": "rgba(255, 255, 255, 1)"
+            }
+           },
+           "tagname": "DIV",
+           "class": ""
+          }
+         },
+         "children": [],
+         "datatype": "phone",
+         "type": "field",
+         "apiname": "Mobile",
+         "group": "fields"
+        }
+       ],
+       "type": "component",
+       "theme": "Custom Layout"
+      },
+      {
+       "ui": {
+        "value": {
+         "style": {
+          "default": {}
+         },
+         "position": {
+          "start_x": 14,
+          "start_y": 94,
+          "end_x": 361,
+          "width": 347,
+          "height": 27,
+          "depth": 5
+         },
+         "tagname": "DIV",
+         "class": "zcanvas-field zc-ta-center"
+        },
+        "field": {
+         "style": {
+          "default": {
+           "font_family": "r",
+           "color": "rgba(255, 255, 255, 1)",
+           "font_size": "20px"
+          }
+         },
+         "tagname": "DIV",
+         "class": ""
+        }
+       },
+       "children": [],
+       "datatype": "text",
+       "type": "field",
+       "apiname": "Full_Name",
+       "group": "fields"
+      },
+      {
+       "ui": {
+        "value": {
+         "style": {
+          "default": {}
+         },
+         "position": {
+          "start_x": 14,
+          "start_y": 127,
+          "end_x": 361,
+          "width": 347,
+          "height": 20,
+          "depth": 5
+         },
+         "tagname": "DIV",
+         "class": "zcanvas-field zc-ta-center"
+        },
+        "field": {
+         "style": {
+          "default": {
+           "font_family": "r",
+           "color": "rgba(194, 233, 237, 1)",
+           "font_size": "14px"
+          }
+         },
+         "tagname": "DIV",
+         "class": ""
+        }
+       },
+       "children": [],
+       "datatype": "text",
+       "type": "field",
+       "apiname": "Country",
+       "group": "fields"
+      },
+      {
+       "ui": {
+        "value": {
+         "style": {
+          "default": {}
+         },
+         "position": {
+          "start_x": 14,
+          "start_y": 151,
+          "end_x": 361,
+          "width": 347,
+          "height": 21,
+          "depth": 5
+         },
+         "tagname": "DIV",
+         "class": "zcanvas-field zc-ta-center"
+        },
+        "field": {
+         "style": {
+          "default": {
+           "font_family": "r",
+           "color": "rgba(194, 233, 237, 1)"
+          }
+         },
+         "tagname": "DIV",
+         "class": ""
+        }
+       },
+       "children": [],
+       "datatype": "email",
+       "type": "field",
+       "apiname": "Email",
+       "group": "fields"
+      }
+     ],
+     "type": "component",
+     "theme": "Custom Layout"
+    },
+    {
+     "ui": {
+      "value": {
+       "style": {
+        "default": {}
+       },
+       "position": {
+        "start_x": 129,
+        "start_y": 8,
+        "end_x": 263,
+        "width": 134,
+        "height": 134,
+        "depth": 2
+       },
+       "fixed": true,
+       "tagname": "DIV",
+       "class": "zcanvas-field zcbdrbox"
+      },
+      "field": {
+       "style": {
+        "default": {
+         "border_radius": "50%",
+         "border": "5px solid rgb(255, 255, 255)",
+         "box_shadow": "0px 0px 10px 0px rgba(0, 0, 0, 0.12)"
+        }
+       },
+       "tagname": "DIV",
+       "class": ""
+      }
+     },
+     "children": [],
+     "datatype": "profileimage",
+     "type": "field",
+     "apiname": "Record_Image",
+     "group": "fields"
+    }
+   ],
+   "type": "component",
+   "theme": "Custom Layout"
+  }
+ ],
+ "type": "ReusableView1"
+}

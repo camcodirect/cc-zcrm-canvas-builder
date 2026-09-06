@@ -1,0 +1,58 @@
+[
+ {
+  "default": {
+   "background_color": "rgba(249, 224, 162, 1)",
+   "border_radius": "9px",
+   "padding": "10px"
+  }
+ },
+ {
+  "default": {
+   "background_color": "rgba(242, 69, 69, 1)",
+   "border_radius": "9px",
+   "font_family": "b",
+   "box_shadow": "0px 0px 5px 2px rgba(0, 0, 0, 0.12)",
+   "color": "rgba(255, 255, 255, 1)",
+   "padding": "10px"
+  }
+ },
+ {
+  "default": {
+   "background_color": "rgba(255, 255, 255, 1)",
+   "border_radius": "5px",
+   "color": "rgba(255, 255, 255, 1)",
+   "padding": "10px",
+   "background_image": "linear-gradient(120deg , rgb(242, 69, 69) 1%,rgb(245, 208, 115) 22%,rgb(146, 208, 80) 47%,rgb(32, 158, 136) 72%,rgb(12, 97, 198) 95%)"
+  }
+ },
+ {
+  "default": {
+   "background_color": "rgba(255,255,255,0)",
+   "border_radius": "6px",
+   "border": "1px solid rgb(242, 69, 69)",
+   "padding": "10px",
+   "color": "rgba(242, 69, 69, 1)"
+  }
+ },
+ {
+  "default": {
+   "font_family": "b",
+   "font_size": "22px",
+   "color": "rgba(139,139,139,1)"
+  }
+ },
+ {
+  "default": {
+   "font_family": "b",
+   "font_size": "18px",
+   "color": "rgba(139,139,139,1)"
+  }
+ },
+ {
+  "default": {
+   "font_family": "b",
+   "font_size": "15px",
+   "color": "rgba(139,139,139,1)"
+  }
+ }
+]
