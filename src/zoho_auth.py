@@ -118,11 +118,48 @@ class ZohoAuth:
         return bool(self._access_token) and time.time() < self._expires_at
 
     def access_token(self, force_refresh: bool = False) -> str:
-        """Return a live access token, refreshing if needed. Thread-safe."""
+        """Return a live access token, refreshing if needed. Thread-safe.
+
+        The token is cached to disk as well as in memory. Zoho rate-limits the
+        refresh grant, and every CLI run is a fresh process, so without the disk
+        cache a handful of script invocations trips "too many requests".
+        """
         with self._lock:
             if not force_refresh and self._is_valid:
                 return self._access_token  # type: ignore[return-value]
+            if not force_refresh and self._load_cache():
+                return self._access_token  # type: ignore[return-value]
             return self._refresh()
+
+    # --- disk cache -----------------------------------------------------
+
+    @property
+    def _cache_path(self) -> Path:
+        return PROJECT_ROOT / ".token-cache.json"
+
+    def _load_cache(self) -> bool:
+        """Populate from the on-disk token if it is still fresh."""
+        try:
+            data = json.loads(self._cache_path.read_text(encoding="utf-8"))
+        except Exception:
+            return False
+        if data.get("client_id") != self.client_id:
+            return False
+        if time.time() >= data.get("expires_at", 0):
+            return False
+        self._access_token = data.get("access_token")
+        self._expires_at = data["expires_at"]
+        return bool(self._access_token)
+
+    def _save_cache(self) -> None:
+        try:
+            self._cache_path.write_text(json.dumps({
+                "client_id": self.client_id,
+                "access_token": self._access_token,
+                "expires_at": self._expires_at,
+            }), encoding="utf-8")
+        except Exception:
+            pass  # a cache failure must never break the call
 
     def _refresh(self) -> str:
         """Exchange the refresh token for a new access token. Caller holds the lock."""
@@ -167,6 +204,7 @@ class ZohoAuth:
         expires_in = int(payload.get("expires_in", 3600))
         self._access_token = token
         self._expires_at = time.time() + max(expires_in - EXPIRY_MARGIN_SECONDS, 0)
+        self._save_cache()
         return token
 
     # --- convenience ----------------------------------------------------

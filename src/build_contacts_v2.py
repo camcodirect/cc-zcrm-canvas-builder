@@ -93,31 +93,35 @@ RL = {
     "timeline":     "timeline",
 }
 
-# Related-list tabs, in strip order, each with its own accent + icon.
+# HARD RULE: a related-list id may appear at most ONCE in the whole canvas.
+# Duplicates are accepted by the save API but blank-screen the Zoho builder
+# (verified 2026-09-06 — see mistakes.md). So each list has exactly one home:
+# either inside a custom composite tab, or on its own related-list tab.
+#
+# Claimed by the custom tabs:
+#   Overview    open_tasks, open_meet, emails, cadences
+#   Engagement  closed_meet, invited
+#   Delivery    proposals, projects, resources, drive
+#   AI Insights ai_extract, ai_items, transcripts
+CLAIMED_BY_CUSTOM_TABS = {
+    "open_tasks", "open_meet", "emails", "cadences",
+    "closed_meet", "invited",
+    "proposals", "projects", "resources", "drive",
+    "ai_extract", "ai_items", "transcripts",
+}
+
+# Everything else gets a standalone tab.
 RL_TABS = [
-    ("Notes",                RL["notes"],        "icon-Icon_notes",    "indigo"),
-    ("Open Tasks",           RL["open_tasks"],   "icon-Icon_Task",     "sky"),
-    ("Open Meetings",        RL["open_meet"],    "icon-Icon_Meeting",  "rose"),
-    ("Emails",               RL["emails"],       "icon-Icon_Mail",     "amber"),
-    ("Proposals",            RL["proposals"],    "icon-Icon_Quotes",   "violet"),
-    ("Closed Tasks",         RL["closed_tasks"], "icon-Icon_Task",     "teal"),
-    ("Closed Meetings",      RL["closed_meet"],  "icon-Icon_Meeting",  "emerald"),
-    ("Invited Meetings",     RL["invited"],      "icon-Icon_Calendar", "indigo"),
-    ("Cadences",             RL["cadences"],     "icon-Icon_Cadence",  "emerald"),
-    ("Attachments",          RL["attachments"],  "icon-Icon_attach",   "sky"),
-    ("Resources",            RL["resources"],    "icon-Icon_document", "teal"),
-    ("Zoho Projects",        RL["projects"],     "icon-Icon_Project",  "violet"),
-    ("Drive Files",          RL["drive"],        "icon-Icon_folder",   "amber"),
-    ("Transcripts",          RL["transcripts"],  "icon-Icon_document", "sky"),
-    ("AI Meeting Extractions", RL["ai_extract"], "icon-Icon_Zia",      "indigo"),
-    ("AI Meeting Items",     RL["ai_items"],     "icon-Icon_Zia",      "emerald"),
-    ("Related Account",      RL["rel_account"],  "icon-Icon_Accounts", "sky"),
-    ("Related Buyers",       RL["buyers"],       "icon-Icon_Contacts", "rose"),
-    ("Linked Contact",       RL["linked_inq"],   "icon-Icon_Link",     "violet"),
-    ("Referred By",          RL["referred_by"],  "icon-Icon_Link",     "teal"),
-    ("Chronological View",   RL["chrono"],       "icon-Icon_History",  "indigo"),
-    ("SalesIQ Visits",       RL["visits"],       "icon-Icon_website",  "amber"),
-    ("Timeline",             RL["timeline"],     "icon-Icon_History",  "sky"),
+    ("Notes",              RL["notes"],        "icon-Icon_notes",    "indigo"),
+    ("Closed Tasks",       RL["closed_tasks"], "icon-Icon_Task",     "teal"),
+    ("Attachments",        RL["attachments"],  "icon-Icon_attach",   "sky"),
+    ("Related Account",    RL["rel_account"],  "icon-Icon_Accounts", "sky"),
+    ("Related Buyers",     RL["buyers"],       "icon-Icon_Contacts", "rose"),
+    ("Linked Contact",     RL["linked_inq"],   "icon-Icon_Link",     "violet"),
+    ("Referred By",        RL["referred_by"],  "icon-Icon_Link",     "teal"),
+    ("Chronological View", RL["chrono"],       "icon-Icon_History",  "indigo"),
+    ("SalesIQ Visits",     RL["visits"],       "icon-Icon_website",  "amber"),
+    ("Timeline",           RL["timeline"],     "icon-Icon_History",  "sky"),
 ]
 
 
@@ -187,8 +191,8 @@ def pane_engagement() -> list:
         kpi_tile(734, 18, 344, 92, "Response Rate", T["emerald"], tokens=T,
                  value_text="92%", detail="Across all outreach", big=True),
 
-        rl_card(22, 136, 700, 360, "Email History", RL["emails"],
-                "icon-Icon_Mail", "sky", count=10),
+        rl_card(22, 136, 700, 360, "Closed Meetings", RL["closed_meet"],
+                "icon-Icon_Meeting", "rose", count=10),
 
         titled_card(738, 136, 340, 360, "Activity Timeline", tokens=T,
                     icon="icon-Icon_History", accent=T["indigo"],
@@ -200,8 +204,8 @@ def pane_engagement() -> list:
                         ("Contact created", "Mar 23 · Infotelligent"),
                     ], tokens=T, accent=T["indigo"], step=46)]),
 
-        rl_card(22, 516, 1056, 330, "All Meetings", RL["closed_meet"],
-                "icon-Icon_Meeting", "rose", count=10),
+        rl_card(22, 516, 1056, 330, "Invited Meetings", RL["invited"],
+                "icon-Icon_Calendar", "emerald", count=10),
     ]
 
 
@@ -213,9 +217,7 @@ def pane_delivery() -> list:
                 "icon-Icon_Project", "teal", count=8),
         rl_card(22, 338, 528, 250, "Resources", RL["resources"],
                 "icon-Icon_document", "sky", count=8),
-        rl_card(566, 338, 512, 250, "Checklists", RL["attachments"],
-                "icon-Icon_attach", "emerald", count=8),
-        rl_card(22, 608, 1056, 190, "Drive Files", RL["drive"],
+        rl_card(566, 338, 512, 250, "Drive Files", RL["drive"],
                 "icon-Icon_folder", "amber", count=8),
     ]
 
@@ -269,18 +271,97 @@ def build() -> dict:
         tabs.append({
             "name": label,
             "relatedlist_id": rl_id,
+            # Zoho marks every related-list tab disabled; the editor expects it.
+            "disabled": True,
             "children": [rl_card(22, 24, 1056, 640, label, rl_id, icon,
                                  accent, count=10)],
         })
-    tabs.append({"name": "All Fields", "children": []})
 
-    view["children"].append(
-        tab_strip(0, BANNER_H, W, 1254, tabs, tokens=T, depth=4))
+    strip = tab_strip(0, BANNER_H, W, 1254, tabs, tokens=T, depth=4)
+
+    # All Fields is machine-generated — graft Zoho's own and fix its geometry.
+    af = all_fields_tab()
+    body_h = 1254 - 48
+    af["ui"]["value"]["position"].update({
+        "start_x": 0, "start_y": body_h // 2, "end_x": W,
+        "width": W, "height": body_h // 2, "depth": 1,
+        "order": len(strip["children"]),
+    })
+    strip["children"].append(af)
+
+    view["children"].append(strip)
     return {"canvas_view": [view]}
+
+
+def all_fields_tab() -> dict:
+    """Lift the All Fields tab wholesale from Zoho's own capture.
+
+    This tab is machine-generated: it needs class `zc-tab-all-fields`,
+    `disabled: true`, `ui.allfieldstabstyle`, and one `section` child per CRM
+    layout section, each with a deep sectionstyle/titlesection/datastyle
+    subtree. Building that by hand is guesswork; an empty All Fields tab leaves
+    the editor stuck on "Loading..." forever. So copy the known-good one and
+    only rewrite its geometry.
+    """
+    src = json.loads(
+        (PROJECT_ROOT / "reference" / "captures"
+         / "contacts-canvas-template-3.payload.json").read_text(encoding="utf-8")
+    )["canvas_view"][0]
+
+    found = []
+
+    def walk(n):
+        if isinstance(n, dict):
+            v = (n.get("ui") or {}).get("value") if isinstance(n.get("ui"), dict) else None
+            if isinstance(v, dict) and v.get("name") == "All Fields":
+                found.append(n)
+            for c in (n.get("children") or []):
+                walk(c)
+    walk(src)
+    if not found:
+        raise RuntimeError("All Fields tab not found in the reference capture")
+
+    tab = json.loads(json.dumps(found[0]))       # deep copy
+
+    # Strip uniqueids - these belong to the source canvas, not ours.
+    def strip_uid(n):
+        if isinstance(n, dict):
+            n.pop("uniqueid", None)
+            for c in (n.get("children") or []):
+                strip_uid(c)
+    strip_uid(tab)
+    return tab
+
+
+def audit_related_lists(body: dict) -> tuple[dict, list[str]]:
+    """Every related list must be used exactly once, and every one on the module
+    should have a home. Returns (usage, problems)."""
+    from collections import Counter
+    used: Counter = Counter()
+
+    def w(n):
+        if isinstance(n, dict):
+            if n.get("type") == "relatedlist" and n.get("id"):
+                used[n["id"]] += 1
+            for c in (n.get("children") or []):
+                w(c)
+    w(body["canvas_view"][0])
+
+    problems = [f"{rid} used {c}x (must be exactly 1)"
+                for rid, c in used.items() if c > 1]
+    missing = [name for name, rid in RL.items() if rid not in used]
+    return used, problems + [f"unplaced: {', '.join(sorted(missing))}"] if missing \
+        else problems
 
 
 def main() -> int:
     body = build()
+
+    used, problems = audit_related_lists(body)
+    print(f"Related lists: {len(used)} placed, "
+          f"{sum(used.values())} nodes, {len(RL)} available on the module")
+    for p in problems:
+        print(f"  NOTE {p}")
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     out = OUT_DIR / "contacts-v2.json"
     out.write_text(json.dumps(body, indent=1), encoding="utf-8")

@@ -72,17 +72,39 @@ in captured requests but not in GET responses.
 
 ```text
 docs/canvas-json-structure.md            full structural spec of the Canvas JSON — READ THIS FIRST
+src/                                     the builder: auth, canvas client, validator, templates
 output/<org-slug>-<org-id>/<Module>/     generated templates, one folder per org then module
 reference/captures/                      parsed request + response payloads (JSON, diffable)
 .env.example                             OAuth key names (real values go in gitignored .env)
-save-zcrm-canvas-api-curl-request.txt    the original captured PUT (748 KB) — GITIGNORED, local
-                                         only: carries a live session Cookie and x-zcsrf-token.
-                                         Use the parsed copies in reference/captures/ instead.
-save-zcrm-canvas-api-curl-response.json  the captured 200 OK response (19 KB)
-canvas-1-example-visual.png              Canvas Preview screenshot of that same canvas
+canvas-1-example-visual.png              Canvas Preview screenshot of canvas 1
 canvas-resource-links.txt                Zoho documentation URLs
 mistakes.md                              running log of mistakes worth not repeating
 ```
+
+**`reference/captures/` holds two kinds of file.** Keep the distinction — cleanup depends on it.
+
+*Reference payloads* are the three original captures and their responses. They are the evidence
+this project's structural rules were derived from, they cannot be regenerated, and
+`src/roundtrip_test.py` reads the `.payload.json` three by name:
+
+```text
+accounts-main-account.{payload,response}.json          c1 — Accounts "Main Account"
+accounts-canvas-template-2.{payload,response}.json     c2 — Accounts, 368 nodes
+contacts-canvas-template-3.{payload,response}.json     c3 — Contacts, 305 nodes
+```
+
+*Rollback snapshots* (`rollback-<view_id>-<timestamp>.json`) are written automatically before
+every PUT. Keep the most recent one or two per view as a restore point and delete the rest — they
+pile up fast and older ones are superseded the moment a newer deploy succeeds. Restore with
+`python src/restore.py <rollback-file> --execute`.
+
+Anything named `live-*.json`, `noop-body-*`, `edited-body-*` or `pre-put-rollback.*` is a
+regenerable build artifact. Delete freely.
+
+**Raw browser captures are gitignored and local only** —
+`save-zcrm-canvas-api-curl-request.txt`, `canvas-template-request-2.txt` and
+`canvas-template-request-3.txt` each carry a live session Cookie / `x-zcsrf-token`. The
+credential-free parsed payloads above are what the code actually reads; use those.
 
 ## The essential facts
 

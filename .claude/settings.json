@@ -16,7 +16,15 @@
       "Bash(python -X utf8 src/build_contacts_showcase.py)",
       "Bash(python -X utf8 src/build_contacts_showcase.py --deploy)",
       "mcp__claude_ai_Camco_ZCRM__ZohoCRM_getModuleByApiName",
-      "Bash(curl -sL \"https://clips.agent-native.com/api/agent-context.json?id=06SzvhNQQYtB\" -o ctx2.json -w \"%{http_code} %{size_download}\\\\n\")"
+      "Bash(curl -sL \"https://clips.agent-native.com/api/agent-context.json?id=06SzvhNQQYtB\" -o ctx2.json -w \"%{http_code} %{size_download}\\\\n\")",
+      "Bash(python -X utf8 src/build_contacts_v2.py --deploy)",
+      "Bash(python -X utf8 src/zoho_auth.py)",
+      "Bash(python -X utf8 src/build_contacts_v2.py)",
+      "Bash(python -X utf8 src/restore.py reference/captures/rollback-2582206000076641025-20260904-220058.json --execute)",
+      "Bash(rm -f reference/captures/noop-body-*.json reference/captures/edited-body-*.json reference/captures/pre-put-rollback.*.json reference/captures/live-*.json)",
+      "Bash(rm -f reference/captures/rollback-2582206000076641025-20260904-*.json reference/captures/rollback-2582206000076641025-20260906-145722.json)",
+      "Bash(awk 'NR>3{print \"  \"$5\" \"$6\" \"$7}')",
+      "Bash(awk '{print \"  \"$1\"  \"$2}')"
     ]
   }
 }

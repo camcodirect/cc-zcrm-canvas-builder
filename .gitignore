@@ -21,3 +21,5 @@ venv/
 # Local scratch
 tmp/
 *.local.*
+
+.token-cache.json
