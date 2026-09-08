@@ -69,9 +69,13 @@ zcrm-canvas/
   themes/
     default.json                      the plugin default: this project's rules and palette
   examples/
-    proposals.spec.json               the Proposals canvas as a spec
-    proposals.preview.html            what it compiles to
+    contacts.spec.json                the shipped example: Contacts, standard fields and
+                                      related lists only, so it validates in any org
+    contacts.preview.html             what it compiles to
 ```
+
+Proposals is a Camco custom module, so it is not the example; it is the golden test input
+(§10) and lives under `tests/fixtures/` as a spec, not under `examples/`.
 
 Nothing org-specific ships except the example spec, which is labelled as an example. The 33
 capture files and the HARs stay in this project as the evidence base; the plugin carries what is
@@ -318,7 +322,8 @@ builder is a code change with a test.
 | `src/canvas_shapes.py` | `shapes.py`, tokens read from a theme object |
 | `src/validate.py` | `validate.py`, unchanged rules |
 | vocabulary audit in `build_proposals_v1.py` | `audit.py` + `assets/vocabulary.json` |
-| `build_proposals_v1.py` panes | `examples/proposals.spec.json` (golden test input) |
+| `build_proposals_v1.py` panes | `tests/fixtures/proposals.spec.json` (golden test input) |
+| Contacts v3.1 design, redone through the plugin | `examples/contacts.spec.json` (standard fields only) |
 | `docs/canvas-schema.md`, `docs/canvas-constructs.md` | `references/` |
 | CLAUDE.md working rules, design workflow, header conventions, corner rule | `SKILL.md`, `references/design-rules.md`, `themes/default.json` |
 | `reference/ui-capture/README.md` procedure | `references/learning.md` |
@@ -330,9 +335,15 @@ history. New Camco canvases are built with the plugin.
 
 ## 10. Testing
 
-- **Golden compile.** `examples/proposals.spec.json` compiles to JSON that matches the deployed
-  `proposals-v1.json` node for node (ignoring the minted connection id and zcode counters).
-  This proves the spec expresses everything the hand-written builder did.
+- **Golden compile.** `tests/fixtures/proposals.spec.json` compiles to JSON that matches the
+  deployed `proposals-v1.json` in the evidence base node for node (ignoring the minted
+  connection id and zcode counters). This proves the spec expresses everything the
+  hand-written builder did. It is a test, not an example: Proposals is a Camco custom module.
+- **First live deploy is Contacts.** Contacts is a standard module every org has. The plugin's
+  first end-to-end run is a fresh Contacts design through the real `design` loop on Camco's
+  Contacts canvas `2582206000076641025` (which has a known-good rollback and predates the
+  corner rule anyway). The approved spec, trimmed to standard fields and related lists, becomes
+  `examples/contacts.spec.json`. The spec validator must report every Camco-only field it drops.
 - **Validator calibration.** `validate.py` and `audit.py` pass all 33 Zoho-authored files with
   zero findings, run from this repo against the plugin's copies before each release.
 - **Layout arithmetic.** Unit tests on `layout.py`: `end_x == start_x + width` everywhere, rows
