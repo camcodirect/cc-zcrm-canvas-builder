@@ -293,6 +293,27 @@ The method rule as a tool. See §8.
 | Profiles never cached | `profile` writes nothing; `spec.py` re-profiles on every build |
 | Module-scoped field ids | `spec.py` resolves related-module fields against that module (v1 only places Zoho-rendered related lists, so this is a guard, not a feature) |
 
+## 7a. The mistakes log
+
+`references/mistakes.md` ships inside the plugin. It is seeded from this project's
+`mistakes.md` with every entry that still applies to the plugin (the catalog rule, capture the
+tool before inferring from its output, `SUCCESS` is not verification, one sample is not a rule,
+module-scoped field ids, duplicate related lists are legal, the `uniqueid` reversals) in the
+same three-part format: what went wrong, why, rule going forward.
+
+`SKILL.md` requires two things of every session:
+
+1. Read `references/mistakes.md` before doing anything else.
+2. When a deploy breaks the editor, a test that should have caught something did not, or the
+   user corrects the same point twice, write an entry before moving on. Entries are short and
+   only for things that would cost time if repeated.
+
+Where the entry is written depends on who is running it. An installed plugin is a cached copy
+and edits to it are lost on update, so new entries go to `mistakes.md` in the user's working
+project, which `SKILL.md` also reads if present. Entries made while developing the plugin in
+its own repo go straight into `references/mistakes.md` and ship with the next version. Other
+users' entries reach the shipped file by pull request.
+
 ## 8. Learning from a recorded session
 
 `learn.py` takes a HAR of the Canvas editor, one construct added per save (the procedure in
