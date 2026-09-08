@@ -41,6 +41,7 @@ zcrm-canvas/
       mistakes.md                     ships with the plugin: the mistakes already made on this
                                       problem and the rule each produced (§7a)
   commands/
+    canvas-org.md
     canvas-profile.md
     canvas-design.md
     canvas-build.md
@@ -50,7 +51,8 @@ zcrm-canvas/
     canvas-learn.md
   scripts/zcrm_canvas/                Python 3.10+, stdlib only
     __init__.py
-    auth.py                           OAuth refresh grant, token cache (zoho_auth.py)
+    orgs.py                           org registry: discovery, selection, org add/list/use/check
+    auth.py                           OAuth refresh grant, per-org token cache (zoho_auth.py)
     api.py                            canvas GET/PUT, metadata GETs (zoho_canvas.py + Profile)
     shapes.py                         observed node builders (canvas_shapes.py)
     theme.py                          theme loading, defaults, org default resolution
@@ -85,30 +87,61 @@ derived from them.
 
 ## 3. Configuration: orgs, credentials, themes
 
-Per-user, outside any project, so the plugin works from any directory:
+The plugin is for Zoho partners who work across many client orgs. Everything about an org lives
+**inside the project folder**, grouped by org and then by module, so a client engagement carries
+its own orgs, credentials, themes, rollbacks and canvases, and two projects never share state:
 
 ```text
-~/.zcrm-canvas/
-  orgs/
-    camco/
-      org.json          { "org_id": "647376701", "api_host": "https://crm.zoho.com",
-                          "accounts_host": "https://accounts.zoho.com",
-                          "default_theme": "camco-bright" }
-      credentials.env   ZOHO_CLIENT_ID / ZOHO_CLIENT_SECRET / ZOHO_REFRESH_TOKEN (mode 600)
-      themes/
-        camco-bright.json
-        camco-dark.json
-      captures/         rollbacks and profile-free captures for this org
+<project>/
+  zcrm-canvas/
+    config.json                     { "default_org": "camco" }
+    orgs/
+      camco/
+        org.json                    { "label": "Camco Technologies", "org_id": "647376701",
+                                      "api_host": "https://crm.zoho.com",
+                                      "accounts_host": "https://accounts.zoho.com",
+                                      "default_theme": "camco-bright" }
+        .env                        ZOHO_CLIENT_ID / ZOHO_CLIENT_SECRET / ZOHO_REFRESH_TOKEN
+        .token-cache.json           short-lived access token; regenerable
+        themes/
+          camco-bright.json
+          camco-dark.json
+        captures/
+          rollback-<view_id>-<stamp>.json
+        Contacts/                   one folder per module, exact CRM api_name
+          contacts-v4.spec.json
+          contacts-v4.json
+          contacts-v4.meta.json
+          contacts-v4.preview.html
+        Proposals/
+          …
+      decker/
+        org.json  .env  themes/  captures/  Accounts/  Leads/  …
 ```
 
-- The active org is `--org <slug>`, else `ZCRM_CANVAS_ORG`, else the only org configured, else
-  ask.
-- Credentials are never read from a project directory and never written anywhere else. The
-  README recommends a token scoped to `ZohoCRM.settings.canvas.ALL` plus read on
-  modules/layouts/related_lists/custom_buttons/blueprints, not `modules.ALL`.
-- Generated output goes to the current working directory under
-  `output/<org-slug>-<org-id>/<ModuleApiName>/`, same convention as today, so a consulting
-  project keeps its canvases with the project.
+- **Org selection.** `--org <slug>`, else `ZCRM_CANVAS_ORG`, else `config.json.default_org`,
+  else the only org present, else ask. Every command prints the org label and org id it is
+  about to act on before it touches the API; a deploy repeats it in the confirmation.
+- **Data centre per org.** `api_host` and `accounts_host` are stored per org because partners
+  span `zoho.com`, `zoho.eu`, `zoho.in`, `zoho.com.au`, `zoho.jp`. `org add` asks for the data
+  centre and fills both.
+- **Credentials stay in the project but never in git.** `org add` writes the org's `.env` and
+  `.token-cache.json`, then appends `zcrm-canvas/orgs/*/.env` and
+  `zcrm-canvas/orgs/*/.token-cache.json` to the project's `.gitignore` if they are not already
+  ignored. `auth.py` refuses to run if `git check-ignore` reports the `.env` is tracked or not
+  ignored inside a git repository, and says how to fix it. Nothing under `orgs/` is ever
+  copied into another org's folder or into the plugin repo.
+- **Token scope.** The README recommends a self-client token scoped to
+  `ZohoCRM.settings.canvas.ALL` plus read on modules/layouts/related_lists/custom_buttons/
+  blueprints, not `modules.ALL`. `org add` verifies the token with a modules GET and prints the
+  org name the API returns, so a wrong data centre or a wrong org shows up at setup, not at
+  deploy.
+- **Optional shared location.** `ZCRM_CANVAS_HOME` may point the whole `zcrm-canvas/` tree
+  somewhere outside the project (for a machine with one user and many projects). Same layout,
+  same rules; the project-local tree wins when both exist.
+- **Generated output** lives in the module folder under its org, replacing this project's
+  `output/<org-slug>-<org-id>/<Module>/` convention. The org id is in `org.json`, so the folder
+  name is just the slug.
 
 ### Themes
 
@@ -243,9 +276,9 @@ what the module offers and what a design could leave off, and stops.
 ### `/canvas design <Module> <view_id> [--theme] [--from spec]`
 
 1. Profiles (or reuses the profile from this turn).
-2. Captures the target canvas to `~/.zcrm-canvas/orgs/<org>/captures/` as the first rollback
+2. Captures the target canvas to `zcrm-canvas/orgs/<org>/captures/` as the first rollback
    and reads its action ids: that is the observed action set for the header.
-3. Drafts `output/<org>/<Module>/<slug>.spec.json` from the profile, the theme and the design
+3. Drafts `zcrm-canvas/orgs/<org>/<Module>/<slug>.spec.json` from the profile, the theme and the design
    rules (header shape, one card per layout section as the starting point, related lists in
    sensible tabs, everything not used listed under "left off").
 4. Compiles the mockup, publishes it as a private Artifact, gives the link, and **stops**.
@@ -270,6 +303,16 @@ plain words that it is not verified until opened in the editor.
 
 The existing restore path: strip server-owned keys, PUT, re-GET.
 
+### `/canvas org [add|list|use|check] …`
+
+`add <slug>` asks for the label, the data centre (fills `api_host` and `accounts_host`), the
+org id, and the client id, client secret and refresh token; writes `org.json` and `.env`;
+ensures the `.gitignore` entries; then verifies the token with a modules GET and prints the org
+name the API returns. `list` shows every org in the project with label, org id, data centre and
+default theme. `use <slug>` sets `config.json.default_org`. `check [slug]` re-runs the token
+verification and reports token scope problems in plain words (a 401 on layouts means the scope
+is missing settings read, and so on).
+
 ### `/canvas theme [create|set-default|show] …`
 
 `create` walks the user through a short set of questions (palette from a brand colour or two,
@@ -290,7 +333,8 @@ The method rule as a tool. See §8.
 | No node literals outside `shapes.py` | `compile_json.py` code review rule; `audit.py` catches strays |
 | Enumerated values from catalogs only | `validate.py` (icons, action ids), `spec.py` |
 | Radius 3px max | `theme.py` |
-| Credentials never in a project or output | `auth.py` reads only `~/.zcrm-canvas/orgs/<org>/credentials.env` or env vars |
+| Credentials never in git, never cross orgs | `auth.py` reads only `zcrm-canvas/orgs/<org>/.env` (or env vars) for the selected org, and refuses if that file is tracked or unignored in a git repo |
+| Every API call names its org | `api.py` logs label and org id before the first request of a command; `deploy` repeats it in the confirmation |
 | SUCCESS is not verification | `deploy` output text; SKILL.md |
 | Profiles never cached | `profile` writes nothing; `spec.py` re-profiles on every build |
 | Module-scoped field ids | `spec.py` resolves related-module fields against that module (v1 only places Zoho-rendered related lists, so this is a guard, not a feature) |
@@ -330,7 +374,7 @@ users' entries reach the shipped file by pull request.
    palettes the same way.
 4. Report what is new against `canvas-constructs.md` and hand Claude the diffs, so the
    documentation and, if warranted, a new `shapes.py` builder are written from evidence.
-5. Write the extracted saves to `~/.zcrm-canvas/learned/<label>/` so nothing from the HAR (which
+5. Write the extracted saves to `zcrm-canvas/orgs/<org>/learned/<label>/` so nothing from the HAR (which
    carries session cookies) is ever copied into the plugin repo or a project.
 
 `learn` never edits `shapes.py` on its own; it produces the evidence and the report. Adding a
