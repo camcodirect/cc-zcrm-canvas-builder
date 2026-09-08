@@ -36,8 +36,10 @@ zcrm-canvas/
       canvas-schema.md                envelope, root, slots, enumerations (from this project)
       canvas-constructs.md            per-construct JSON as the editor emits it
       design-rules.md                 header conventions, card metrics, corner rule, theme schema
-      spec-format.md                  the canvas spec schema with the Proposals example
+      spec-format.md                  the canvas spec schema with the Contacts example
       learning.md                     how to record a session and what `learn` does with it
+      mistakes.md                     ships with the plugin: the mistakes already made on this
+                                      problem and the rule each produced (§7a)
   commands/
     canvas-profile.md
     canvas-design.md
