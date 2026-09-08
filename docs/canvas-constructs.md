@@ -217,6 +217,13 @@ carry `"$inherited": true`, an editor hint that the sub-part inherits the parent
 
 Fields inside a related list add class `zc-rl-field` and resolve against the **related** module.
 
+**Boolean fields** carry nothing beyond `datatype: "boolean"` in any of the 33 files: no class, no
+style. Zoho renders its own checkbox. There is no toggle-switch element in Canvas.
+
+**`custom_style`** (the editor's Custom CSS box) is present on every slot and empty in every
+observed file. Its populated shape is unknown; do not emit it. One recorded save with a single
+custom CSS property would settle it.
+
 ### Query-backed fields (Data Hub)
 
 A related list built from a saved Query has no `id`. It and its fields carry `details`:
@@ -461,6 +468,12 @@ doc) and a `details` reference on the tab body.
   "children": [] }
 ```
 
+The `connection_id` is **minted by the editor in the browser**, not issued by the server: in the
+round-1 HAR it appears fully formed in the first PUT that carries the tab and in no response
+before it. Every observed id starts with `00`. A builder can mint its own (`"00" + uuid4()[2:]`,
+see `src/build_proposals_v1.py`); the server accepted and returned one on Proposals 2026-09-07.
+The tab name follows the editor's pattern `All Fields - <lookup field label>`.
+
 ### System components as related lists
 
 Palette `system` entries are placed exactly like a related list, with a string id. Observed:
@@ -488,3 +501,7 @@ A `Tab Layout` placed as a child of the strip, with `class: "zc-tab-section"`, a
 - Responsive Mode payload (root `end_x == 3 × width` is the only trace)
 - Populated `canvas_rules` / `script_info`
 - Error responses from the save endpoint
+- Populated `custom_style` (Custom CSS); the components palette for any module but Contacts
+  (endpoint is browser-session only, 401 over OAuth)
+- An All Fields tab for any module but Contacts (the editor generates it; the one on file is
+  Contacts-shaped and cannot be reused elsewhere)

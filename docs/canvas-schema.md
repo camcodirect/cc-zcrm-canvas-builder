@@ -55,6 +55,19 @@ refresh endpoint). Scope: `ZohoCRM.settings.canvas.ALL` plus read on fields/modu
 related_lists. Related lists: `GET /crm/v8/settings/related_lists?module={Module}`. Uploaded
 images: `GET/POST /crm/v2.2/settings/canvas_files?feature=background_image`.
 
+Other metadata the builders use, all over the same OAuth token (tested 2026-09-07):
+
+```text
+GET /crm/v8/settings/modules                                  module ids by api_name
+GET /crm/v8/settings/layouts?module={Module}                  sections + fields (api_name, id, data_type)
+GET /crm/v8/settings/custom_buttons?module={Module}           204 No Content when the module has none
+GET /crm/v8/settings/blueprints?module={Module}               active blueprints and their driving field
+GET /crm/v2/settings/canvas/views/components?feature=DetailView&module={Module}&layout_id={id}
+                                                              the Elements palette: 401 NOT_ALLOWED over
+                                                              OAuth; browser session only. Use the action
+                                                              ids in the module's existing canvas instead.
+```
+
 ### Response
 
 ```jsonc
@@ -337,8 +350,30 @@ table (3).
 `text`, `text-area`, `picklist`, `multiselectpicklist`, `boolean`, `number`, `bigint`, `date`,
 `date-time`, `email`, `phone`, `website`, `twitter`, `lookup`, `multiselectlookup`,
 `multi_module_lookup`, `user`, `multiselectuser`, `profileimage`, `tag`, `layout`, `link`,
-`button`. These are canvas datatypes; the CRM `data_type` differs (`currency`/`double` → `number`,
-`ownerlookup` → `user`, `textarea` → `text-area`, `datetime` → `date-time`, `formula` → `text`).
+`button`. These are canvas datatypes; the CRM `data_type` differs.
+
+**CRM `data_type` → canvas `datatype`**, derived 2026-09-07 by joining every field node in the 33
+Zoho-authored files against live layout metadata (counts are field placements that agreed; the
+odd stray value in the join came from id collisions in related-list subtrees and is ignored):
+
+| CRM `data_type` | canvas `datatype` | evidence |
+|---|---|---|
+| `text` | `text` (`tag` when the field is `Tag`) | 1790 / 73 |
+| `textarea` | `text-area` | 85 |
+| `email`, `phone`, `website` | same name | 71 / 214 / 114 |
+| `picklist`, `multiselectpicklist` | `picklist` | 551 / 70 |
+| `boolean` | `boolean` | 199 |
+| `date` | `date` | 154 |
+| `datetime` | `date-time` | 371 |
+| `integer`, `double`, `currency`, `bigint` | `number` | 109 / 80 / 45 / 35 |
+| `formula` (any return type) | `text` | 4 |
+| `lookup` | `lookup` | 189 |
+| `ownerlookup` | `user` | 192 |
+| `multiuserlookup` | `multiselectuser` | 2 |
+| `multiselectlookup` | `multiselectlookup` | 36 |
+| `profileimage` | `profileimage` | 39 |
+
+The table lives in code as `DATATYPE` in `src/build_proposals_v1.py`.
 
 ### Class tokens (52 observed)
 
@@ -437,7 +472,14 @@ generated canvas openable:
 
 Known **unobserved** areas (do not emit): grid items, `system`/`zia` components other than
 `timeline`/`journeys`, Responsive Mode, populated `canvas_rules`/`script_info`, error responses,
-`homepage_associations`, creating `connection_id`s by API.
+`homepage_associations`, a populated `custom_style` (the editor's Custom CSS box; `{}` in all 33
+files), any toggle-switch rendering of a boolean (none exists; Zoho draws a checkbox).
+
+**`lookup_associations.connection_id` is minted by the editor, client-side.** Settled 2026-09-07
+by tracing the round-1 HAR: the first id (`00ce09e9-…`) appears fully formed in the editor's PUT
+and in no earlier response. All four observed ids begin with `00`. `src/build_proposals_v1.py`
+mints `"00" + uuid4()[2:]` the same way; the server stored it and the live GET returned it. Whether
+the tab then *renders* the looked-up record is confirmed only in the editor.
 
 ---
 

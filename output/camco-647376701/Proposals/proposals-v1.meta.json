@@ -1,0 +1,28 @@
+{
+ "canvas_view_id": "2582206000076741077",
+ "module": {
+  "id": "2582206000008466209",
+  "api_name": "Proposals"
+ },
+ "layout": {
+  "id": "2582206000008466208",
+  "name": "Standard"
+ },
+ "org_id": "647376701",
+ "design_source": "output/camco-647376701/Proposals/proposals-v1.preview.html",
+ "generated_by": "src/build_proposals_v1.py",
+ "generated": "2026-09-07T12:46:55",
+ "lookup_associations": [
+  {
+   "connection_id": "000bf191-aa89-498a-b51d-6144184a5e5b",
+   "parent_module_lookup_field": {
+    "api_name": "Related_Account",
+    "id": "2582206000008473110"
+   },
+   "child_module": {
+    "api_name": "Accounts",
+    "id": "2582206000000002177"
+   }
+  }
+ ]
+}

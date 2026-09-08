@@ -1,0 +1,383 @@
+<title>Proposals Canvas</title>
+<style>
+  :root{
+    --ink:#0f172a; --ink-2:#334155; --soft:#64748b; --line:#e8edf3; --page:#f5f8fc; --card:#ffffff;
+    --indigo:#6366f1; --sky:#0ea5e9; --teal:#14b8a6; --violet:#8b5cf6; --amber:#f59e0b; --rose:#f43f5e; --emerald:#10b981;
+    --shadow:0 1px 2px rgba(15,23,42,.04), 0 6px 20px rgba(15,23,42,.06);
+    --zoho:"Zoho Puvi","Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#dfe6ef;padding:26px 26px 60px;font:13px/1.45 var(--zoho);color:var(--ink)}
+  .note{max-width:1100px;margin:0 auto 14px;font-size:13px;color:#475569;line-height:1.5}
+  .note b{color:var(--ink)}
+  .note code{background:#fff;padding:1px 5px;border-radius:2px;border:1px solid var(--line);font-size:12px}
+  .switch{max-width:1100px;margin:0 auto 14px;display:flex;gap:8px;flex-wrap:wrap}
+  .switch button{font:600 12px/1 var(--zoho);padding:8px 14px;border-radius:3px;border:1px solid var(--line);background:#fff;color:var(--ink-2);cursor:pointer}
+  .switch button.on{background:var(--indigo);border-color:var(--indigo);color:#fff}
+  .switch button:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+
+  .canvas{position:relative;width:1100px;margin:0 auto;background:var(--page);border-radius:3px;overflow:hidden;box-shadow:0 10px 44px rgba(15,23,42,.18)}
+  .abs{position:absolute}
+
+  /* ---------- banner (206px) ---------- */
+  .banner{position:absolute;left:0;top:0;width:1100px;height:206px;overflow:hidden;
+     background:linear-gradient(115deg,#6366f1 0%,#0ea5e9 55%,#14b8a6 100%)}
+  .banner::after{content:"";position:absolute;inset:0;
+     background:radial-gradient(520px 240px at 86% -50%,rgba(255,255,255,.34),transparent 68%),
+                radial-gradient(360px 200px at 6% 150%,rgba(255,255,255,.16),transparent 70%)}
+  .b-in{position:relative;z-index:2;height:100%}
+  .iconbtn{position:absolute;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;opacity:.92}
+  .avatar{position:absolute;left:30px;top:44px;width:72px;height:72px;border-radius:3px;background:rgba(255,255,255,.22);
+     border:2px solid rgba(255,255,255,.65);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:600;color:#fff}
+  .b-name{position:absolute;left:30px;top:42px;height:34px;line-height:34px;width:600px;font-size:24px;font-weight:650;color:#fff;letter-spacing:-.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  /* Status pill shares the button metrics: 34px tall, top 42, 3px radius, 10px gaps. */
+  .pill{position:absolute;height:34px;padding:0 14px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:650;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap}
+  .pill-status{left:644px;top:42px;width:140px;background:rgba(255,255,255,.92);color:#4338ca}
+  .b-sub{position:absolute;left:120px;top:76px;font-size:13px;color:rgba(255,255,255,.88);white-space:nowrap}
+  .b-sub .sep{opacity:.6;margin:0 8px}
+  .b-links{position:absolute;left:120px;top:98px;font-size:13px;color:#fff;font-weight:600;white-space:nowrap}
+  .b-links .lk{border-bottom:1px solid rgba(255,255,255,.55);padding-bottom:1px}
+  .b-links .arrow{opacity:.65;margin:0 10px;font-weight:400}
+  .btn{position:absolute;height:34px;border-radius:3px;display:flex;align-items:center;justify-content:center;gap:7px;font-size:13px;font-weight:600}
+  .btn-primary{background:#fff;color:var(--indigo)}
+  .btn-ghost{background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.42)}
+  .stat{position:absolute;top:134px;height:58px;width:185px;border-radius:2px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.34);
+        padding:9px 14px 0;color:#fff;line-height:1.2}
+  .stat .l{font-size:10.5px;font-weight:650;letter-spacing:.6px;text-transform:uppercase;opacity:.82}
+  .stat .v{font-size:15px;font-weight:650;margin-top:5px;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .stat.hero{width:250px;background:rgba(255,255,255,.92);color:var(--ink);border-color:rgba(255,255,255,.92)}
+  .stat.hero .l{color:var(--soft);opacity:1}
+  .stat.hero .v{font-size:18px;letter-spacing:-.2px;margin-top:4px;color:var(--indigo)}
+
+  /* ---------- tabs ---------- */
+  .tabs{position:absolute;left:0;top:206px;width:1100px;height:44px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:stretch;padding:0 22px;gap:22px;overflow:hidden}
+  .tab{display:flex;align-items:center;font-size:13px;color:var(--ink-2);border-bottom:3px solid transparent;white-space:nowrap}
+  .tab.on{color:var(--indigo);border-color:var(--indigo);font-weight:600}
+
+  /* ---------- body ---------- */
+  .pane{position:absolute;left:0;top:250px;width:1100px;display:none}
+  .pane.on{display:block}
+  .card{position:absolute;background:var(--card);border-radius:3px;box-shadow:var(--shadow)}
+  .card .hd{position:absolute;left:18px;top:15px;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--ink)}
+  .card .hd .ic{width:22px;height:22px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff}
+  .rows{position:absolute;left:18px;top:52px;right:18px}
+  .row{display:flex;height:29px;align-items:center;font-size:13px;border-bottom:1px solid #f1f4f8}
+  .row:last-child{border-bottom:0}
+  .row .l{width:42%;flex:none;color:var(--soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:8px}
+  .narrow .row .l{width:50%}
+  .row .v{flex:1;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .row .v.link{color:var(--indigo);font-weight:600}
+  .row .v.chip{display:inline-flex}
+  .chip{display:inline-flex;align-items:center;height:20px;padding:0 9px;border-radius:2px;font-size:11px;font-weight:650;letter-spacing:.3px}
+  .c-indigo{background:#e0e7ff;color:#3730a3} .c-emerald{background:#d1fae5;color:#065f46} .c-amber{background:#fef3c7;color:#92400e} .c-rose{background:#ffe4e6;color:#9f1239} .c-slate{background:#e2e8f0;color:#334155}
+  /* Boolean fields: Zoho renders its own checkbox; Canvas has no toggle element. */
+  .bool{display:inline-flex;align-items:center;gap:7px;color:var(--ink-2)}
+  .bool i{width:14px;height:14px;border-radius:2px;border:1.5px solid #94a3b8;background:#fff;position:relative;display:inline-block}
+  .bool.on i{background:var(--indigo);border-color:var(--indigo)}
+  .bool.on i::after{content:"";position:absolute;left:4px;top:1px;width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+  .ta{position:absolute;left:18px;right:18px;top:52px;bottom:18px;background:#f8fafc;border:1px solid var(--line);border-radius:3px;padding:10px 12px;font-size:13px;line-height:1.5;color:var(--ink-2);overflow:hidden}
+  .ta .lbl{font-size:11px;font-weight:650;letter-spacing:.5px;color:var(--soft);text-transform:uppercase;margin-bottom:4px}
+  .kpi{position:absolute;height:76px;background:var(--card);border-radius:3px;box-shadow:var(--shadow);padding:12px 14px}
+  .kpi .l{font-size:11px;font-weight:650;letter-spacing:.5px;text-transform:uppercase;color:var(--soft)}
+  .kpi .v{font-size:17px;font-weight:600;margin-top:4px;font-variant-numeric:tabular-nums}
+  .rl{position:absolute;background:var(--card);border-radius:3px;box-shadow:var(--shadow);overflow:hidden}
+  /* Related-list cards use the same header metrics as field cards: 18/15, 22px icon, 14px/600 title. */
+  .rl .hd{position:absolute;left:18px;top:15px;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--ink)}
+  .rl .hd .ic{width:22px;height:22px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff}
+  .rl table{position:absolute;left:18px;right:18px;top:52px;border-collapse:collapse;width:calc(100% - 36px);font-size:12.5px}
+  .rl th{text-align:left;font-weight:600;color:var(--soft);font-size:11px;letter-spacing:.4px;text-transform:uppercase;padding:6px 8px;border-bottom:1px solid var(--line)}
+  .rl td{padding:8px;border-bottom:1px solid #f1f4f8;color:var(--ink-2);white-space:nowrap}
+  .rl td.lk{color:var(--indigo);font-weight:600}
+  .rl .empty{position:absolute;left:18px;right:18px;top:52px;bottom:18px;border:1px dashed var(--line);border-radius:3px;display:flex;align-items:center;justify-content:center;color:var(--soft);font-size:12.5px;text-align:center;padding:20px}
+  .lookup{position:absolute;left:22px;top:24px;width:1056px;height:640px;background:var(--card);border-radius:3px;box-shadow:var(--shadow);padding:15px 18px 18px}
+  .lookup h4{margin:0 0 16px;font-size:14px;font-weight:600;line-height:22px}
+  .lookup .sec{margin:0 0 18px}
+  .lookup .sec .t{font-size:11px;font-weight:650;letter-spacing:.5px;text-transform:uppercase;color:var(--soft);border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:8px}
+  .lookup .grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 40px}
+  .lookup .grid .row{border-bottom:1px solid #f1f4f8}
+  .hint{position:absolute;font-size:12px;color:var(--soft)}
+  .bg-indigo{background:var(--indigo)} .bg-sky{background:var(--sky)} .bg-teal{background:var(--teal)} .bg-violet{background:var(--violet)} .bg-amber{background:var(--amber)} .bg-rose{background:var(--rose)} .bg-emerald{background:var(--emerald)}
+  .edge-indigo{border-left:4px solid var(--indigo)} .edge-sky{border-left:4px solid var(--sky)} .edge-emerald{border-left:4px solid var(--emerald)} .edge-amber{border-left:4px solid var(--amber)} .edge-violet{border-left:4px solid var(--violet)}
+  .method{position:absolute;top:12px;right:14px}
+  .legend{max-width:1100px;margin:18px auto 0;font-size:12.5px;color:#475569;line-height:1.55}
+  .legend h3{font-size:13px;margin:14px 0 4px;color:var(--ink)}
+  .legend ul{margin:0;padding-left:18px}
+  @media (prefers-reduced-motion:no-preference){ .switch button{transition:background .15s,color .15s} }
+</style>
+
+<div class="note">
+  <b>Proposals canvas, design v1.</b> Fixed 1100px wide, every box absolute-positioned at the coordinates the Canvas JSON will use.
+  Labels are the live CRM field labels from the <code>Standard</code> layout. Values are illustrative examples, not a real record;
+  Canvas fills them from CRM at render. Fonts show as Zoho Puvi in CRM (Segoe UI here is the closest stand-in).
+</div>
+<div class="switch" id="sw"></div>
+
+<div class="canvas" id="cv" style="height:1377px">
+
+  <!-- ============ HEADER ============ -->
+  <div class="banner"><div class="b-in">
+    <div class="b-name">Acme Logistics · CRM Integration Proposal</div>
+    <div class="pill pill-status">Agreement Sent</div>
+
+    <div class="btn btn-primary" style="left:794px;top:42px;width:130px">&#9998; Mail Merge</div>
+    <div class="btn btn-ghost" style="left:934px;top:42px;width:86px">Edit</div>
+    <div class="btn btn-ghost" style="left:1030px;top:42px;width:40px">&#8943;</div>
+
+    <div class="stat hero" style="left:30px"><div class="l">Est. Total Cost</div><div class="v">$18,400.00</div></div>
+    <div class="stat" style="left:292px"><div class="l">Billing Method</div><div class="v">Hour Blocks</div></div>
+    <div class="stat" style="left:489px"><div class="l">Payment Terms</div><div class="v">Net15</div></div>
+    <div class="stat" style="left:686px"><div class="l">Proposal Sent Date</div><div class="v">Aug 28, 2026</div></div>
+    <div class="stat" style="left:883px"><div class="l">Acceptance Date</div><div class="v">—</div></div>
+  </div></div>
+
+  <div class="tabs" id="tabs"></div>
+
+  <!-- ============ OVERVIEW ============ -->
+  <div class="pane on" data-tab="Overview">
+    <div class="card narrow" style="left:22px;top:18px;width:337px;height:310px">
+      <div class="hd"><span class="ic bg-indigo">i</span>Proposal Details</div>
+      <div class="rows">
+        <div class="row"><span class="l">Related Account</span><span class="v link">Acme Logistics Inc.</span></div>
+        <div class="row"><span class="l">Related Contact</span><span class="v link">Dana Whitfield</span></div>
+        <div class="row"><span class="l">Prepared For</span><span class="v">Dana Whitfield</span></div>
+        <div class="row"><span class="l">Email To</span><span class="v">dana@acmelogistics.com</span></div>
+        <div class="row"><span class="l">Company Name</span><span class="v">Acme Logistics Inc.</span></div>
+        <div class="row"><span class="l">DBA</span><span class="v">Acme Freight</span></div>
+        <div class="row"><span class="l">Proposal Sent Date</span><span class="v">08/28/2026</span></div>
+        <div class="row"><span class="l">Acceptance Date</span><span class="v">—</span></div>
+      </div>
+    </div>
+    <div class="card narrow" style="left:381px;top:18px;width:337px;height:310px">
+      <div class="hd"><span class="ic bg-teal">$</span>Billing &amp; Delivery</div>
+      <div class="rows">
+        <div class="row"><span class="l">Billing Method</span><span class="v chip"><span class="chip c-indigo">Hour Blocks</span></span></div>
+        <div class="row"><span class="l">Billable Rate</span><span class="v">$115.00</span></div>
+        <div class="row"><span class="l">Payment Terms</span><span class="v">Net15</span></div>
+        <div class="row"><span class="l">Billing Timeline</span><span class="v">50% upfront, balance on delivery</span></div>
+        <div class="row"><span class="l">Delivery Timeline</span><span class="v">6 weeks from acceptance</span></div>
+      </div>
+      <div class="hint" style="left:18px;top:216px;right:18px">Pricing detail for each billing method is on the Pricing tab.</div>
+    </div>
+    <div class="card narrow" style="left:740px;top:18px;width:337px;height:310px">
+      <div class="hd"><span class="ic bg-emerald">&#10003;</span>Signature &amp; Invoicing</div>
+      <div class="rows">
+        <div class="row"><span class="l">zsign doc id</span><span class="v">a1f4…9c2e</span></div>
+        <div class="row"><span class="l">zsign request id</span><span class="v">req_88213</span></div>
+        <div class="row"><span class="l">zdoc signed datetime</span><span class="v">—</span></div>
+        <div class="row"><span class="l">zbooks initial invoice id</span><span class="v">INV-001874</span></div>
+        <div class="row"><span class="l">initial invoice sent</span><span class="v">08/29/2026</span></div>
+      </div>
+      <div class="hint" style="left:18px;top:216px;right:18px">Workflow keys written by the Deluge automations. Read-only in practice.</div>
+    </div>
+
+    <div class="card" style="left:22px;top:350px;width:696px;height:221px">
+      <div class="hd"><span class="ic bg-sky">&#182;</span>Project Description</div>
+      <div class="ta"><div class="lbl">Brief Project Description</div>Integrate Acme's Zoho CRM with their TMS so shipment milestones write back to the Deal and trigger customer notifications. Includes field mapping, two Deluge functions, a webhook receiver, and a Cliq alert channel for exceptions.</div>
+    </div>
+    <div class="card narrow" style="left:740px;top:350px;width:337px;height:221px">
+      <div class="hd"><span class="ic bg-violet">&#9881;</span>Proposal Controls</div>
+      <div class="rows">
+        <div class="row"><span class="l">Send Client Intake</span><span class="v"><span class="bool on"><i></i>Yes</span></span></div>
+        <div class="row"><span class="l">Exclude NDA</span><span class="v"><span class="bool"><i></i>No</span></span></div>
+        <div class="row"><span class="l">Exclude Price Breakdown</span><span class="v"><span class="bool"><i></i>No</span></span></div>
+        <div class="row"><span class="l">Share With Team</span><span class="v"><span class="bool on"><i></i>Yes</span></span></div>
+        <div class="row"><span class="l">Share With</span><span class="v">Frank Pia, Maria Chen</span></div>
+      </div>
+    </div>
+
+    <div class="card" style="left:22px;top:593px;width:696px;height:192px">
+      <div class="hd"><span class="ic bg-amber">!</span>Special Terms</div>
+      <div class="ta"><div class="lbl">Proposal Special Terms</div>Hour blocks expire 12 months after purchase. Work outside the scope items above is quoted separately. Client provides sandbox access within 5 business days of acceptance.</div>
+    </div>
+    <div class="card narrow" style="left:740px;top:593px;width:337px;height:192px">
+      <div class="hd"><span class="ic bg-rose">&#9679;</span>Tags &amp; Status</div>
+      <div class="rows">
+        <div class="row"><span class="l">Tag</span><span class="v"><span class="chip c-slate">integration</span>&nbsp;<span class="chip c-slate">q3</span></span></div>
+        <div class="row"><span class="l">Record Status</span><span class="v chip"><span class="chip c-emerald">Available</span></span></div>
+        <div class="row"><span class="l">Locked</span><span class="v"><span class="bool"><i></i>No</span></span></div>
+        <div class="row"><span class="l">Currency</span><span class="v">USD</span></div>
+      </div>
+    </div>
+
+    <div class="rl" style="left:22px;top:807px;width:517px;height:250px">
+      <div class="hd"><span class="ic bg-sky">&#10003;</span>Open Tasks</div>
+      <table><tr><th>Subject</th><th>Status</th><th>Due Date</th><th>Created</th></tr>
+        <tr><td class="lk">Send intake form</td><td>In Progress</td><td>09/09/2026</td><td>09/01/2026</td></tr>
+        <tr><td class="lk">Confirm sandbox access</td><td>Not Started</td><td>09/12/2026</td><td>09/02/2026</td></tr>
+        <tr><td class="lk">Schedule kickoff</td><td>Not Started</td><td>09/15/2026</td><td>09/03/2026</td></tr></table>
+    </div>
+    <div class="rl" style="left:561px;top:807px;width:517px;height:250px">
+      <div class="hd"><span class="ic bg-rose">&#9679;</span>Open Meetings</div>
+      <table><tr><th>Title</th><th>Type</th><th>From</th><th>To</th></tr>
+        <tr><td class="lk">Proposal walkthrough</td><td>Online</td><td>09/10 10:00</td><td>09/10 10:45</td></tr>
+        <tr><td class="lk">Kickoff</td><td>On-site</td><td>09/17 13:00</td><td>09/17 15:00</td></tr></table>
+    </div>
+  </div>
+
+  <!-- ============ PRICING ============ -->
+  <div class="pane" data-tab="Pricing">
+    <div class="kpi edge-indigo" style="left:22px;top:18px;width:247px"><div class="l">Billing Method</div><div class="v">Hour Blocks</div></div>
+    <div class="kpi edge-emerald" style="left:291px;top:18px;width:247px"><div class="l">Est. Total Cost</div><div class="v">$18,400.00</div></div>
+    <div class="kpi edge-sky" style="left:560px;top:18px;width:247px"><div class="l">Initial Invoice Amount</div><div class="v">$9,200.00</div></div>
+    <div class="kpi edge-amber" style="left:829px;top:18px;width:247px"><div class="l">Payment Terms</div><div class="v">Net15</div></div>
+
+    <div class="card" style="left:22px;top:116px;width:517px;height:200px">
+      <div class="hd"><span class="ic bg-indigo">h</span>Hourly</div>
+      <div class="rows">
+        <div class="row"><span class="l">Est. Total Hours</span><span class="v">160</span></div>
+        <div class="row"><span class="l">Billable Rate</span><span class="v">$115.00</span></div>
+        <div class="row"><span class="l">Est. Total Cost</span><span class="v">$18,400.00</span></div>
+        <div class="row"><span class="l">Est Total Cost (override)</span><span class="v">—</span></div>
+      </div>
+    </div>
+    <div class="card" style="left:561px;top:116px;width:517px;height:200px">
+      <div class="hd"><span class="ic bg-sky">&#9638;</span>Hour Blocks</div>
+      <div class="rows">
+        <div class="row"><span class="l">Initial Block Size</span><span class="v">80</span></div>
+        <div class="row"><span class="l">Initial Invoice Amount</span><span class="v">$9,200.00</span></div>
+        <div class="row"><span class="l">Initial Invoice Amount (override)</span><span class="v">—</span></div>
+      </div>
+    </div>
+    <div class="card" style="left:22px;top:338px;width:517px;height:230px">
+      <div class="hd"><span class="ic bg-violet">&#8635;</span>Retainer</div>
+      <div class="rows">
+        <div class="row"><span class="l">Retainer Amount</span><span class="v">—</span></div>
+        <div class="row"><span class="l">Is Recurring?</span><span class="v"><span class="bool"><i></i>No</span></span></div>
+        <div class="row"><span class="l">Max Hour Allocation</span><span class="v">—</span></div>
+        <div class="row"><span class="l">Billing Frequency</span><span class="v">—</span></div>
+        <div class="row"><span class="l">Retainer Effective Rate</span><span class="v">—</span></div>
+      </div>
+    </div>
+    <div class="card" style="left:561px;top:338px;width:517px;height:230px">
+      <div class="hd"><span class="ic bg-emerald">$</span>Fixed Pricing</div>
+      <div class="rows" style="right:18px"><div class="row"><span class="l">Fixed Price</span><span class="v">—</span></div></div>
+      <div class="ta" style="top:90px"><div class="lbl">Fixed Pricing Notes</div>—</div>
+    </div>
+    <div class="hint" style="left:22px;top:586px;width:1056px">All four pricing blocks are always shown. Canvas has no per-record conditional sections; only the block matching Billing Method will carry values.</div>
+  </div>
+
+  <!-- ============ ACTIVITY ============ -->
+  <div class="pane" data-tab="Activity">
+    <div class="rl" style="left:22px;top:18px;width:1056px;height:420px">
+      <div class="hd"><span class="ic bg-indigo">&#9719;</span>Chronological View</div>
+      <div class="empty">Chronological View (all activities on this proposal), rendered by Zoho.</div>
+    </div>
+    <div class="rl" style="left:22px;top:460px;width:517px;height:260px">
+      <div class="hd"><span class="ic bg-teal">&#10003;</span>Closed Tasks</div>
+      <div class="empty">Closed Tasks list, columns rendered by Zoho.</div>
+    </div>
+    <div class="rl" style="left:561px;top:460px;width:517px;height:260px">
+      <div class="hd"><span class="ic bg-rose">&#9679;</span>Closed Meetings</div>
+      <div class="empty">Closed Meetings list, columns rendered by Zoho.</div>
+    </div>
+  </div>
+
+  <!-- ============ RECORD ============ -->
+  <div class="pane" data-tab="Record">
+    <div class="card narrow" style="left:22px;top:18px;width:337px;height:250px">
+      <div class="hd"><span class="ic bg-violet">i</span>System Information</div>
+      <div class="rows">
+        <div class="row"><span class="l">Created By</span><span class="v">John Pia</span></div>
+        <div class="row"><span class="l">Created Time</span><span class="v">08/27/2026 4:12 PM</span></div>
+        <div class="row"><span class="l">Modified By</span><span class="v">John Pia</span></div>
+        <div class="row"><span class="l">Modified Time</span><span class="v">09/06/2026 9:40 AM</span></div>
+        <div class="row"><span class="l">Last Activity Time</span><span class="v">09/06/2026 9:40 AM</span></div>
+        <div class="row"><span class="l">ID String</span><span class="v">PRP-2026-0412</span></div>
+      </div>
+    </div>
+    <div class="card narrow" style="left:381px;top:18px;width:337px;height:250px">
+      <div class="hd"><span class="ic bg-indigo">&#9787;</span>Ownership &amp; Sharing</div>
+      <div class="rows">
+        <div class="row"><span class="l">Proposals Owner</span><span class="v">John Pia</span></div>
+        <div class="row"><span class="l">Share With Team</span><span class="v"><span class="bool on"><i></i>Yes</span></span></div>
+        <div class="row"><span class="l">Share With</span><span class="v">Frank Pia, Maria Chen</span></div>
+      </div>
+    </div>
+    <div class="card narrow" style="left:740px;top:18px;width:337px;height:250px">
+      <div class="hd"><span class="ic bg-amber">$</span>Currency</div>
+      <div class="rows">
+        <div class="row"><span class="l">Currency</span><span class="v">USD</span></div>
+        <div class="row"><span class="l">Exchange Rate</span><span class="v">1.00</span></div>
+        <div class="row"><span class="l">Record Id</span><span class="v">2582206000067856339</span></div>
+      </div>
+    </div>
+    <div class="rl" style="left:22px;top:290px;width:1056px;height:250px">
+      <div class="hd"><span class="ic bg-rose">&#9679;</span>Locking Information</div>
+      <div class="empty">Locking Information list, rendered by Zoho.</div>
+    </div>
+  </div>
+
+  <!-- ============ RELATED ACCOUNT (lookup all-fields) ============ -->
+  <div class="pane" data-tab="Related Account">
+    <div class="lookup">
+      <h4>All Fields · Related Account</h4>
+      <div class="sec"><div class="t">Account Information</div><div class="grid">
+        <div class="row"><span class="l">Account Name</span><span class="v link">Acme Logistics Inc.</span></div>
+        <div class="row"><span class="l">Account Owner</span><span class="v">John Pia</span></div>
+        <div class="row"><span class="l">Phone</span><span class="v">(704) 555-0134</span></div>
+        <div class="row"><span class="l">Website</span><span class="v">acmelogistics.com</span></div>
+        <div class="row"><span class="l">Industry</span><span class="v">Transportation</span></div>
+        <div class="row"><span class="l">Account Type</span><span class="v">Customer</span></div>
+      </div></div>
+      <div class="sec"><div class="t">Address Information</div><div class="grid">
+        <div class="row"><span class="l">Billing Street</span><span class="v">4120 Freight Way</span></div>
+        <div class="row"><span class="l">Billing City</span><span class="v">Charlotte</span></div>
+        <div class="row"><span class="l">Billing State</span><span class="v">NC</span></div>
+        <div class="row"><span class="l">Billing Code</span><span class="v">28208</span></div>
+      </div></div>
+      <div class="hint" style="left:18px;right:18px;bottom:18px">Zoho renders every section of the Account layout here, live from the looked-up record. The sections above are illustrative; the real tab follows the Accounts layout exactly and is not hand-laid.</div>
+    </div>
+  </div>
+
+  <!-- ============ RELATED-LIST TABS ============ -->
+  <div class="pane" data-tab="Timeline"><div class="rl" style="left:22px;top:24px;width:1056px;height:640px"><div class="hd"><span class="ic bg-indigo">&#9719;</span>Timeline</div><div class="empty">Record Timeline (system component <code>timeline</code>), rendered by Zoho.</div></div></div>
+  <div class="pane" data-tab="Notes"><div class="rl" style="left:22px;top:24px;width:1056px;height:640px"><div class="hd"><span class="ic bg-indigo">&#9998;</span>Notes</div><div class="empty">Notes list, rendered by Zoho.</div></div></div>
+  <div class="pane" data-tab="Attachments"><div class="rl" style="left:22px;top:24px;width:1056px;height:640px"><div class="hd"><span class="ic bg-sky">&#128206;</span>Attachments</div><div class="empty">Attachments list, rendered by Zoho.</div></div></div>
+  <div class="pane" data-tab="Emails"><div class="rl" style="left:22px;top:24px;width:1056px;height:640px"><div class="hd"><span class="ic bg-amber">&#9993;</span>Emails</div><div class="empty">Emails list, rendered by Zoho.</div></div></div>
+  <div class="pane" data-tab="Checklists"><div class="rl" style="left:22px;top:24px;width:1056px;height:640px"><div class="hd"><span class="ic bg-teal">&#10003;</span>Checklists</div><div class="empty">Checklists list, rendered by Zoho.</div></div></div>
+  <div class="pane" data-tab="Cadences"><div class="rl" style="left:22px;top:24px;width:1056px;height:640px"><div class="hd"><span class="ic bg-violet">&#8635;</span>Cadences</div><div class="empty">Cadences list, rendered by Zoho.</div></div></div>
+</div>
+
+<div class="legend">
+  <h3>What the header does</h3>
+  <ul>
+    <li><b>Mail Merge</b> (primary, generates the proposal document), <b>Edit</b>, <b>More</b> (clone, delete, share, print, and any custom buttons added later), right-aligned. All three are actions Zoho itself placed on this module's canvas, so they are known to exist for Proposals.</li>
+    <li>Proposals Name on the left, <b>Proposal Status</b> as a pill beside the buttons. Company, Prepared For, Email To, Related Account and Related Contact live in the Proposal Details card instead of the header.</li>
+    <li>Five glass tiles: Est. Total Cost, Billing Method, Payment Terms, Proposal Sent Date, Acceptance Date.</li>
+  </ul>
+  <h3>Tabs</h3>
+  <ul>
+    <li><b>Overview</b> — details, billing, signature and invoicing keys, description, controls, special terms, tags, open tasks and meetings.</li>
+    <li><b>Pricing</b> — one card per billing method (Hourly, Hour Blocks, Retainer, Fixed) plus the four cost KPIs.</li>
+    <li><b>Activity</b> — Chronological View, Closed Tasks, Closed Meetings.</li>
+    <li><b>Record</b> — system information, ownership and sharing, currency, Locking Information.</li>
+    <li><b>Related Account</b> — Zoho's lookup All-Fields tab on the Related Account lookup: every field of the linked Account, grouped by the Accounts layout sections, live.</li>
+    <li><b>Timeline</b> on its own tab, then one tab per remaining related list: Notes, Attachments, Emails, Checklists, Cadences.</li>
+  </ul>
+  <h3>Left off, on purpose</h3>
+  <ul>
+    <li>ChronologicalView History (near-duplicate of Chronological View), Unsubscribed Mode / Unsubscribed Time (email-opt-out plumbing), the empty Scope Items section. Corners are 3px or less throughout; shadows do the softening.</li>
+    <li>Blueprint and Stage components: valid on this module but their JSON has never been captured, so they are not emitted. Add them in the editor after deploy if wanted.</li>
+    <li>An All Fields tab: the editor generates one per module in one click; the one on file is Contacts-shaped and would be wrong here.</li>
+    <li>Toggle switches: not a Canvas element. Boolean fields render as Zoho's checkbox, shown above as it will look. The editor's Custom CSS box exists (every node has a <code>custom_style</code> slot) but no capture has ever shown it populated, so nothing is emitted there.</li>
+  </ul>
+</div>
+
+<script>
+(function(){
+  var names=["Overview","Pricing","Activity","Record","Related Account","Timeline","Notes","Attachments","Emails","Checklists","Cadences"];
+  var sw=document.getElementById("sw"), tabs=document.getElementById("tabs");
+  var heights={"Overview":1377,"Pricing":890,"Activity":992,"Record":832,"Related Account":938};
+  function show(n){
+    document.querySelectorAll(".pane").forEach(function(p){p.classList.toggle("on",p.dataset.tab===n)});
+    document.querySelectorAll(".tab").forEach(function(t){t.classList.toggle("on",t.textContent===n)});
+    document.querySelectorAll("#sw button").forEach(function(b){b.classList.toggle("on",b.textContent===n)});
+    document.getElementById("cv").style.height=(heights[n]||938)+"px";
+  }
+  names.forEach(function(n){
+    var b=document.createElement("button"); b.textContent=n; b.onclick=function(){show(n)}; sw.appendChild(b);
+    var t=document.createElement("div"); t.className="tab"; t.textContent=n; t.onclick=function(){show(n)}; tabs.appendChild(t);
+  });
+  show("Overview");
+})();
+</script>

@@ -45,7 +45,10 @@ BRIGHT = {
     "rose":    "rgba(244, 63, 94, 1)",
     "emerald": "rgba(16, 185, 129, 1)",
     "hairline": "rgba(232, 237, 243, 1)",
-    "radius_card": "14px",
+    # John's rule (2026-09-07): corners 3px max anywhere; soften with shadow instead.
+    "radius_card": "3px",
+    "radius_chip": "2px",
+    "radius_button": "3px",
     "shadow":      "0px 6px 20px 0px rgba(15, 23, 42, 0.06)",
     "font_body":    "13px",
     "font_heading": "14px",
@@ -180,7 +183,8 @@ def chip(x: int, y: int, w: int, h: int, value: str, *, bg: str, colour: str,
          tokens: dict = BRIGHT) -> dict:
     """Text preset #1 shape: a Static Text with background, radius and padding."""
     return text(x, y, w, h, value, autoheight=False, style={
-        "background_color": bg, "border_radius": "9px", "padding": "4px 10px 4px 10px",
+        "background_color": bg, "border_radius": tokens.get("radius_chip", "2px"),
+        "padding": "4px 10px 4px 10px",
         "font_size": tokens["font_micro"], "font_family": F_SEMI, "color": colour,
     })
 
@@ -333,26 +337,31 @@ def button_group(x: int, y: int, w: int, buttons: list[dict]) -> dict:
 
 def related_list_card(rl_id: str, title: str, x: int, y: int, w: int, h: int, *,
                       tokens: dict = BRIGHT, recordcount: int = 10,
-                      icon_name: str | None = None, accent: str | None = None) -> dict:
+                      icon_name: str | None = None, accent: str | None = None,
+                      inset: int = 18, title_top: int = 8, list_top: int = 52) -> dict:
     """The exact shape of a related-list tab card in gallery template c3 (Notes tab):
 
         component .zc-list-component.zcautoratio  related_list=true count editorclass
           static_content .zcanvas-title-editor        (title block)
             [Static Icon]  Static Text .zc_disabled autoheight=false
           relatedlist theme="Table Layout"  recordcount  children=[]   (Zoho renders it)
+
+    Geometry is ours: the default metrics match the field cards (18px inset,
+    22px icon at y=15, 14px semibold title, content from y=52) so related-list
+    cards and field cards read as one system.
     """
-    inner_w = w - 60
+    inner_w = w - inset * 2
     title_children = []
-    tx = 10
+    tx = 0
     if icon_name:
-        title_children.append(icon(10, 8, icon_name, size=20, colour=accent))
-        tx = 42
+        title_children.append(icon(0, 7, icon_name, size=22, colour=accent))
+        tx = 32
     title_children.append({
         "type": "component",
-        "ui": {"value": {"style": {"default": {"padding": "0px", "font_size": "16px",
-                                               "font_family": F_MED, "color": tokens["text"]}},
+        "ui": {"value": {"style": {"default": {"padding": "0px", "font_size": tokens["font_heading"],
+                                               "font_family": F_SEMI, "color": tokens["text"]}},
                          "custom_style": {},
-                         "position": position(tx, 11, inner_w - tx - 20, 19),
+                         "position": position(tx, 9, inner_w - tx - 20, 22),
                          "class": "zc_disabled", "value": title},
                "autoheight": False},
         "theme": "Static Text",
@@ -378,14 +387,14 @@ def related_list_card(rl_id: str, title: str, x: int, y: int, w: int, h: int, *,
             {
                 "type": "static_content",
                 "ui": {"value": {"style": {"default": {}}, "custom_style": {},
-                                 "position": position(30, 30, inner_w, 50, min_top=11, min_left=10),
+                                 "position": position(inset, title_top, inner_w, 40, min_top=11, min_left=10),
                                  "class": "zcanvas-title-editor"}},
                 "theme": "Custom Layout",
                 "children": title_children,
             },
             {
                 "id": rl_id, "type": "relatedlist",
-                "ui": {"value": {"position": position(30, 80, inner_w, h - 110),
+                "ui": {"value": {"position": position(inset, list_top, inner_w, h - list_top - inset),
                                  "style": {}, "recordcount": str(recordcount)},
                        "canvas_rules": []},
                 "theme": "Table Layout",
@@ -449,13 +458,13 @@ def tab_strip(x: int, y: int, w: int, h: int, tabs: list[dict], *, tokens: dict 
 
 
 def system_list_card(system_id: str, title: str, x: int, y: int, w: int, h: int, *,
-                     tokens: dict = BRIGHT, recordcount: int = 5) -> dict:
+                     tokens: dict = BRIGHT, recordcount: int = 5, **kw) -> dict:
     """A palette `system` component (timeline, journeys) placed as a related list.
 
     Identical to related_list_card; the id is the system string. Observed for
     `timeline` and `journeys` ("Interactions") only.
     """
-    return related_list_card(system_id, title, x, y, w, h, tokens=tokens, recordcount=recordcount)
+    return related_list_card(system_id, title, x, y, w, h, tokens=tokens, recordcount=recordcount, **kw)
 
 
 def lookup_all_fields_tab(name: str, connection_id: str, w: int, body_h: int, order: int) -> dict:

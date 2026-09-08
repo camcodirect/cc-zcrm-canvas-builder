@@ -10,6 +10,42 @@ requirement is a screen recording walkthrough (see `canvas-resource-links.txt` f
 
 Not a one-off canvas. The point is repeatable template generation across modules.
 
+## Sibling project: the zcrm-canvas plugin
+
+This project is being turned into a shareable Claude Code plugin at
+**`e:\claude-projects\zcrm-canvas`** (its own git repo, installable by marketplace). Design spec:
+`docs/superpowers/specs/2026-09-07-zcrm-canvas-skill-design.md`. The split of roles:
+
+- **This repo is the evidence base and Camco's history.** Captures, HARs, rollbacks, the
+  Camco builders, and the docs derived from them live here and stay here. Nothing under
+  `reference/` or `output/` is ever copied into the plugin; the plugin's tests read this checkout
+  through `ZCRM_EVIDENCE_DIR` when they need it.
+- **The plugin is where new canvases get built** once it exists. It carries the ported code
+  (`auth`, `api`, `shapes`, `validate`, the compiler), the derived assets (icon catalog, presets,
+  `vocabulary.json`), the default theme, and the references.
+
+**Parity rule.** When functionality changes here, carry the change to the plugin where it makes
+sense, in the same session, and say so in the final message. Concretely:
+
+- A new or changed builder in `src/canvas_shapes.py` → the plugin's `shapes.py`.
+- A new validator rule, or a calibration fix, in `src/validate.py` → the plugin's `validate.py`
+  (and re-run the 33-file calibration there).
+- A new observed construct, class token, style key, icon, action id or datatype mapping → the
+  plugin's `vocabulary.json`, its catalog or palette under `assets/`, and its `references/` copy
+  of `canvas-schema.md` / `canvas-constructs.md`.
+- A new design rule or a change to the header conventions, card metrics or corner rule →
+  `references/design-rules.md` and `themes/default.json`.
+- A new endpoint, endpoint limit or auth quirk → `api.py` / `auth.py` and the endpoint table in
+  the plugin's `canvas-schema.md`.
+- A workflow change (Step 0, the mockup round, deploy gates) → `SKILL.md` and the matching
+  `commands/*.md`.
+
+What does **not** go across: Camco ids, Camco captures, per-canvas builders
+(`build_contacts_*.py`, `build_proposals_v1.py`), rollbacks, the HARs, anything in `.env`.
+Those are this org's data; the plugin gets a spec in `examples/` at most, labelled as an
+example. If the plugin folder does not exist yet or is mid-build, note the parity item in the
+final message instead of guessing at its layout.
+
 ## Scope (settled 2026-09-04)
 
 - **Update only.** PUT to an existing canvas view. Creating canvases via POST is out of scope.
@@ -24,8 +60,29 @@ Not a one-off canvas. The point is repeatable template generation across modules
 
 ## Status
 
-Pipeline proven end to end (OAuth, GET, PUT, restore). Structural knowledge now rests on a real
-evidence base, not one capture:
+Pipeline proven end to end (OAuth, GET, PUT, restore).
+
+**Live on Proposals canvas `2582206000076741077` (2026-09-07 12:46): "Proposals Canvas v1"**, built
+by `src/build_proposals_v1.py`: 263 nodes, 11 tabs (Overview, Pricing, Activity, Record, a lookup
+All-Fields tab on Related_Account, Timeline, 5 related-list tabs). Fields resolve by api_name
+against the live Standard layout at build time; nothing numeric is hardcoded but the view id.
+Design mockup: `output/camco-647376701/Proposals/proposals-v1.preview.html`. Rollback:
+`reference/captures/rollback-2582206000076741077-20260907-124655.json` (the Zoho starter
+"Proposal Canvas 1"). **Editor check pending.** Two facts settled while building it:
+the editor mints `lookup_associations.connection_id` client-side (it appears fully formed in the
+first PUT, never in a prior response), so the builder mints one; and the components palette
+endpoint (`/crm/v2/settings/canvas/views/components`) is browser-session only, 401 over OAuth, so
+the header uses only action ids Zoho itself placed on this module (`mail_merge`, `edit`,
+`morebutton`). Corners are 3px max everywhere (John's rule, now in `BRIGHT`).
+
+**Live on Contacts canvas `2582206000076641025` (2026-09-06 20:07): "Contacts Canvas v3.1"**, built
+by `src/build_contacts_v31.py` on top of `build_contacts_v3.py`: 511 nodes, 19 tabs (4 composite,
+10 related-list, Interactions via `journeys`, 3 lookup All-Fields tabs, All Fields). The server
+kept the 3 `lookup_associations` connection ids from the round-3 recording. Rollback:
+`reference/captures/rollback-2582206000076641025-20260906-200727.json`. Editor check pending at
+the time of writing; do not build on it until John confirms it opens.
+
+Structural knowledge now rests on a real evidence base, not one capture:
 
 - **25 consecutive editor saves** in two recorded sessions, one construct added per save
   (`reference/ui-capture/`, manifest in its README). Diffing consecutive saves gives the exact node
@@ -58,6 +115,11 @@ inferred from static end states; one 15-minute capture settled all of them. Ever
 
 - Grid item shape; `system` and `zia` palette components (`blueprint`, `zia_score`, ...)
 - Responsive Mode payload; populated `canvas_rules` / `script_info`; error responses
+- **Populated `custom_style`** (the editor's Custom CSS box). Every node carries the slot, and in
+  all 33 Zoho-authored files it is `{}`. Do not emit it until one save with a custom CSS
+  property has been captured; that single save would settle the shape.
+- **A toggle switch.** There is none. Boolean fields carry only `datatype: "boolean"` and Zoho
+  renders its own checkbox. Mockups must show a checkbox, not a switch (John asked, 2026-09-07).
 - **Which specific deviation broke the editor in the v2 deploys.** Invalid icon names are the
   leading candidate. The rebuild should emit only observed shapes and be opened in the editor
   before it is called working.
@@ -232,7 +294,24 @@ automatically before every deploy.
   `output/README.md`.
 - Files under `output/` are **generated artifacts** — regenerate them, never hand-patch.
 - Keep branding (colours, fonts, spacing) in an **org-level base template** separate from the
-  per-canvas layout, so a second client org means a new base, not a rewrite.
+  per-canvas layout, so a second client org means a new base, not a rewrite. The Camco base is
+  `BRIGHT` in `src/canvas_shapes.py`.
+- **Corners 3px max, everywhere.** John: "I do not like the rounded look. But it can be used
+  subtly to soften." Cards, tiles and buttons 3px, chips and pills 2px, soften with `box_shadow`.
+  `BRIGHT` carries `radius_card`, `radius_chip`, `radius_button`; never hardcode a larger radius.
+- **One set of card metrics.** Every card, related-list card included: 18px inset, icon 22px at
+  y=15, title 14px semibold at x=50/y=17, content from y=52, rows 29px. Things that share a role
+  share exact metrics; John flags anything that "sticks out like a sore thumb".
+- **Header conventions (settled on Proposals, 2026-09-07).** Record name left at 24px; the status
+  picklist as a pill with the button metrics (34px tall, same top as the buttons, 3px radius);
+  actions right-aligned as one group ending at the same right edge as the content below; a row of
+  stat tiles under it with a solid white hero tile for the one number that matters. No back arrow,
+  no record image, no navigator button, no subtitle lines: John removed all of them. Lookups and
+  contact details go in a details card, not the header.
+- **Only `action` ids Zoho has itself placed on that module** go in a header. The palette
+  endpoint is browser-session only (401 over OAuth), so the ids in the module's existing canvas
+  (`GET` it first) are the observed set. On Proposals that is `mail_merge`, `edit`, `morebutton`,
+  `back`, `navigate`.
 - **Credentials live in `.env` only** — never in a template, capture, doc, commit, or chat
   message. `.gitignore` already excludes it. `.env.example` holds the key names and no values.
 - Log meaningful mistakes in `mistakes.md`.
@@ -260,7 +339,12 @@ Scope is **the module plus one level of relationships**:
    `data_type`, `custom_field`, `section_id`, `required` and `visible`, so layout membership is
    implicit in the nesting. **A separate `getFields` call is redundant for the primary module.**
    Output exceeds the tool token cap (306 KB for Accounts) and lands in a file — parse it with
-   python/jq, do not read it.
+   python/jq, do not read it. The same data comes from
+   `GET /crm/v8/settings/layouts?module={Module}` through `src/zoho_auth.py`, which is what the
+   builders use (`Profile` in `src/build_proposals_v1.py`): no MCP round trip, no file, resolved
+   by `api_name` at build time on every run. Also fetch `GET /crm/v8/settings/modules` for the
+   module id, and `/crm/v8/settings/custom_buttons?module=` (204 = none) and
+   `/crm/v8/settings/blueprints?module=` so the design knows what actions and process exist.
 
    A field existing on the module does not mean it is on the layout the canvas targets, and
    placing an off-layout field fails silently. Reading fields *through* the layout removes that
@@ -304,10 +388,28 @@ mock freely and work through walls as they come up.
 Note the preview limit: field labels and values live in CRM, not the payload, so a mockup shows
 layout, spacing, colour and structure — not real record data.
 
+**How the mockup round works (settled on Proposals, 2026-09-07).**
+
+- The mockup is a fixed 1100px page with every box absolute-positioned at the **same
+  coordinates the Canvas JSON will use**, so conversion is one-to-one and nothing is
+  re-designed in the builder. Labels are the live CRM labels; values are marked as examples.
+- Publish it as a private Artifact and give John the link. He reviews screenshots with
+  annotations (arrows, circles, yellow highlights) and sends changes one screenshot at a time.
+  Republish to the **same URL** each round; several short rounds are normal (five on Proposals).
+- Mockup fonts: Zoho Puvi is what CRM renders and cannot be loaded from Google Fonts, so use
+  Segoe UI as the stand-in and say so in the page note. Do not pick a display face.
+- Show Zoho-rendered things as Zoho renders them: booleans as checkboxes, related lists as a
+  dashed "rendered by Zoho" box, a lookup All-Fields tab as the linked record's sections.
+- Only after John says "deploy" does any builder code get written. Save the mockup next to the
+  output as `<canvas>.preview.html`; it is the design source named in `.meta.json`.
+
 ## Environment
 
 - Camco CRM org: **647376701**. Accounts module `2582206000000002177`, layout
-  `2582206000000091029`, canvas view `2582206000057761014`.
+  `2582206000000091029`, canvas view `2582206000057761014`. Proposals module
+  `2582206000008466209` (`CustomModule6`), layout `Standard` `2582206000008466208`, canvas view
+  `2582206000076741077`. Proposals has no custom buttons and one active blueprint on
+  `Proposal_Status`.
 - The **Camco ZCRM MCP** resolves schema metadata. John expanded its permissions **2026-09-06**;
   it now has `getModules`, `getModuleByApiName`, `getLayouts`, `getLayoutById`, `getFields`,
   `getFieldsWithID` and `executeCOQLQuery`. It also carries substantial **write** tools against
@@ -327,6 +429,11 @@ layout, spacing, colour and structure — not real record data.
   layout IDs above still resolve.
 
 ## Maintenance
+
+**Parity with the plugin.** See "Sibling project" near the top: any change to the working code,
+the observed vocabulary, the design rules or the workflow here is carried to
+`e:\claude-projects\zcrm-canvas` in the same session where it makes sense, and the final
+message names what was carried and what was deliberately left behind.
 
 **Keep this file and `docs/canvas-json-structure.md` current.** Both describe an undocumented
 Zoho payload derived from a single capture, so they go stale quietly and dangerously.
